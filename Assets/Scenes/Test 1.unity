@@ -351,6 +351,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Warrok W Kurniawan
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 875227db3d42516408857e4fc20c13c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 875227db3d42516408857e4fc20c13c9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 875227db3d42516408857e4fc20c13c9,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b4765468c8398f24fb40282da2ef3d47, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 875227db3d42516408857e4fc20c13c9,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -359,6 +379,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 728820346}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 875227db3d42516408857e4fc20c13c9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 728820348}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 875227db3d42516408857e4fc20c13c9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 728820349}
   m_SourcePrefab: {fileID: 100100000, guid: 875227db3d42516408857e4fc20c13c9, type: 3}
 --- !u!43 &72436414
 Mesh:
@@ -1843,9 +1871,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 338713380}
+  - component: {fileID: 338713382}
   - component: {fileID: 338713381}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Weapon Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1889,6 +1918,18 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0.38}
+--- !u!114 &338713382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338713379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3abab06ade07634f98771732f0023e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &376309607
 Mesh:
   m_ObjectHideFlags: 0
@@ -5918,6 +5959,47 @@ CapsuleCollider:
   m_Height: 2.2
   m_Direction: 1
   m_Center: {x: 0, y: 1.1, z: 0}
+--- !u!114 &728820348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728820344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a96c182b4660493469153b344bac52ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+--- !u!54 &728820349
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728820344}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &730934419
 GameObject:
   m_ObjectHideFlags: 0
@@ -11126,6 +11208,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Paladin WProp J Nordstrom
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ec5e58c2dd616c94e825ce0eb97da8f9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1051571768989249988, guid: ec5e58c2dd616c94e825ce0eb97da8f9,
         type: 3}
       propertyPath: m_IsActive
@@ -16194,6 +16281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073c7b318fa00594db58554c19a81a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponSlot: {fileID: 338713379}
   hasAttacked: 0
   isAttacking: 0
   AimCamera: {fileID: 1432488256}
@@ -16201,6 +16289,7 @@ MonoBehaviour:
   target: {fileID: 728820344}
   rotationSpeed: 20
   elapsedTime: 0
+  damageAmount: 25
 --- !u!114 &1957634053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16264,7 +16353,7 @@ MonoBehaviour:
   m_TrackedObjectOffset: {x: 0, y: 1, z: 0}
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
-  m_LookaheadIgnoreY: 0
+  m_LookaheadIgnoreY: 1
   m_HorizontalDamping: 0
   m_VerticalDamping: 0
   m_ScreenX: 0.5

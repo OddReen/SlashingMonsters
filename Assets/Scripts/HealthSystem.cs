@@ -1,9 +1,12 @@
+using System.Collections;
 using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
+    Animator animator;
     [SerializeField] float maxHealth = 100;
-    [SerializeField] float currentHealth = 0;
+    [SerializeField] float currentHealth;
+    bool isDead = false;
     float CurrentHealth
     {
         get { return currentHealth; }
@@ -12,19 +15,34 @@ public class HealthSystem : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        animator = GetComponent<Animator>();
     }
     public void Damage(float amount)
     {
-        CurrentHealth -= amount;
-        if (CurrentHealth <= 0)
+        if (isDead)
+            return;
+        currentHealth -= amount;
+        Debug.Log(CurrentHealth);
+        if (currentHealth <= 0)
             Die();
+        animator.SetBool("isDamaged", true);
+        StartCoroutine(EndBool("isDamaged"));
     }
-    public void Heal(float amount)
+    public void Health(float amount)
     {
-        CurrentHealth += amount;
+        if (isDead)
+            return;
+        currentHealth += amount;
     }
     public void Die()
     {
-        Debug.Log("Death");
+        isDead = true;
+        animator.SetBool("isDead", true);
+        StartCoroutine(EndBool("isDead"));
+    }
+    IEnumerator EndBool(string boolName)
+    {
+        yield return new WaitForEndOfFrame();
+        animator.SetBool(boolName, false);
     }
 }

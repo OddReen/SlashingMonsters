@@ -10,6 +10,7 @@ public class CombatHandler : MonoBehaviour
     Animator animator;
     Rigidbody rb;
     HealthSystem healthSystem;
+    WeaponHit weaponHit;
     [SerializeField] GameObject weaponSlot;
     Collider weaponCollider;
 
@@ -23,6 +24,7 @@ public class CombatHandler : MonoBehaviour
 
     [SerializeField] float rotationSpeed = 20;
     public float elapsedTime = 0f;
+    public float damageAmount = 25f;
 
     private void Start()
     {
@@ -33,6 +35,7 @@ public class CombatHandler : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         healthSystem = GetComponent<HealthSystem>();
         weaponCollider = weaponSlot.GetComponent<Collider>();
+        weaponHit = weaponSlot.GetComponent<WeaponHit>();
         weaponCollider.enabled = false;
     }
     private void FixedUpdate()
@@ -85,6 +88,7 @@ public class CombatHandler : MonoBehaviour
         {
             hasAttacked = false;
             isAttacking = true;
+            weaponCollider.enabled = true;
             playerController.enabled = false;
             StartCoroutine(OnAnimationEnd());
         }
@@ -101,12 +105,20 @@ public class CombatHandler : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+        weaponCollider.enabled = false;
         playerController.enabled = true;
         elapsedTime = 0;
         isAttacking = false;
+        weaponHit.ClearEnemyHitList();
     }
     void OnAim()
     {
+        Vector3 dir = target.transform.position - cameraTarget.transform.position;
+        dir.Normalize();
+        Quaternion rotation = Quaternion.LookRotation(dir, Vector3.up);
+
+        cameraController.cameraTargetPitch = rotation.eulerAngles.x;
+        cameraController.cameraTargetYaw = rotation.eulerAngles.y;
         playerController.canRotate = false;
 
         cameraController.enabled = false;
