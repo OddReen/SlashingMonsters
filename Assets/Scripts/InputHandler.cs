@@ -8,6 +8,7 @@ public class InputHandler : MonoBehaviour
     public Vector2 cameraInput;
     public bool isRunning;
     public bool isAiming;
+    public bool isAttacking;
 
     private void OnEnable()
     {
@@ -21,7 +22,8 @@ public class InputHandler : MonoBehaviour
             inputActions.Gameplay.Run.performed += context => isRunning = context.ReadValueAsButton();
             inputActions.Gameplay.Run.canceled += context => isRunning = context.ReadValueAsButton();
             inputActions.Gameplay.Aim.performed += context => isAiming = !isAiming;
-            //inputActions.Gameplay.Aim.canceled += context => isAiming = context.ReadValueAsButton();
+            inputActions.Gameplay.Attack.performed += context => isAttacking = context.ReadValueAsButton();
+            inputActions.Gameplay.Attack.canceled += context => isAttacking = context.ReadValueAsButton();
         }
         inputActions.Enable();
     }

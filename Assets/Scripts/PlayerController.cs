@@ -4,7 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     InputHandler inputHandler;
 
-    Rigidbody _rigidbody;
+    public Rigidbody _rigidbody;
     Animator _animator;
 
     [Header("Stats")]
@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     [Header("Gizmos")]
     [SerializeField] bool playerDirectionGizmo;
     [SerializeField] bool isGroundedGizmo;
+    bool triggerOffTheGround = false;
 
     [Header("Bolleans")]
     [SerializeField] public bool canRotate = true;
@@ -48,7 +49,7 @@ public class PlayerController : MonoBehaviour
     }
     private void LateUpdate()
     {
-        ChangeModelPos();
+        //ChangeModelPos();
     }
     private void Movement()
     {
@@ -105,7 +106,6 @@ public class PlayerController : MonoBehaviour
             return isGrounded;
         }
     }
-    bool triggerOffTheGround = false;
     private void StickToTheGround()
     {
         if (isGrounded)

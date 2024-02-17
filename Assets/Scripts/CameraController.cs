@@ -22,7 +22,7 @@ public class CameraController : MonoBehaviour
         inputHandler = GetComponent<InputHandler>();
         playerController = GetComponent<PlayerController>();
     }
-    void LateUpdate()
+    void Update()
     {
         CameraRotation();
     }
