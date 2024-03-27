@@ -1,10 +1,14 @@
+using Cinemachine;
 using UnityEngine;
 public class CameraController : MonoBehaviour
 {
-    PlayerController playerController;
+    PlayerBehaviour playerController;
     InputHandler inputHandler;
 
     [SerializeField] GameObject cameraTarget;
+    [SerializeField] Transform cameraTargetPosition;
+    [SerializeField] CinemachineVirtualCamera thirdPersonCamera;
+    [SerializeField] CinemachineVirtualCamera thirdPersonCameraAim;
 
     public float rotationSpeed = 50f;
 
@@ -18,12 +22,17 @@ public class CameraController : MonoBehaviour
 
     void Awake()
     {
+        cameraTarget = new GameObject("Camera Target");
+        thirdPersonCamera.Follow = cameraTarget.transform;
+        thirdPersonCamera.LookAt = cameraTarget.transform;
+        thirdPersonCameraAim.Follow = cameraTarget.transform;
         Cursor.lockState = CursorLockMode.Locked;
         inputHandler = GetComponent<InputHandler>();
-        playerController = GetComponent<PlayerController>();
+        playerController = GetComponent<PlayerBehaviour>();
     }
     void Update()
     {
+        cameraTarget.transform.position = cameraTargetPosition.position;
         CameraRotation();
     }
     private void CameraRotation()

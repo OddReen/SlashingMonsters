@@ -5,144 +5,105 @@ using UnityEngine;
 public class CombatHandler : MonoBehaviour
 {
     InputHandler inputHandler;
-    CameraController cameraController;
-    PlayerController playerController;
+    PlayerBehaviour playerController;
     Animator animator;
     Rigidbody rb;
-    HealthSystem healthSystem;
-    WeaponHit weaponHit;
+
     [SerializeField] GameObject weaponSlot;
-    Collider weaponCollider;
 
-    bool hasAimed = false;
-    [SerializeField] bool hasAttacked = false;
+    [SerializeField] public bool isRootAnimating = false;
     [SerializeField] bool isAttacking = false;
-    [SerializeField] CinemachineVirtualCamera AimCamera;
+    [SerializeField] public bool isDodging = false;
 
-    [SerializeField] GameObject cameraTarget;
-    [SerializeField] GameObject target;
-
-    [SerializeField] float rotationSpeed = 20;
     public float elapsedTime = 0f;
     public float damageAmount = 25f;
+
+    [SerializeField] string attackTag = "isAttacking";
+    [SerializeField] string dodgeTag = "isDodging";
 
     private void Start()
     {
         inputHandler = GetComponent<InputHandler>();
-        cameraController = GetComponent<CameraController>();
-        playerController = GetComponent<PlayerController>();
+        playerController = GetComponent<PlayerBehaviour>();
         animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
-        healthSystem = GetComponent<HealthSystem>();
-        weaponCollider = weaponSlot.GetComponent<Collider>();
-        weaponHit = weaponSlot.GetComponent<WeaponHit>();
-        weaponCollider.enabled = false;
     }
-    private void FixedUpdate()
+    private void Update()
     {
-        if (isAttacking)
-        {
-            transform.position = animator.gameObject.transform.position;
-            Vector3 velocity = new Vector3(animator.velocity.x, rb.velocity.y, animator.velocity.z);
-            rb.velocity = velocity;
-        }
+        Dodge();
         Attack();
     }
     private void LateUpdate()
     {
-        if (inputHandler.isAiming) // On Aiming
-        {
-            Rotation();
-        }
-        if (inputHandler.isAiming && !hasAimed) //On Aim
-        {
-            hasAimed = true;
-            OnAim();
-        }
-        else if (!inputHandler.isAiming && hasAimed)  //On Stop Aim
-        {
-            hasAimed = false;
-            OnStopAim();
-        }
-        animator.gameObject.transform.position = transform.position;
-    }
-    private void Rotation()
-    {
-        Vector3 targetDir = target.transform.position - transform.position;
-        targetDir.Normalize();
-        float _targetRotation = Mathf.Atan2(targetDir.x, targetDir.z) * Mathf.Rad2Deg;
-        float rotation = Mathf.LerpAngle(transform.eulerAngles.y, _targetRotation, Time.deltaTime * rotationSpeed);
-
-        transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+        animator.transform.position = transform.position;
     }
     void Attack()
     {
-        if (inputHandler.isAttacking && !hasAttacked && !isAttacking) // Begin Attack
+        if (inputHandler.isAttacking && !isRootAnimating) // Begin Attack
         {
-            hasAttacked = true;
-            animator.SetInteger("RandAttack", Random.Range(0, 7));
-            animator.SetBool("isAttacking", true);
-            StartCoroutine(HasAttaked());
-        }
-        if (animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack") && hasAttacked && !isAttacking)  //If is Attacking
-        {
-            hasAttacked = false;
-            isAttacking = true;
-            weaponCollider.enabled = true;
-            playerController.enabled = false;
-            StartCoroutine(OnAnimationEnd());
+            #region Random Attack
+            if (animator.GetInteger("RandAttack") >= 2)
+            {
+                animator.SetInteger("RandAttack", 0);
+            }
+            else
+            {
+                animator.SetInteger("RandAttack", animator.GetInteger("RandAttack") + 1);
+            }
+            #endregion
+            StartCoroutine(OnAnimation(attackTag));
         }
     }
-    IEnumerator HasAttaked()
+    private void Dodge()
     {
+        if (inputHandler.isDodging && !isRootAnimating) // Begin Dodge
+        {
+            StartCoroutine(OnAnimation(dodgeTag));
+        }
+    }
+    IEnumerator OnAnimation(string animationTag)
+    {
+        animator.SetBool(animationTag, true);
         yield return new WaitForEndOfFrame();
-        animator.SetBool("isAttacking", false);
-    }
-    IEnumerator OnAnimationEnd()
-    {
-        while (elapsedTime <= animator.GetCurrentAnimatorStateInfo(0).length - animator.GetAnimatorTransitionInfo(0).duration * animator.GetCurrentAnimatorStateInfo(0).speedMultiplier && animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+        animator.SetBool(animationTag, false);
+
+        rb.velocity = Vector3.zero;
+        playerController.currentSpeed = 0;
+        isRootAnimating = true;
+        playerController.enabled = false;
+
+        float _targetRotation = 0;
+        if (playerController.moveDirectionWorldRelative != Vector3.zero)
         {
+            _targetRotation = Mathf.Atan2(playerController.moveDirectionWorldRelative.x, playerController.moveDirectionWorldRelative.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
+        }
+        else if (animationTag == dodgeTag)
+        {
+            yield break;
+        }
+
+        while (elapsedTime <= animator.GetCurrentAnimatorStateInfo(0).length * animator.GetCurrentAnimatorStateInfo(0).speedMultiplier && animator.GetCurrentAnimatorStateInfo(0).IsTag(animationTag))
+        {
+            if (animationTag == dodgeTag)
+            {
+                float rotation = Mathf.LerpAngle(transform.eulerAngles.y, _targetRotation, Time.deltaTime * playerController.rotationSpeed);
+
+                rb.MoveRotation(Quaternion.Euler(0.0f, rotation, 0.0f));
+
+                rb.velocity = new Vector3(animator.velocity.x * 1.5f, rb.velocity.y, animator.velocity.z * 1.5f);
+            }
+            else
+            {
+                rb.velocity = new Vector3(animator.velocity.x, rb.velocity.y, animator.velocity.z);
+            }
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        weaponCollider.enabled = false;
-        playerController.enabled = true;
+
         elapsedTime = 0;
-        isAttacking = false;
-        weaponHit.ClearEnemyHitList();
-    }
-    void OnAim()
-    {
-        Vector3 dir = target.transform.position - cameraTarget.transform.position;
-        dir.Normalize();
-        Quaternion rotation = Quaternion.LookRotation(dir, Vector3.up);
-
-        cameraController.cameraTargetPitch = rotation.eulerAngles.x;
-        cameraController.cameraTargetYaw = rotation.eulerAngles.y;
-        playerController.canRotate = false;
-
-        cameraController.enabled = false;
-        AimCamera.gameObject.SetActive(true);
-    }
-    void OnStopAim()
-    {
-        playerController.canRotate = true;
-        cameraController.enabled = true;
-
-        AimCamera.gameObject.SetActive(false);
-
-        Vector3 dir = target.transform.position - cameraTarget.transform.position;
-        dir.Normalize();
-        Quaternion rotation = Quaternion.LookRotation(dir, Vector3.up);
-
-        cameraController.cameraTargetPitch = rotation.eulerAngles.x;
-        cameraController.cameraTargetYaw = rotation.eulerAngles.y;
-    }
-    private void OnDrawGizmos()
-    {
-        Vector3 targetDir = target.transform.position - transform.position;
-        targetDir.Normalize();
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(transform.position, transform.position + targetDir);
+        isRootAnimating = false;
+        playerController.enabled = true;
+        rb.velocity = Vector3.zero;
+        playerController.currentSpeed = 0;
     }
 }
