@@ -5,7 +5,7 @@ public class PlayerBehaviour : CharacterBehaviour
     InputHandler inputHandler;
 
     public Rigidbody _rigidbody;
-    Animator _animator;
+    [SerializeField] Animator _animator;
 
     [SerializeField] public bool canMove = true;
 
@@ -39,7 +39,6 @@ public class PlayerBehaviour : CharacterBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         inputHandler = GetComponent<InputHandler>();
-        _animator = GetComponentInChildren<Animator>();
     }
     private void FixedUpdate()
     {

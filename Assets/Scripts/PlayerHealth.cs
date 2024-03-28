@@ -1,13 +1,20 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHealth : HealthSystem
 {
+    public float respawnTime = 5;
     public override void Die()
     {
         base.Die();
-        Invoke("Revive", 5);
+        Fade.Instance.FadeOut();
+        StartCoroutine(Respawn());
+    }
+    private IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(respawnTime);
+        Fade.Instance.FadeIn();
+        GameManager.Instance.SpawnPlayerStart();
+        Destroy(gameObject);
     }
 }

@@ -6,7 +6,6 @@ public class EnemyBehaviour : CharacterBehaviour
 {
     Animator animator;
     NavMeshAgent navMeshAgent;
-    [SerializeField] GameObject player;
 
     Rigidbody rb;
     [SerializeField] float speed = 10f;
@@ -31,11 +30,8 @@ public class EnemyBehaviour : CharacterBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindWithTag("Player");
-        if (player != null)
-        {
-            StartCoroutine(IsSighted());
-        }
+
+        StartCoroutine(IsSighted());
         StartCoroutine(OnAnimation());
     }
     private void LateUpdate()
@@ -84,55 +80,60 @@ public class EnemyBehaviour : CharacterBehaviour
     }
     void GoAroundPlayer()
     {
-        Vector3 direction = player.transform.position - transform.position;
+        if (GameManager.Instance.player != null)
+        {
+            Vector3 direction = GameManager.Instance.player.transform.position - transform.position;
 
-        Quaternion rotation = Quaternion.LookRotation(direction);
+            Quaternion rotation = Quaternion.LookRotation(direction);
 
-        //Quaternion.Lerp(transform.rotation, rotation, 100 * Time.deltaTime);
+            //Quaternion.Lerp(transform.rotation, rotation, 100 * Time.deltaTime);
 
-        rb.rotation = rotation;
+            rb.rotation = rotation;
 
-        rb.velocity = transform.right * speed * Time.deltaTime;
+            rb.velocity = transform.right * speed * Time.deltaTime;
+        }
     }
     IEnumerator IsSighted()
     {
         while (true)
         {
             yield return new WaitForSeconds(0.25f);
-            Vector3 dir = (player.transform.position + Vector3.up) - (transform.position + Vector3.up);
-            dir.Normalize();
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position + Vector3.up, dir, out hit, distanceToSight, sightLayer))
+            if (GameManager.Instance.player != null)
             {
-                if (hit.collider.CompareTag("Player"))
+                Vector3 dir = (GameManager.Instance.player.transform.position + Vector3.up) - (transform.position + Vector3.up);
+                dir.Normalize();
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position + Vector3.up, dir, out hit, distanceToSight, sightLayer))
                 {
-                    isSighted = true;
+                    if (hit.collider.CompareTag("Player"))
+                    {
+                        isSighted = true;
+                    }
+                    else
+                    {
+                        isSighted = false;
+                    }
                 }
                 else
                 {
                     isSighted = false;
                 }
-            }
-            else
-            {
-                isSighted = false;
+
             }
         }
     }
     private void OnDrawGizmos()
     {
-        if (player != null)
+        if (GameManager.Instance != null && GameManager.Instance.player != null)
         {
             if (isSighted)
                 Gizmos.color = Color.green;
             else
                 Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position + Vector3.up, player.transform.position + Vector3.up);
-        }
-        if (player != null)
-        {
+            Gizmos.DrawLine(transform.position + Vector3.up, GameManager.Instance.player.transform.position + Vector3.up);
+
             NavMeshPath path = new NavMeshPath();
-            bool pathFound = NavMesh.CalculatePath(transform.position, player.transform.position, navMeshAgent.areaMask, path);
+            bool pathFound = NavMesh.CalculatePath(transform.position, GameManager.Instance.player.transform.position, navMeshAgent.areaMask, path);
             if (pathFound)
             {
                 pathPoints = path.corners;

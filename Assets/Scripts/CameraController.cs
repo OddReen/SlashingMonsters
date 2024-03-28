@@ -22,10 +22,28 @@ public class CameraController : MonoBehaviour
 
     void Awake()
     {
-        cameraTarget = new GameObject("Camera Target");
+        GameObject newCameraTarget = GameObject.Find("Camera Target");
+        if (newCameraTarget == null)
+        {
+            newCameraTarget = new GameObject("Camera Target");
+            cameraTarget = newCameraTarget;
+        }
+        else
+        {
+            cameraTarget = newCameraTarget;
+        }
         thirdPersonCamera.Follow = cameraTarget.transform;
         thirdPersonCamera.LookAt = cameraTarget.transform;
         thirdPersonCameraAim.Follow = cameraTarget.transform;
+
+        cameraTarget.transform.forward = transform.forward;
+        cameraTarget.transform.right = transform.right;
+
+        cameraTargetPitch = cameraTarget.transform.rotation.eulerAngles.x;
+        cameraTargetYaw = cameraTarget.transform.rotation.eulerAngles.y;
+
+        cameraTarget.transform.position = cameraTargetPosition.position;
+
         Cursor.lockState = CursorLockMode.Locked;
         inputHandler = GetComponent<InputHandler>();
         playerController = GetComponent<PlayerBehaviour>();

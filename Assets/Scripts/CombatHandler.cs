@@ -6,7 +6,8 @@ public class CombatHandler : MonoBehaviour
 {
     InputHandler inputHandler;
     PlayerBehaviour playerController;
-    Animator animator;
+    HealthSystem healthSystem;
+    [SerializeField] Animator animator;
     Rigidbody rb;
 
     [SerializeField] GameObject weaponSlot;
@@ -25,8 +26,8 @@ public class CombatHandler : MonoBehaviour
     {
         inputHandler = GetComponent<InputHandler>();
         playerController = GetComponent<PlayerBehaviour>();
-        animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
+        healthSystem = GetComponent<HealthSystem>();
     }
     private void Update()
     {
@@ -63,16 +64,8 @@ public class CombatHandler : MonoBehaviour
     }
     IEnumerator OnAnimation(string animationTag)
     {
-        animator.SetBool(animationTag, true);
-        yield return new WaitForEndOfFrame();
-        animator.SetBool(animationTag, false);
-
-        rb.velocity = Vector3.zero;
-        playerController.currentSpeed = 0;
-        isRootAnimating = true;
-        playerController.enabled = false;
-
         float _targetRotation = 0;
+
         if (playerController.moveDirectionWorldRelative != Vector3.zero)
         {
             _targetRotation = Mathf.Atan2(playerController.moveDirectionWorldRelative.x, playerController.moveDirectionWorldRelative.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
@@ -82,7 +75,16 @@ public class CombatHandler : MonoBehaviour
             yield break;
         }
 
-        while (elapsedTime <= animator.GetCurrentAnimatorStateInfo(0).length * animator.GetCurrentAnimatorStateInfo(0).speedMultiplier && animator.GetCurrentAnimatorStateInfo(0).IsTag(animationTag))
+        animator.SetBool(animationTag, true);
+        yield return new WaitForEndOfFrame();
+        animator.SetBool(animationTag, false);
+
+        rb.velocity = Vector3.zero;
+        playerController.currentSpeed = 0;
+        isRootAnimating = true;
+        playerController.enabled = false;
+
+        while (elapsedTime <= animator.GetCurrentAnimatorStateInfo(0).length * animator.GetCurrentAnimatorStateInfo(0).speedMultiplier && animator.GetCurrentAnimatorStateInfo(0).IsTag(animationTag) && !healthSystem.isDead)
         {
             if (animationTag == dodgeTag)
             {
@@ -101,9 +103,9 @@ public class CombatHandler : MonoBehaviour
         }
 
         elapsedTime = 0;
-        isRootAnimating = false;
-        playerController.enabled = true;
         rb.velocity = Vector3.zero;
         playerController.currentSpeed = 0;
+        isRootAnimating = false;
+        playerController.enabled = true;
     }
 }

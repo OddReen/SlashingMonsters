@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class HealthSystem : MonoBehaviour
 {
     [Header("References")]
-    Animator animator;
+    [SerializeField] Animator animator;
 
     [Header("Health Stats")]
     [SerializeField] float maxHealth = 100;
@@ -15,7 +15,10 @@ public class HealthSystem : MonoBehaviour
     [Header("Health Bar")]
     [SerializeField] GameObject healthbar;
     [SerializeField] float healthBarSpeed = 1f;
-    float healthBarAmount = 1;
+    [SerializeField] float healthBarAmount = 1;
+
+    [Header("Deactivate On Death")]
+    [SerializeField] public MonoBehaviour[] scripts;
 
     float CurrentHealth
     {
@@ -37,11 +40,6 @@ public class HealthSystem : MonoBehaviour
         if (healthbar != null)
         {
             healthbar.GetComponent<Image>().fillAmount = maxHealth;
-        }
-        animator = GetComponent<Animator>();
-        if (animator == null)
-        {
-            animator = GetComponentInChildren<Animator>();
         }
     }
     public void TakeDamage(float amount)
@@ -69,6 +67,10 @@ public class HealthSystem : MonoBehaviour
         //StartCoroutine(EndBool("isDead"));
         StartCoroutine(HealthBarUpdate());
         StartCoroutine(Ragdoll(true, 0));
+        for (int i = 0; i < scripts.Length; i++)
+        {
+            scripts[i].enabled = false;
+        }
     }
     public void Revive()
     {
@@ -76,6 +78,10 @@ public class HealthSystem : MonoBehaviour
         currentHealth = maxHealth;
         StartCoroutine(HealthBarUpdate());
         StartCoroutine(Ragdoll(false, 0));
+        for (int i = 0; i < scripts.Length; i++)
+        {
+            scripts[i].enabled = true;
+        }
     }
     IEnumerator HealthBarUpdate()
     {
