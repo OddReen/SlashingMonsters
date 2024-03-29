@@ -42,7 +42,7 @@ public class EnemyBehaviour : CharacterBehaviour
     {
         if (canWalk)
         {
-            GoAroundPlayer();
+            //GoAroundPlayer();
         }
     }
     IEnumerator OnAnimation()

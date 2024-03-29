@@ -22,6 +22,7 @@ public class CameraController : MonoBehaviour
 
     void Awake()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         GameObject newCameraTarget = GameObject.Find("Camera Target");
         if (newCameraTarget == null)
         {
@@ -44,7 +45,6 @@ public class CameraController : MonoBehaviour
 
         cameraTarget.transform.position = cameraTargetPosition.position;
 
-        Cursor.lockState = CursorLockMode.Locked;
         inputHandler = GetComponent<InputHandler>();
         playerController = GetComponent<PlayerBehaviour>();
     }

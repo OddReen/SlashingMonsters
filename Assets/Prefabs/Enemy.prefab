@@ -1362,7 +1362,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!1 &2735872166511501879
 GameObject:
   m_ObjectHideFlags: 0
@@ -2552,8 +2552,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6902244706233088514}
   - component: {fileID: 1947910621493961310}
-  - component: {fileID: 2640589797869115322}
   - component: {fileID: 1882754160625777319}
+  - component: {fileID: 2640589797869115322}
   - component: {fileID: 660232719831801976}
   - component: {fileID: 127366414702659345}
   - component: {fileID: 2561301864265750320}
@@ -2608,18 +2608,6 @@ MonoBehaviour:
   canWalk: 1
   isRootAnimating: 0
   pathPoints: []
---- !u!114 &2640589797869115322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6089537746213773496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01ebabb5ab7b7fb44bb12efba6c316fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1882754160625777319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2636,12 +2624,25 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   isDead: 0
+  healthBarBackground: {fileID: 9073998077570571708}
   healthbar: {fileID: 7954933755787828649}
   healthBarSpeed: 1
   healthBarAmount: 1
   scripts:
   - {fileID: 1947910621493961310}
   bodyLifeSpan: 10
+--- !u!114 &2640589797869115322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6089537746213773496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ebabb5ab7b7fb44bb12efba6c316fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &660232719831801976
 Animator:
   serializedVersion: 5
@@ -2731,10 +2732,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4
-  m_Height: 2.2
+  m_Radius: 0.6
+  m_Height: 1.6400449
   m_Direction: 1
-  m_Center: {x: 0, y: 1.1, z: 0}
+  m_Center: {x: 0, y: 0.82002246, z: 0}
 --- !u!1 &6209731032905856156
 GameObject:
   m_ObjectHideFlags: 0
@@ -3473,7 +3474,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -0.06, y: -0.06}
+  m_SizeDelta: {x: -0.02, y: -0.02}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &782651059307879962
 CanvasRenderer:
@@ -4329,8 +4330,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.5}
-  m_SizeDelta: {x: 2, y: 0.2}
+  m_AnchoredPosition: {x: 0, y: 2.0000005}
+  m_SizeDelta: {x: 1.29, y: 0.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7089999975649004196
 CanvasRenderer:

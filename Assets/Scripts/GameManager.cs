@@ -4,27 +4,56 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public float nonActiveTime = 3;
     public static GameManager Instance;
-    public GameObject player;
+
+    [SerializeField] Transform spawner;
+    [SerializeField] List<SpawnEnemy> enemySpawners;
+    [SerializeField] List<GameObject> enemies;
+
+    [SerializeField] public GameObject interactUI;
+    [SerializeField] public float nonActiveTime = 3;
+    [SerializeField] public GameObject player;
     [SerializeField] private GameObject playerPref;
-    [SerializeField] private Transform checkpoint;
+
+    [SerializeField] public Transform checkpoint;
 
     private void Start()
     {
-        if (Instance == null)
-            Instance = this;
-        SpawnPlayerStart();
+        if (Instance == null) Instance = this;
+        for (int i = 0; i < spawner.childCount; i++)
+        {
+            enemySpawners.Add(spawner.GetChild(i).GetComponent<SpawnEnemy>());
+        }
+        SpawnPlayer();
+        SpawnEnemies();
+        interactUI = player.GetComponent<CombatHandler>().interactUI;
     }
-    public void SpawnPlayerStart()
+    public void SpawnEnemies()
     {
-        StartCoroutine(SpawnPlayer());
+        for (int i = 0; i < enemySpawners.Count; i++)
+        {
+            enemySpawners[i].Spawn();
+            enemies.Add(enemySpawners[i].spawnedEnemy);
+        }
     }
-    private IEnumerator SpawnPlayer()
+    public void DeleteEnemies()
     {
-        GameObject newPlayer = Instantiate(playerPref, checkpoint.position, checkpoint.rotation);
+        for (int i = 0; i < enemySpawners.Count; i++)
+        {
+            Destroy(enemies[i]);
+        }
+        enemies.Clear();
+    }
+    public void SpawnPlayer()
+    {
+        StartCoroutine(SpawnPlayerCoroutine());
+    }
+    private IEnumerator SpawnPlayerCoroutine()
+    {
+        GameObject newPlayer = Instantiate(playerPref, checkpoint.position - checkpoint.transform.forward, checkpoint.rotation);
         newPlayer.name = playerPref.name;
         player = newPlayer;
+
         HealthSystem healthSystem = player.GetComponent<HealthSystem>();
         Rigidbody rb = player.GetComponent<Rigidbody>();
         rb.isKinematic = true;
