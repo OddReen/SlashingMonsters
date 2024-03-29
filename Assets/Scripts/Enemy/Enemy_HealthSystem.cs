@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : HealthSystem
+public class Enemy_HealthSystem : HealthSystem
 {
     [SerializeField] float bodyLifeSpan = 10.0f;
     public override void Die()

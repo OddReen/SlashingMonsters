@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class HealthSystem : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] Animator animator;
+    CharacterBehaviour characterBehaviour;
 
     [Header("Health Stats")]
     [SerializeField] float maxHealth = 100;
@@ -18,9 +18,6 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] float healthBarSpeed = 1f;
     [SerializeField] float healthBarAmount = 1;
 
-    [Header("Deactivate On Death")]
-    [SerializeField] public MonoBehaviour[] scripts;
-
     float CurrentHealth
     {
         get { return currentHealth; }
@@ -28,6 +25,7 @@ public class HealthSystem : MonoBehaviour
     }
     private void Start()
     {
+        characterBehaviour = GetComponent<CharacterBehaviour>();
         Collider[] colliders = GetComponentsInChildren<Collider>();
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -50,7 +48,7 @@ public class HealthSystem : MonoBehaviour
             Die();
         if (isDead)
             return;
-        animator.SetBool("isDamaged", true);
+        characterBehaviour.animator.SetBool("isDamaged", true);
         StartCoroutine(EndBool("isDamaged"));
         StartCoroutine(HealthBarUpdate());
     }
@@ -68,9 +66,9 @@ public class HealthSystem : MonoBehaviour
         //StartCoroutine(EndBool("isDead"));
         StartCoroutine(HealthBarUpdate());
         Ragdoll(true);
-        for (int i = 0; i < scripts.Length; i++)
+        for (int i = 0; i < characterBehaviour.actions.Count; i++)
         {
-            scripts[i].enabled = false;
+            characterBehaviour.actions[i].enabled = false;
         }
     }
     public void Revive()
@@ -79,9 +77,9 @@ public class HealthSystem : MonoBehaviour
         currentHealth = maxHealth;
         StartCoroutine(HealthBarUpdate());
         Ragdoll(false);
-        for (int i = 0; i < scripts.Length; i++)
+        for (int i = 0; i < characterBehaviour.actions.Count; i++)
         {
-            scripts[i].enabled = true;
+            characterBehaviour.actions[i].enabled = true;
         }
     }
     IEnumerator HealthBarUpdate()
@@ -101,7 +99,7 @@ public class HealthSystem : MonoBehaviour
     }
     public void Ragdoll(bool isRagdoll)
     {
-        animator.enabled = !isRagdoll;
+        characterBehaviour.animator.enabled = !isRagdoll;
         GetComponent<Rigidbody>().isKinematic = isRagdoll;
         GetComponent<Collider>().enabled = !isRagdoll;
         Collider[] colliders = GetComponentsInChildren<Collider>();
@@ -117,6 +115,6 @@ public class HealthSystem : MonoBehaviour
     IEnumerator EndBool(string boolName)
     {
         yield return new WaitForEndOfFrame();
-        animator.SetBool(boolName, false);
+        characterBehaviour.animator.SetBool(boolName, false);
     }
 }

@@ -1,13 +1,13 @@
 using Cinemachine;
 using UnityEngine;
 
-public class TargetAim : MonoBehaviour
+public class Player_TargetAim : MonoBehaviour
 {
     Rigidbody rb;
-    CombatHandler combatHandler;
-    InputHandler inputHandler;
-    PlayerBehaviour playerController;
-    CameraController cameraController;
+    Player_Attack player_Attack;
+    Player_Input inputHandler;
+    Player_Movement playerController;
+    Player_CameraController cameraController;
     [SerializeField] CinemachineVirtualCamera AimCamera;
 
     [SerializeField] GameObject cameraTarget;
@@ -22,14 +22,14 @@ public class TargetAim : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        combatHandler = GetComponent<CombatHandler>();
-        inputHandler = GetComponent<InputHandler>();
-        cameraController = GetComponent<CameraController>();
-        playerController = GetComponent<PlayerBehaviour>();
+        player_Attack = GetComponent<Player_Attack>();
+        inputHandler = GetComponent<Player_Input>();
+        cameraController = GetComponent<Player_CameraController>();
+        playerController = GetComponent<Player_Movement>();
     }
     private void FixedUpdate()
     {
-        if (isAiming && target != null && !combatHandler.isRootAnimating) // On Aiming
+        if (isAiming && target != null && !player_Attack.isRootAnimating) // On Aiming
         {
             RotateTowardsTarget();
         }

@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-public class InputHandler : MonoBehaviour
+public class Player_Input : MonoBehaviour
 {
     public PlayerControls inputActions;
 
-    public static InputHandler Instance;
+    public static Player_Input Instance;
 
     public Vector2 movementInput;
     public Vector2 cameraInput;

@@ -3226,7 +3226,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6685144136769979728
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3268,7 +3268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.33333334}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.33333334}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5818,11 +5818,16 @@ GameObject:
   m_Component:
   - component: {fileID: 8462605951192815793}
   - component: {fileID: 7823339698789965334}
-  - component: {fileID: 4172132024710928022}
+  - component: {fileID: 3191499613551069843}
   - component: {fileID: 3090417190239579327}
-  - component: {fileID: 3927091281968313871}
+  - component: {fileID: 4172132024710928022}
+  - component: {fileID: 4195002081206634356}
   - component: {fileID: 5768785739844001432}
-  - component: {fileID: 2894134484843632576}
+  - component: {fileID: 1698160843359872229}
+  - component: {fileID: 6831109854136299371}
+  - component: {fileID: 3087955089477341497}
+  - component: {fileID: 4002635667204180931}
+  - component: {fileID: 3808304157965921465}
   - component: {fileID: 2906658348630554893}
   - component: {fileID: 7104007909691996744}
   m_Layer: 0
@@ -5873,7 +5878,7 @@ MonoBehaviour:
   isParrying: 0
   isInteracting: 0
   isMenuing: 0
---- !u!114 &4172132024710928022
+--- !u!114 &3191499613551069843
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5882,18 +5887,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 8636731778826161994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02a352ce8d6626141aa60564545a430c, type: 3}
+  m_Script: {fileID: 11500000, guid: f540ca97d2dda4844b268ca60006f3fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraTarget: {fileID: 0}
-  cameraTargetPosition: {fileID: 3907232707473301258}
-  thirdPersonCamera: {fileID: 2188580556825246206}
-  thirdPersonCameraAim: {fileID: 5502654384440220616}
-  rotationSpeed: 50
-  topClamp: 85
-  bottomClamp: -85
-  cameraTargetPitch: 0
-  cameraTargetYaw: 0
+  animator: {fileID: 5707267849042202923}
+  actions: []
+  damageAmount: 25
+  isRootAnimating: 0
+  canInteract: 0
+  menu: {fileID: 6721533142325735789}
+  weaponSlot: {fileID: 849350632462776979}
+  interactUI: {fileID: 5177117028484696886}
+  healthSystem: {fileID: 0}
+  rb: {fileID: 0}
+  player_Movement: {fileID: 0}
 --- !u!114 &3090417190239579327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5906,20 +5913,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1576cdc72db753745a679f2cb76e2cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 5707267849042202923}
   maxHealth: 100
   currentHealth: 0
   isDead: 0
-  healthBarBackground: {fileID: 0}
+  healthBarBackground: {fileID: 5165396518878695071}
   healthbar: {fileID: 2554136490413813962}
   healthBarSpeed: 1
   healthBarAmount: 1
-  scripts:
-  - {fileID: 3927091281968313871}
-  - {fileID: 5768785739844001432}
-  - {fileID: 4172132024710928022}
   respawnTime: 1.5
---- !u!114 &3927091281968313871
+--- !u!114 &4172132024710928022
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5928,30 +5930,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 8636731778826161994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 969fb1eb1d511614ca999c7715b7546c, type: 3}
+  m_Script: {fileID: 11500000, guid: 02a352ce8d6626141aa60564545a430c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSpeed: 0
-  moveDirection: {x: 0, y: 0, z: 0}
-  damageAmount: 25
-  _rigidbody: {fileID: 0}
-  _animator: {fileID: 5707267849042202923}
+  elapsedTime: 0
+  actionTag: 
+  cameraTarget: {fileID: 0}
+  cameraTargetPosition: {fileID: 3907232707473301258}
+  thirdPersonCamera: {fileID: 2188580556825246206}
+  thirdPersonCameraAim: {fileID: 5502654384440220616}
+  rotationSpeed: 50
+  topClamp: 85
+  bottomClamp: -85
+  cameraTargetPitch: 0
+  cameraTargetYaw: 0
+--- !u!114 &4195002081206634356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8636731778826161994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 530c5a5f19ad0c248a85fd405d364fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elapsedTime: 0
+  actionTag: isMoving
   canMove: 1
-  walkingSpeed: 4
-  runningSpeed: 7
-  blendSpeed: 20
-  rotationSpeed: 16
+  currentSpeed: 0
+  walkingSpeed: 5
+  runningSpeed: 8
+  blendSpeed: 25
+  rotationSpeed: 25
   moveDirectionWorldRelative: {x: 0, y: 0, z: 0}
   moveDirectionCameraRelative: {x: 0, y: 0, z: 0}
-  isGrounded: 1
-  sphereOverlapHeight: 0.22
-  sphereOverlapRadius: 0.245
+  isGrounded: 0
+  sphereOverlapHeight: 0.14
+  sphereOverlapRadius: 0.15
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  rayDistanceDown: 0.5
+  rayDistanceDown: 0.25
   rayHit: {x: 0, y: 0, z: 0}
-  playerDirectionGizmo: 0
+  playerDirectionGizmo: 1
   isGroundedGizmo: 1
   canRotate: 1
 --- !u!114 &5768785739844001432
@@ -5966,43 +5989,86 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073c7b318fa00594db58554c19a81a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 5707267849042202923}
+  elapsedTime: 0
+  actionTag: isAttacking
   menu: {fileID: 6721533142325735789}
   weaponSlot: {fileID: 849350632462776979}
   interactUI: {fileID: 5177117028484696886}
   canInteract: 0
   isRootAnimating: 0
-  elapsedTime: 0
   damageAmount: 25
-  attackTag: isAttacking
-  dodgeTag: isDodging
-  kickTag: isKicking
-  parryTag: isParrying
-  interactTag: isInteracting
---- !u!114 &2894134484843632576
+--- !u!114 &1698160843359872229
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8636731778826161994}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b82b8609c7379604f9ad463b6dd9d6bb, type: 3}
+  m_Script: {fileID: 11500000, guid: d221c1bb11cd54e4ca2a0754e761fb9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AimCamera: {fileID: 5502654384440220616}
-  cameraTarget: {fileID: 0}
-  target: {fileID: 0}
-  aimRadius: 10
+  elapsedTime: 0
+  actionTag: isDodging
+--- !u!114 &6831109854136299371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8636731778826161994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d06b10e4e3fe54cbe0f996629e5abd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elapsedTime: 0
+  actionTag: isInteracting
+  positionSpeed: 20
   rotationSpeed: 20
-  enemiesLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  playerLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  isAiming: 0
+--- !u!114 &3087955089477341497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8636731778826161994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb0bc101ab3045459fbb05f8f8c2c81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elapsedTime: 0
+  actionTag: isKicking
+--- !u!114 &4002635667204180931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8636731778826161994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5161ed82ef22cf48b2dc167b6ba391d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elapsedTime: 0
+  actionTag: isMenuing
+--- !u!114 &3808304157965921465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8636731778826161994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d608529b591618944a8399c0bea640db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elapsedTime: 0
+  actionTag: isParrying
 --- !u!136 &2906658348630554893
 CapsuleCollider:
   m_ObjectHideFlags: 0

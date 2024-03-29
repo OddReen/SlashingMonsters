@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterBehaviour : MonoBehaviour
 {
-    public float currentSpeed;
-    public Vector3 moveDirection;
+    public Animator animator;
+    [SerializeField] public List<PlayerActions> actions;
     public float damageAmount;
 }

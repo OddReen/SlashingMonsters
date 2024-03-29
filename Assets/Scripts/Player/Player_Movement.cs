@@ -1,15 +1,11 @@
 using UnityEngine;
 
-public class PlayerBehaviour : CharacterBehaviour
+public class Player_Movement : PlayerActions
 {
-    InputHandler inputHandler;
-
-    public Rigidbody _rigidbody;
-    [SerializeField] Animator _animator;
-
     [SerializeField] public bool canMove = true;
 
     [Header("Stats")]
+    public float currentSpeed;
     [SerializeField] float walkingSpeed = 5;
     [SerializeField] float runningSpeed = 8;
     [SerializeField] float blendSpeed;
@@ -35,12 +31,7 @@ public class PlayerBehaviour : CharacterBehaviour
     [Header("Bolleans")]
     [SerializeField] public bool canRotate = true;
 
-    private void Start()
-    {
-        _rigidbody = GetComponent<Rigidbody>();
-        inputHandler = GetComponent<InputHandler>();
-    }
-    private void FixedUpdate()
+    public override void Action()
     {
         IsGrounded();
         if (canMove)
@@ -48,39 +39,39 @@ public class PlayerBehaviour : CharacterBehaviour
             Movement();
             Rotation();
         }
-        StickToTheGround();
+        //StickToTheGround();
     }
     private void Movement()
     {
         if (!isGrounded)
             return;
-        moveDirectionWorldRelative = new Vector3(inputHandler.movementInput.x, 0, inputHandler.movementInput.y);
+        moveDirectionWorldRelative = new Vector3(Player_Input.Instance.movementInput.x, 0, Player_Input.Instance.movementInput.y);
 
         moveDirectionCameraRelative = (new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z).normalized * moveDirectionWorldRelative.z) + (new Vector3(Camera.main.transform.right.x, 0, Camera.main.transform.right.z).normalized * moveDirectionWorldRelative.x);
         moveDirectionCameraRelative.Normalize();
 
-        float targetSpeed = inputHandler.isRunning ? runningSpeed : walkingSpeed;
+        float targetSpeed = Player_Input.Instance.isRunning ? runningSpeed : walkingSpeed;
 
-        if (inputHandler.isRunning && inputHandler.movementInput.magnitude > 0.1f)
+        if (Player_Input.Instance.isRunning && Player_Input.Instance.movementInput.magnitude > 0.1f)
         {
             currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, Time.deltaTime * blendSpeed);
-            _animator.SetFloat("Move", currentSpeed);
+            characterBehaviour_Player.animator.SetFloat("Move", currentSpeed);
         }
-        else if (inputHandler.movementInput.magnitude > 0.1f)
+        else if (Player_Input.Instance.movementInput.magnitude > 0.1f)
         {
             currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, Time.deltaTime * blendSpeed);
-            _animator.SetFloat("Move", currentSpeed);
+            characterBehaviour_Player.animator.SetFloat("Move", currentSpeed);
         }
         else
         {
             currentSpeed = Mathf.MoveTowards(currentSpeed, 0, Time.deltaTime * blendSpeed);
-            _animator.SetFloat("Move", currentSpeed);
+            characterBehaviour_Player.animator.SetFloat("Move", currentSpeed);
         }
         Vector3 moveVelocity = moveDirectionCameraRelative * targetSpeed;
 
-        moveVelocity.y = _rigidbody.velocity.y;
+        moveVelocity.y = characterBehaviour_Player.rb.velocity.y;
 
-        _rigidbody.velocity = moveVelocity;
+        characterBehaviour_Player.rb.velocity = moveVelocity;
     }
     private void Rotation()
     {
@@ -89,7 +80,7 @@ public class PlayerBehaviour : CharacterBehaviour
             float _targetRotation = Mathf.Atan2(moveDirectionWorldRelative.x, moveDirectionWorldRelative.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
             float rotation = Mathf.LerpAngle(transform.eulerAngles.y, _targetRotation, Time.deltaTime * rotationSpeed);
 
-            _rigidbody.MoveRotation(Quaternion.Euler(0.0f, rotation, 0.0f));
+            characterBehaviour_Player.rb.MoveRotation(Quaternion.Euler(0.0f, rotation, 0.0f));
         }
     }
     private bool IsGrounded()
@@ -110,24 +101,24 @@ public class PlayerBehaviour : CharacterBehaviour
         if (isGrounded)
         {
             triggerOffTheGround = false;
-            _animator.SetBool("isGrounded", true);
+            characterBehaviour_Player.animator.SetBool("isGrounded", true);
         }
         if (isGrounded && moveDirectionWorldRelative.magnitude <= .1f)
         {
-            _rigidbody.velocity = Vector3.zero;
+            characterBehaviour_Player.rb.velocity = Vector3.zero;
         }
         if (!isGrounded)
         {
             RaycastHit hit;
             if (Physics.Raycast(transform.position, Vector3.down, out hit, rayDistanceDown, ~layerMask) && !triggerOffTheGround)
             {
-                _animator.SetBool("isGrounded", true);
+                characterBehaviour_Player.animator.SetBool("isGrounded", true);
                 rayHit = hit.point;
-                _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, -hit.point.y * 5, _rigidbody.velocity.z);
+                characterBehaviour_Player.rb.velocity = new Vector3(characterBehaviour_Player.rb.velocity.x, -hit.point.y * 5, characterBehaviour_Player.rb.velocity.z);
             }
             else
             {
-                _animator.SetBool("isGrounded", false);
+                characterBehaviour_Player.animator.SetBool("isGrounded", false);
             }
             triggerOffTheGround = true;
         }
@@ -140,11 +131,11 @@ public class PlayerBehaviour : CharacterBehaviour
             rayHit = hit.point;
             Vector3 vector3 = transform.position;
             vector3.y = rayHit.y;
-            _animator.gameObject.transform.position = Vector3.Lerp(_animator.gameObject.transform.position, vector3, Time.deltaTime * 25);
+            characterBehaviour_Player.animator.gameObject.transform.position = Vector3.Lerp(characterBehaviour_Player.animator.gameObject.transform.position, vector3, Time.deltaTime * 25);
         }
         else
         {
-            _animator.gameObject.transform.position = transform.position;
+            characterBehaviour_Player.animator.gameObject.transform.position = transform.position;
         }
     }
     private void OnDrawGizmos()

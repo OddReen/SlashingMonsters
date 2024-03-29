@@ -22,7 +22,7 @@ public class InGameMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         gameObject.SetActive(false);
-        InputHandler.Instance.enabled = true;
+        Player_Input.Instance.enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
     }
     private void MainMenu()

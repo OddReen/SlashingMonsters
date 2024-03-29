@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         }
         SpawnPlayer();
         SpawnEnemies();
-        interactUI = player.GetComponent<CombatHandler>().interactUI;
+        interactUI = player.GetComponent<Player_Attack>().interactUI;
     }
     public void SpawnEnemies()
     {
@@ -54,19 +54,19 @@ public class GameManager : MonoBehaviour
         newPlayer.name = playerPref.name;
         player = newPlayer;
 
-        HealthSystem healthSystem = player.GetComponent<HealthSystem>();
+        CharacterBehaviour_Player characterBehaviour_Player = player.GetComponent<CharacterBehaviour_Player>();
         Rigidbody rb = player.GetComponent<Rigidbody>();
         rb.isKinematic = true;
         yield return new WaitForEndOfFrame();
-        for (int i = 0; i < healthSystem.scripts.Length; i++)
+        for (int i = 0; i < characterBehaviour_Player.actions.Count; i++)
         {
-            healthSystem.scripts[i].enabled = false;
+            characterBehaviour_Player.actions[i].enabled = false;
         }
         yield return new WaitForSeconds(nonActiveTime);
         rb.isKinematic = false;
-        for (int i = 0; i < healthSystem.scripts.Length; i++)
+        for (int i = 0; i < characterBehaviour_Player.actions.Count; i++)
         {
-            healthSystem.scripts[i].enabled = true;
+            characterBehaviour_Player.actions[i].enabled = true;
         }
     }
 }

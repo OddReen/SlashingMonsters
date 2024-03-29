@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerHealth : HealthSystem
+public class Player_HealthSystem : HealthSystem
 {
     public float respawnTime = 5;
     public override void Die()

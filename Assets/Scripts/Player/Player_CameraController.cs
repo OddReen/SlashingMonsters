@@ -1,10 +1,7 @@
 using Cinemachine;
 using UnityEngine;
-public class CameraController : MonoBehaviour
+public class Player_CameraController : PlayerActions
 {
-    PlayerBehaviour playerController;
-    InputHandler inputHandler;
-
     [SerializeField] GameObject cameraTarget;
     [SerializeField] Transform cameraTargetPosition;
     [SerializeField] CinemachineVirtualCamera thirdPersonCamera;
@@ -20,7 +17,7 @@ public class CameraController : MonoBehaviour
     public float cameraTargetPitch;
     public float cameraTargetYaw;
 
-    void Awake()
+    protected override void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         GameObject newCameraTarget = GameObject.Find("Camera Target");
@@ -44,21 +41,18 @@ public class CameraController : MonoBehaviour
         cameraTargetYaw = cameraTarget.transform.rotation.eulerAngles.y;
 
         cameraTarget.transform.position = cameraTargetPosition.position;
-
-        inputHandler = GetComponent<InputHandler>();
-        playerController = GetComponent<PlayerBehaviour>();
     }
-    void Update()
+    public override void Action()
     {
         cameraTarget.transform.position = cameraTargetPosition.position;
         CameraRotation();
     }
     private void CameraRotation()
     {
-        if (inputHandler.cameraInput.sqrMagnitude >= threshold)
+        if (Player_Input.Instance.cameraInput.sqrMagnitude >= threshold)
         {
-            cameraTargetPitch += -inputHandler.cameraInput.y * rotationSpeed * Time.deltaTime;
-            cameraTargetYaw += inputHandler.cameraInput.x * rotationSpeed * Time.deltaTime;
+            cameraTargetPitch += -Player_Input.Instance.cameraInput.y * rotationSpeed * Time.deltaTime;
+            cameraTargetYaw += Player_Input.Instance.cameraInput.x * rotationSpeed * Time.deltaTime;
         }
 
         cameraTargetPitch = ClampAngle(cameraTargetPitch, bottomClamp, topClamp); //Clamp Pitch
