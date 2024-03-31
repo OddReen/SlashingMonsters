@@ -20,32 +20,18 @@ public class Player_Dodge : PlayerActions
         else
             yield break;
 
-        // Activate Animation
-        characterBehaviour_Player.animator.SetBool(actionTag, true);
+        StartCoroutine(TriggerAnimation());
+        InitializeRootMotion();
+
         yield return new WaitForEndOfFrame();
-        characterBehaviour_Player.animator.SetBool(actionTag, false);
-
-        // Activate Root Animation
-        characterBehaviour_Player.rb.velocity = Vector3.zero;
-        characterBehaviour_Player.player_Movement.currentSpeed = 0;
-        characterBehaviour_Player.isRootAnimating = true;
-        characterBehaviour_Player.player_Movement.enabled = false;
-
-        // Update While Action
-        while (elapsedTime <= characterBehaviour_Player.animator.GetCurrentAnimatorStateInfo(0).length * characterBehaviour_Player.animator.GetCurrentAnimatorStateInfo(0).speedMultiplier && characterBehaviour_Player.animator.GetCurrentAnimatorStateInfo(0).IsTag(actionTag) && !characterBehaviour_Player.healthSystem.isDead)
+        while (elapsedTime <= characterBehaviour_Player.animator.GetCurrentAnimatorStateInfo(0).length * characterBehaviour_Player.animator.GetCurrentAnimatorStateInfo(0).speedMultiplier && characterBehaviour_Player.animator.GetCurrentAnimatorStateInfo(0).IsTag(actionTag) && !characterBehaviour_Player.isDead)
         {
             float rotation = Mathf.LerpAngle(transform.eulerAngles.y, _targetRotation, Time.deltaTime * characterBehaviour_Player.player_Movement.rotationSpeed);
             characterBehaviour_Player.rb.MoveRotation(Quaternion.Euler(0.0f, rotation, 0.0f));
-            characterBehaviour_Player.rb.velocity = new Vector3(characterBehaviour_Player.animator.velocity.x * 1.5f, characterBehaviour_Player.rb.velocity.y, characterBehaviour_Player.animator.velocity.z * 1.5f);
+            characterBehaviour_Player.rb.velocity = new Vector3(characterBehaviour_Player.animator.velocity.x, characterBehaviour_Player.rb.velocity.y, characterBehaviour_Player.animator.velocity.z);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
-        // Deactivate Root Animation
-        elapsedTime = 0;
-        characterBehaviour_Player.rb.velocity = Vector3.zero;
-        characterBehaviour_Player.player_Movement.currentSpeed = 0;
-        characterBehaviour_Player.isRootAnimating = false;
-        characterBehaviour_Player.player_Movement.enabled = true;
+        EndRootMotion();
     }
 }

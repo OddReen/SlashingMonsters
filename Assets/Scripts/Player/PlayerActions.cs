@@ -20,4 +20,26 @@ public abstract class PlayerActions : MonoBehaviour
     {
 
     }
+    public IEnumerator TriggerAnimation()
+    {
+        characterBehaviour_Player.animator.SetBool(actionTag, true);
+        yield return new WaitForEndOfFrame();
+        characterBehaviour_Player.animator.SetBool(actionTag, false);
+    }
+    public void InitializeRootMotion()
+    {
+        characterBehaviour_Player.player_Movement.currentSpeed = 0;
+        characterBehaviour_Player.animator.applyRootMotion = true;
+        characterBehaviour_Player.isRootAnimating = true;
+        characterBehaviour_Player.player_Movement.canMove = false;
+        characterBehaviour_Player.player_Movement.canRotate = false;
+    }
+    public void EndRootMotion()
+    {
+        elapsedTime = 0;
+        characterBehaviour_Player.animator.applyRootMotion = false;
+        characterBehaviour_Player.isRootAnimating = false;
+        characterBehaviour_Player.player_Movement.canMove = true;
+        characterBehaviour_Player.player_Movement.canRotate = true;
+    }
 }

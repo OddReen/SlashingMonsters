@@ -58,14 +58,14 @@ ModelImporter:
       curves: []
       events:
       - time: 0.39062497
-        functionName: EnableHitBox
+        functionName: Weapon_EnableHitBox
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.61664605
-        functionName: DisableHitBox
+        functionName: Weapon_DisableHitBox
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

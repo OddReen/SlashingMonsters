@@ -26,74 +26,63 @@ public class Player_Movement : PlayerActions
     [Header("Gizmos")]
     [SerializeField] bool playerDirectionGizmo;
     [SerializeField] bool isGroundedGizmo;
-    bool triggerOffTheGround = false;
 
     [Header("Bolleans")]
     [SerializeField] public bool canRotate = true;
 
+    private RaycastHit slopeHit;
+    private bool triggerOffTheGround = false;
+
     public override void Action()
     {
         IsGrounded();
-        if (canMove)
+        if (isGrounded)
         {
             Movement();
             Rotation();
         }
-        //StickToTheGround();
+        StickToTheGround();
     }
     private void Movement()
     {
-        if (!isGrounded)
-            return;
-        moveDirectionWorldRelative = new Vector3(Player_Input.Instance.movementInput.x, 0, Player_Input.Instance.movementInput.y);
-
-        moveDirectionCameraRelative = (new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z).normalized * moveDirectionWorldRelative.z) + (new Vector3(Camera.main.transform.right.x, 0, Camera.main.transform.right.z).normalized * moveDirectionWorldRelative.x);
-        moveDirectionCameraRelative.Normalize();
-
-        float targetSpeed = Player_Input.Instance.isRunning ? runningSpeed : walkingSpeed;
-
-        if (Player_Input.Instance.isRunning && Player_Input.Instance.movementInput.magnitude > 0.1f)
+        if (canMove)
         {
-            currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, Time.deltaTime * blendSpeed);
-            characterBehaviour_Player.animator.SetFloat("Move", currentSpeed);
-        }
-        else if (Player_Input.Instance.movementInput.magnitude > 0.1f)
-        {
-            currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, Time.deltaTime * blendSpeed);
-            characterBehaviour_Player.animator.SetFloat("Move", currentSpeed);
-        }
-        else
-        {
-            currentSpeed = Mathf.MoveTowards(currentSpeed, 0, Time.deltaTime * blendSpeed);
-            characterBehaviour_Player.animator.SetFloat("Move", currentSpeed);
-        }
-        Vector3 moveVelocity = moveDirectionCameraRelative * targetSpeed;
+            moveDirectionWorldRelative = new Vector3(Player_Input.Instance.movementInput.x, 0, Player_Input.Instance.movementInput.y);
 
-        moveVelocity.y = characterBehaviour_Player.rb.velocity.y;
+            moveDirectionCameraRelative = (new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z).normalized * moveDirectionWorldRelative.z) + (new Vector3(Camera.main.transform.right.x, 0, Camera.main.transform.right.z).normalized * moveDirectionWorldRelative.x);
+            moveDirectionCameraRelative.Normalize();
 
-        characterBehaviour_Player.rb.velocity = moveVelocity;
+            float targetSpeed = Player_Input.Instance.isRunning ? runningSpeed : walkingSpeed;
+
+            if (Player_Input.Instance.isRunning && Player_Input.Instance.movementInput.magnitude > 0.1f)
+            {
+                currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, Time.deltaTime * blendSpeed);
+                characterBehaviour_Player.animator.SetFloat("Move", currentSpeed);
+            }
+            else if (Player_Input.Instance.movementInput.magnitude > 0.1f)
+            {
+                currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, Time.deltaTime * blendSpeed);
+                characterBehaviour_Player.animator.SetFloat("Move", currentSpeed);
+            }
+            else
+            {
+                currentSpeed = Mathf.MoveTowards(currentSpeed, 0, Time.deltaTime * blendSpeed);
+                characterBehaviour_Player.animator.SetFloat("Move", currentSpeed);
+            }
+
+            Vector3 moveVelocity = OnSlope() * targetSpeed;
+
+            characterBehaviour_Player.rb.velocity = moveVelocity;
+        }
     }
     private void Rotation()
     {
-        if (moveDirectionWorldRelative != Vector3.zero && canRotate)
+        if (canRotate && Player_Input.Instance.movementInput.magnitude > .1f)
         {
             float _targetRotation = Mathf.Atan2(moveDirectionWorldRelative.x, moveDirectionWorldRelative.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
             float rotation = Mathf.LerpAngle(transform.eulerAngles.y, _targetRotation, Time.deltaTime * rotationSpeed);
 
             characterBehaviour_Player.rb.MoveRotation(Quaternion.Euler(0.0f, rotation, 0.0f));
-        }
-    }
-    private bool IsGrounded()
-    {
-        if (Physics.CheckSphere(transform.position + Vector3.up * sphereOverlapHeight, sphereOverlapRadius, ~layerMask))
-        {
-            isGrounded = true;
-            return isGrounded;
-        }
-        else
-        {
-            isGrounded = false;
-            return isGrounded;
         }
     }
     private void StickToTheGround()
@@ -102,12 +91,12 @@ public class Player_Movement : PlayerActions
         {
             triggerOffTheGround = false;
             characterBehaviour_Player.animator.SetBool("isGrounded", true);
+            if (moveDirectionWorldRelative.magnitude <= .1f)
+            {
+                characterBehaviour_Player.rb.velocity = Vector3.zero;
+            }
         }
-        if (isGrounded && moveDirectionWorldRelative.magnitude <= .1f)
-        {
-            characterBehaviour_Player.rb.velocity = Vector3.zero;
-        }
-        if (!isGrounded)
+        else
         {
             RaycastHit hit;
             if (Physics.Raycast(transform.position, Vector3.down, out hit, rayDistanceDown, ~layerMask) && !triggerOffTheGround)
@@ -123,40 +112,54 @@ public class Player_Movement : PlayerActions
             triggerOffTheGround = true;
         }
     }
-    private void ChangeModelPos()
+    private Vector3 OnSlope()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, rayDistanceDown, ~layerMask) && !triggerOffTheGround)
+        // Slope Movement
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, rayDistanceDown))
         {
-            rayHit = hit.point;
-            Vector3 vector3 = transform.position;
-            vector3.y = rayHit.y;
-            characterBehaviour_Player.animator.gameObject.transform.position = Vector3.Lerp(characterBehaviour_Player.animator.gameObject.transform.position, vector3, Time.deltaTime * 25);
+            return Vector3.ProjectOnPlane(moveDirectionCameraRelative, slopeHit.normal).normalized;
+        }
+        // Horizontal Movement
+        else
+        {
+            Vector3 vector3 = moveDirectionCameraRelative;
+            vector3.y = characterBehaviour_Player.rb.velocity.y;
+            return moveDirectionCameraRelative;
+        }
+    }
+    private bool IsGrounded()
+    {
+        if (Physics.CheckSphere(transform.position + Vector3.up * sphereOverlapHeight, sphereOverlapRadius, ~layerMask))
+        {
+            isGrounded = true;
+            return isGrounded;
         }
         else
         {
-            characterBehaviour_Player.animator.gameObject.transform.position = transform.position;
+            isGrounded = false;
+            return isGrounded;
         }
     }
     private void OnDrawGizmos()
     {
-        if (playerDirectionGizmo)
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawLine(transform.position + Vector3.up, transform.position + moveDirectionCameraRelative + Vector3.up);
-            Gizmos.DrawWireSphere(transform.position + moveDirectionCameraRelative + Vector3.up, .25f);
-        }
+        // Detect Ground
         if (isGroundedGizmo)
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(transform.position + Vector3.up * sphereOverlapHeight, sphereOverlapRadius);
         }
-        Gizmos.color = Color.blue;
+
+        // Detect Slope
+        Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + Vector3.down * rayDistanceDown);
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, rayDistanceDown, ~layerMask))
+        Gizmos.DrawWireSphere(slopeHit.point, sphereOverlapRadius);
+
+        if (characterBehaviour_Player != null)
         {
-            Gizmos.DrawLine(hit.point, hit.point + hit.normal);
+            // Forward Direction
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(transform.position, OnSlope() + transform.position);
+            Gizmos.DrawWireSphere(OnSlope() + transform.position, sphereOverlapRadius);
         }
     }
 }

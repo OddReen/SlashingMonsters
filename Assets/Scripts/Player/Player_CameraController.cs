@@ -2,6 +2,10 @@ using Cinemachine;
 using UnityEngine;
 public class Player_CameraController : PlayerActions
 {
+    public static Player_CameraController Instance;
+
+    [SerializeField] private float globalShakeForce = 1f;
+
     [SerializeField] GameObject cameraTarget;
     [SerializeField] Transform cameraTargetPosition;
     [SerializeField] CinemachineVirtualCamera thirdPersonCamera;
@@ -17,8 +21,14 @@ public class Player_CameraController : PlayerActions
     public float cameraTargetPitch;
     public float cameraTargetYaw;
 
+    public void CameraShake(CinemachineImpulseSource impulseSource)
+    {
+        impulseSource.GenerateImpulseWithForce(globalShakeForce);
+    }
+
     protected override void Awake()
     {
+        Instance = this;
         Cursor.lockState = CursorLockMode.Locked;
         GameObject newCameraTarget = GameObject.Find("Camera Target");
         if (newCameraTarget == null)

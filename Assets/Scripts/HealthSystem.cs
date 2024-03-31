@@ -10,13 +10,15 @@ public class HealthSystem : MonoBehaviour
     [Header("Health Stats")]
     [SerializeField] float maxHealth = 100;
     [SerializeField] float currentHealth;
-    public bool isDead = false;
+
 
     [Header("Health Bar")]
     [SerializeField] protected GameObject healthBarBackground;
     [SerializeField] protected GameObject healthbar;
     [SerializeField] float healthBarSpeed = 1f;
     [SerializeField] float healthBarAmount = 1;
+
+    Coroutine c_stunTime;
 
     float CurrentHealth
     {
@@ -41,27 +43,42 @@ public class HealthSystem : MonoBehaviour
             healthbar.GetComponent<Image>().fillAmount = maxHealth;
         }
     }
-    public void TakeDamage(float amount)
+    public void TakeDamage(float damageAmount)
     {
-        currentHealth -= amount;
+        currentHealth -= damageAmount;
         if (currentHealth <= 0)
             Die();
-        if (isDead)
+        if (characterBehaviour.isDead)
             return;
-        characterBehaviour.animator.SetBool("isDamaged", true);
-        StartCoroutine(EndBool("isDamaged"));
+        StartCoroutine(TriggerAnimation("isDamaged"));
         StartCoroutine(HealthBarUpdate());
     }
-    public void Heal(float amount)
+    public void Heal(float healAmount)
     {
-        if (isDead)
+        if (characterBehaviour.isDead)
             return;
-        currentHealth += amount;
+        currentHealth += healAmount;
         StartCoroutine(HealthBarUpdate());
+    }
+    public void Stun(float timeAmount)
+    {
+        if (characterBehaviour.isDead)
+            return;
+        if (c_stunTime != null)
+            StopCoroutine(c_stunTime);
+        c_stunTime = StartCoroutine(StunTime(timeAmount));
+    }
+    IEnumerator StunTime(float timeAmount)
+    {
+        characterBehaviour.animator.SetBool("isStunned", true);
+        characterBehaviour.isStunned = true;
+        yield return new WaitForSeconds(timeAmount);
+        characterBehaviour.animator.SetBool("isStunned", false);
+        characterBehaviour.isStunned = false;
     }
     public virtual void Die()
     {
-        isDead = true;
+        characterBehaviour.isDead = true;
         //animator.SetBool("isDead", true);
         //StartCoroutine(EndBool("isDead"));
         StartCoroutine(HealthBarUpdate());
@@ -73,7 +90,7 @@ public class HealthSystem : MonoBehaviour
     }
     public void Revive()
     {
-        isDead = false;
+        characterBehaviour.isDead = false;
         currentHealth = maxHealth;
         StartCoroutine(HealthBarUpdate());
         Ragdoll(false);
@@ -112,8 +129,9 @@ public class HealthSystem : MonoBehaviour
             }
         }
     }
-    IEnumerator EndBool(string boolName)
+    IEnumerator TriggerAnimation(string boolName)
     {
+        characterBehaviour.animator.SetBool(boolName, true);
         yield return new WaitForEndOfFrame();
         characterBehaviour.animator.SetBool(boolName, false);
     }

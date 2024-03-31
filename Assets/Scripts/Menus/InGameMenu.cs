@@ -11,12 +11,24 @@ public class InGameMenu : MonoBehaviour
     [SerializeField] Button b_mainMenu;
     [SerializeField] Button b_options;
     [SerializeField] Button b_quit;
+
+    [SerializeField] Button b_scaleDownTime;
+
     void Start()
     {
         b_resume.onClick.AddListener(Resume);
         b_mainMenu.onClick.AddListener(MainMenu);
         b_options.onClick.AddListener(Options);
         b_quit.onClick.AddListener(Quit);
+
+        b_scaleDownTime.onClick.AddListener(ScaleDownTime);
+    }
+    private void ScaleDownTime()
+    {
+        Time.timeScale = .05f;
+        gameObject.SetActive(false);
+        Player_Input.Instance.enabled = true;
+        Cursor.lockState = CursorLockMode.Locked;
     }
     private void Resume()
     {

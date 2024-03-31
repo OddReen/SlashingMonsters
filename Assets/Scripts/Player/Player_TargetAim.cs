@@ -1,7 +1,7 @@
 using Cinemachine;
 using UnityEngine;
 
-public class Player_TargetAim : MonoBehaviour
+public class Player_TargetAim : PlayerActions
 {
     Rigidbody rb;
     Player_Attack player_Attack;
@@ -29,7 +29,7 @@ public class Player_TargetAim : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (isAiming && target != null && !player_Attack.isRootAnimating) // On Aiming
+        if (isAiming && target != null && !characterBehaviour_Player.isRootAnimating) // On Aiming
         {
             RotateTowardsTarget();
         }
