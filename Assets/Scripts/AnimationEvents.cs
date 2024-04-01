@@ -2,13 +2,8 @@ using UnityEngine;
 
 public class AnimationEventHandler : MonoBehaviour
 {
-    HitBox_Weapon hitBox_Weapon;
-    HitBox_Kick hitBox_Kick;
-    private void Start()
-    {
-        hitBox_Kick = GetComponentInChildren<HitBox_Kick>();
-        hitBox_Weapon = GetComponentInChildren<HitBox_Weapon>();
-    }
+    [SerializeField] HitBox hitBox_Weapon;
+    [SerializeField] HitBox hitBox_Kick;
     public void Weapon_EnableHitBox()
     {
         hitBox_Weapon.EnableHitBox();

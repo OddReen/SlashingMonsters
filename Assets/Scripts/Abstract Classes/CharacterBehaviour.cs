@@ -1,14 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public abstract class CharacterBehaviour : MonoBehaviour
 {
     [Header("References")]
     public Animator animator;
-    public HealthSystem healthSystem;
-    public Rigidbody rb;
+    [HideInInspector] public HealthSystem healthSystem;
+    [HideInInspector] public Rigidbody rb;
 
     [Header("Variables")]
     public float weaponDamageAmount;
@@ -21,7 +19,7 @@ public abstract class CharacterBehaviour : MonoBehaviour
     public bool isDead = false;
     public bool isParrying = false;
 
-    [Header("Actions")]
+    [Header("Actions"), HideInInspector]
     [SerializeField] public List<CharacterActions> actions;
 
     public virtual void Awake()

@@ -9,10 +9,9 @@ public class CharacterBehaviour_Player : CharacterBehaviour
 
     [Header("GameObject References")]
     [SerializeField] public GameObject menu;
-    [SerializeField] public GameObject weaponSlot;
     [SerializeField] public GameObject interactUI;
 
-    [Header("Script References")]
+    [Header("Script References"), HideInInspector]
     public Character_Movement player_Movement;
 
     public override void Awake()
