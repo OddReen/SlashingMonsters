@@ -1,30 +1,38 @@
 using Cinemachine;
 using FMODUnity;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HitBox_Weapon : HitBox
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider target)
     {
-        if (other.CompareTag(targetTypeTag))
+        if (target.CompareTag(targetTypeTag))
         {
             for (int i = 0; i < enemiesHit.Count; i++)
             {
-                if (other == enemiesHit[i])
+                if (target == enemiesHit[i])
                 {
                     return;
                 }
             }
 
+            enemiesHit.Add(target);
+
+            CharacterBehaviour targetBehaviour = target.GetComponent<CharacterBehaviour>();
+
+            if (target.GetComponent<CharacterBehaviour>().isParrying)
+            {
+                characterBehaviour.healthSystem.Stun(targetBehaviour.stunTimeAmount);
+                return;
+            }
+
             Player_CameraController.Instance.CameraShake(cinemachineImpulseSource);
-            enemiesHit.Add(other);
+            Instantiate(bloodPref, target.ClosestPointOnBounds(hitBox.transform.position), transform.rotation);
+            targetBehaviour.healthSystem.TakeDamage(characterBehaviour.weaponDamageAmount);
 
-            Instantiate(bloodPref, other.ClosestPointOnBounds(hitBox.transform.position), transform.rotation);
-
-            other.GetComponent<HealthSystem>().TakeDamage(characterBehaviour.weaponDamageAmount);
-
-            if (other.GetComponent<CharacterBehaviour>().isDead)
+            if (targetBehaviour.isDead)
             {
                 FMODUnity.RuntimeManager.PlayOneShot(execution, transform.position);
             }

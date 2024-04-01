@@ -1,12 +1,12 @@
 using Cinemachine;
 using UnityEngine;
 
-public class Player_TargetAim : PlayerActions
+public class Character_TargetAim : CharacterActions
 {
     Rigidbody rb;
-    Player_Attack player_Attack;
+    Character_Attack player_Attack;
     Player_Input inputHandler;
-    Player_Movement playerController;
+    Character_Movement playerController;
     Player_CameraController cameraController;
     [SerializeField] CinemachineVirtualCamera AimCamera;
 
@@ -22,10 +22,10 @@ public class Player_TargetAim : PlayerActions
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        player_Attack = GetComponent<Player_Attack>();
+        player_Attack = GetComponent<Character_Attack>();
         inputHandler = GetComponent<Player_Input>();
         cameraController = GetComponent<Player_CameraController>();
-        playerController = GetComponent<Player_Movement>();
+        playerController = GetComponent<Character_Movement>();
     }
     private void FixedUpdate()
     {

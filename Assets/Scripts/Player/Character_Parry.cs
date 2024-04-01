@@ -1,30 +1,13 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Attack : PlayerActions
+public class Character_Parry : CharacterActions
 {
-    [SerializeField] GameObject menu;
-    [SerializeField] GameObject weaponSlot;
-    [SerializeField] public GameObject interactUI;
-
-    [SerializeField] public bool canInteract = false;
-
-    public float damageAmount = 25f;
-
     public override void Action()
     {
-        if (Player_Input.Instance.isAttacking && !characterBehaviour_Player.isRootAnimating)
+        if (Player_Input.Instance.isParrying && !characterBehaviour_Player.isRootAnimating)
         {
-            #region Random Attack
-            if (characterBehaviour_Player.animator.GetInteger("RandAttack") >= 2)
-            {
-                characterBehaviour_Player.animator.SetInteger("RandAttack", 0);
-            }
-            else
-            {
-                characterBehaviour_Player.animator.SetInteger("RandAttack", characterBehaviour_Player.animator.GetInteger("RandAttack") + 1);
-            }
-            #endregion
             StartCoroutine(OnAnimation());
         }
     }
@@ -34,6 +17,7 @@ public class Player_Attack : PlayerActions
         InitializeRootMotion();
 
         yield return new WaitForEndOfFrame();
+        StartCoroutine(ParryWindow());
         if (characterBehaviour_Player.player_Movement.moveDirectionWorldRelative != Vector3.zero)
         {
             float _targetRotation = 0;
@@ -58,5 +42,12 @@ public class Player_Attack : PlayerActions
         }
 
         EndRootMotion();
+    }
+
+    private IEnumerator ParryWindow()
+    {
+        characterBehaviour_Player.isParrying = true;
+        yield return new WaitForSeconds(characterBehaviour_Player.parryWindow);
+        characterBehaviour_Player.isParrying = false;
     }
 }

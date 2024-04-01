@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Player_Dodge : PlayerActions
+public class Character_Dodge : CharacterActions
 {
     public override void Action()
     {

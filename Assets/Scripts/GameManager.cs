@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         }
         SpawnPlayer();
         SpawnEnemies();
-        interactUI = player.GetComponent<Player_Attack>().interactUI;
+        interactUI = player.GetComponent<Character_Attack>().interactUI;
     }
     public void SpawnEnemies()
     {

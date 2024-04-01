@@ -1,6 +1,6 @@
 using Cinemachine;
 using UnityEngine;
-public class Player_CameraController : PlayerActions
+public class Player_CameraController : CharacterActions
 {
     public static Player_CameraController Instance;
 

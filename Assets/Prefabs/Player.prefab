@@ -6057,19 +6057,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5707267849042202923}
-  actions: []
+  healthSystem: {fileID: 0}
+  rb: {fileID: 0}
   weaponDamageAmount: 35
   kickDamageAmount: 5
   stunTimeAmount: 2
+  parryWindow: 0.5
   isStunned: 0
   isDead: 0
+  isParrying: 0
+  actions: []
   isRootAnimating: 0
   canInteract: 0
   menu: {fileID: 6721533142325735789}
   weaponSlot: {fileID: 849350632462776979}
   interactUI: {fileID: 5177117028484696886}
-  healthSystem: {fileID: 0}
-  rb: {fileID: 0}
   player_Movement: {fileID: 0}
 --- !u!114 &3090417190239579327
 MonoBehaviour:

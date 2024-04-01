@@ -79,8 +79,6 @@ public class HealthSystem : MonoBehaviour
     public virtual void Die()
     {
         characterBehaviour.isDead = true;
-        //animator.SetBool("isDead", true);
-        //StartCoroutine(EndBool("isDead"));
         StartCoroutine(HealthBarUpdate());
         Ragdoll(true);
         for (int i = 0; i < characterBehaviour.actions.Count; i++)

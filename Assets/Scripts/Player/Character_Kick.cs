@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Player_Kick : PlayerActions
+public class Character_Kick : CharacterActions
 {
     public override void Action()
     {

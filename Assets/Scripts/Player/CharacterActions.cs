@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PlayerActions : MonoBehaviour
+public abstract class CharacterActions : MonoBehaviour
 {
     [Header("Action Stats")]
     [SerializeField] protected float elapsedTime = 0f;

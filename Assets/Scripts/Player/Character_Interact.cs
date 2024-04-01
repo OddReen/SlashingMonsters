@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Player_Interact : PlayerActions
+public class Character_Interact : CharacterActions
 {
     [SerializeField] private float positionSpeed;
     [SerializeField] private float rotationSpeed;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player_Movement : PlayerActions
+public class Character_Movement : CharacterActions
 {
     [SerializeField] public bool canMove = true;
 

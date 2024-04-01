@@ -1,13 +1,30 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Parry : PlayerActions
+public class Character_Attack : CharacterActions
 {
+    [SerializeField] GameObject menu;
+    [SerializeField] GameObject weaponSlot;
+    [SerializeField] public GameObject interactUI;
+
+    [SerializeField] public bool canInteract = false;
+
+    public float damageAmount = 25f;
+
     public override void Action()
     {
-        if (Player_Input.Instance.isParrying && !characterBehaviour_Player.isRootAnimating)
+        if (Player_Input.Instance.isAttacking && !characterBehaviour_Player.isRootAnimating)
         {
+            #region Random Attack
+            if (characterBehaviour_Player.animator.GetInteger("RandAttack") >= 2)
+            {
+                characterBehaviour_Player.animator.SetInteger("RandAttack", 0);
+            }
+            else
+            {
+                characterBehaviour_Player.animator.SetInteger("RandAttack", characterBehaviour_Player.animator.GetInteger("RandAttack") + 1);
+            }
+            #endregion
             StartCoroutine(OnAnimation());
         }
     }
