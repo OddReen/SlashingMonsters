@@ -18,6 +18,15 @@ public class Player_Input : MonoBehaviour
     public bool isInteracting;
     public bool isMenuing;
 
+    Coroutine c_Interact;
+    Coroutine c_Kick;
+    Coroutine c_Parry;
+    Coroutine c_Attack;
+    Coroutine c_Dodge;
+    Coroutine c_Aim;
+
+    [SerializeField] float triggerTime = .5f;
+
     private void Start()
     {
         Instance = this;
@@ -59,27 +68,40 @@ public class Player_Input : MonoBehaviour
     }
     void StartInteract()
     {
-        StartCoroutine(TriggerInteract());
+        if (c_Interact != null)
+            StopCoroutine(c_Interact);
+        c_Interact = StartCoroutine(TriggerInteract());
     }
     void StartKick()
     {
-        StartCoroutine(TriggerKick());
+        if (c_Kick != null)
+            StopCoroutine(c_Kick);
+        c_Kick = StartCoroutine(TriggerKick());
     }
     void StartParry()
     {
-        StartCoroutine(TriggerParry());
+        if (c_Parry != null)
+            StopCoroutine(c_Parry);
+        c_Parry = StartCoroutine(TriggerParry());
     }
     void StartAttack()
     {
-        StartCoroutine(TriggerAttack());
+        if (c_Attack != null)
+            StopCoroutine(c_Attack);
+        c_Attack = StartCoroutine(TriggerAttack());
+
     }
     void StartDodge()
     {
-        StartCoroutine(TriggerDodge());
+        if (c_Dodge != null)
+            StopCoroutine(c_Dodge);
+        c_Dodge = StartCoroutine(TriggerDodge());
     }
     void StartAim()
     {
-        StartCoroutine(TriggerAim());
+        if (c_Aim != null)
+            StopCoroutine(c_Aim);
+        c_Aim = StartCoroutine(TriggerAim());
     }
 
     IEnumerator TriggerMenu()
@@ -91,37 +113,37 @@ public class Player_Input : MonoBehaviour
     IEnumerator TriggerInteract()
     {
         isInteracting = true;
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(triggerTime);
         isInteracting = false;
     }
     IEnumerator TriggerKick()
     {
         isKicking = true;
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(triggerTime);
         isKicking = false;
     }
     IEnumerator TriggerParry()
     {
         isParrying = true;
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(triggerTime);
         isParrying = false;
     }
     IEnumerator TriggerAttack()
     {
         isAttacking = true;
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(triggerTime);
         isAttacking = false;
     }
     IEnumerator TriggerDodge()
     {
         isDodging = true;
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(triggerTime);
         isDodging = false;
     }
     IEnumerator TriggerAim()
     {
         isAiming = true;
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(triggerTime);
         isAiming = false;
     }
 

@@ -1,10 +1,10 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyBehaviour : CharacterBehaviour
+public class CharacterBehaviour_Enemy : CharacterBehaviour
 {
-    Animator animator;
     NavMeshAgent navMeshAgent;
 
     Rigidbody rb;

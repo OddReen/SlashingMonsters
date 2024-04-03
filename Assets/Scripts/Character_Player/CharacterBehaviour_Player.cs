@@ -9,21 +9,17 @@ public class CharacterBehaviour_Player : CharacterBehaviour
 
     [Header("GameObject References")]
     [SerializeField] public GameObject menu;
-    [SerializeField] public GameObject weaponSlot;
     [SerializeField] public GameObject interactUI;
 
-    [Header("Script References")]
-    public HealthSystem healthSystem;
-    public Rigidbody rb;
-    public Player_Movement player_Movement;
+    [Header("Script References"), HideInInspector]
+    public Character_Movement player_Movement;
 
-    private void Awake()
+    public override void Awake()
     {
-        healthSystem = GetComponent<HealthSystem>();
-        rb = GetComponent<Rigidbody>();
-        player_Movement = GetComponent<Player_Movement>();
+        base.Awake();
+        player_Movement = GetComponent<Character_Movement>();
 
-        PlayerActions[] player = GetComponents<PlayerActions>();
+        CharacterActions[] player = GetComponents<CharacterActions>();
         for (int i = 0; i < player.Length; i++)
         {
             actions.Add(player[i]);

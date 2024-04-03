@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Player_Menu : PlayerActions
+public class Player_Menu : CharacterActions
 {
     public override void Action()
     {
