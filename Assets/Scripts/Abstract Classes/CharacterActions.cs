@@ -4,9 +4,6 @@ using UnityEngine;
 
 public abstract class CharacterActions : MonoBehaviour
 {
-    [Header("Action Stats")]
-    [SerializeField] protected float elapsedTime = 0f;
-
     [Header("Action Properties")]
     [SerializeField] protected string actionTag = "";
 
@@ -16,7 +13,7 @@ public abstract class CharacterActions : MonoBehaviour
     {
         characterBehaviour_Player = GetComponent<CharacterBehaviour_Player>();
     }
-    public virtual void Action()
+    public virtual void UpdateAction()
     {
 
     }
@@ -36,7 +33,6 @@ public abstract class CharacterActions : MonoBehaviour
     }
     public void EndRootMotion()
     {
-        elapsedTime = 0;
         characterBehaviour_Player.animator.applyRootMotion = false;
         characterBehaviour_Player.isRootAnimating = false;
         characterBehaviour_Player.player_Movement.canMove = true;

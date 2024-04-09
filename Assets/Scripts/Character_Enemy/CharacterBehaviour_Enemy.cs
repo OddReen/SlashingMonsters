@@ -1,38 +1,43 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
 public class CharacterBehaviour_Enemy : CharacterBehaviour
 {
-    NavMeshAgent navMeshAgent;
-
-    Rigidbody rb;
+    [SerializeField] bool onGizmos = false;
+    [SerializeField] float attackDelay = 1f;
+    [SerializeField] float rangeToCombat = 1f;
+    [SerializeField] float rotateSpeed = 10f;
     [SerializeField] float speed = 10f;
     [SerializeField] float distanceToSight = 10f;
     [SerializeField] float elapsedTime = 0;
     [SerializeField] LayerMask sightLayer;
+    [SerializeField] bool inRange = false;
     [SerializeField] bool isSighted = false;
     [SerializeField] bool canWalk = true;
     [SerializeField] bool isRootAnimating = false;
+    [SerializeField] bool pathFound = false;
 
     [SerializeField] Vector3[] pathPoints;
 
+    NavMeshPath path;
+
+    Coroutine c_InRange;
+    Coroutine c_IsSighted;
+    Coroutine c_Attack;
+
+    [SerializeField] State state;
     enum State
     {
         Idle,
-        Patrol,
         Chase,
         Combat
     }
     private void Start()
     {
-        animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        path = new NavMeshPath();
 
-        StartCoroutine(IsSighted());
-        StartCoroutine(OnAnimation());
+        c_IsSighted = StartCoroutine(IsSighted());
+        c_InRange = StartCoroutine(InRange());
     }
     private void LateUpdate()
     {
@@ -40,16 +45,36 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
     }
     private void FixedUpdate()
     {
-        if (canWalk)
+        float move = 0f;
+        if (isSighted && inRange)
         {
-            //GoAroundPlayer();
+            state = State.Combat;
+            move = 0;
+            RotateTowards(GameManager.Instance.player.transform.position);
+            if (c_Attack == null)
+                c_Attack = StartCoroutine(Attack());
         }
-    }
-    IEnumerator OnAnimation()
-    {
-        while (true)
+        else if (isSighted && !inRange)
         {
-            yield return new WaitForSeconds(3f);
+            state = State.Chase;
+            move = 3;
+            MoveToPlayer();
+            if (pathPoints.Length != 0 && pathPoints[1] != null)
+            {
+                RotateTowards(pathPoints[1]);
+            }
+        }
+        else
+        {
+            state = State.Idle;
+        }
+        animator.SetFloat("Move", move);
+    }
+    IEnumerator Attack()
+    {
+        while (inRange)
+        {
+            yield return new WaitForSeconds(attackDelay);
             canWalk = false;
 
             animator.SetBool("hasAttacked", true);
@@ -69,33 +94,39 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
             rb.velocity = Vector3.zero;
             canWalk = true;
         }
+        c_Attack = null;
     }
-    void Patrol()
+    private void MoveToPlayer()
     {
-
+        pathFound = NavMesh.CalculatePath(transform.position, GameManager.Instance.player.transform.position, -1, path);
+        if (pathFound)
+        {
+            pathPoints = path.corners;
+            Vector3 direction = pathPoints[1] - transform.position;
+            direction.Normalize();
+            rb.velocity = direction * speed;
+        }
+        else
+        {
+            Debug.LogWarning("No Path");
+        }
     }
-    void Chase()
-    {
-
-    }
-    void GoAroundPlayer()
+    void RotateTowards(Vector3 target)
     {
         if (GameManager.Instance.player != null)
         {
-            Vector3 direction = GameManager.Instance.player.transform.position - transform.position;
+            Vector3 direction = target - transform.position;
 
-            Quaternion rotation = Quaternion.LookRotation(direction);
+            float targetRotation = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
 
-            //Quaternion.Lerp(transform.rotation, rotation, 100 * Time.deltaTime);
+            float smoothRotation = Mathf.MoveTowardsAngle(transform.eulerAngles.y, targetRotation, rotateSpeed * Time.deltaTime);
 
-            rb.rotation = rotation;
-
-            rb.velocity = transform.right * speed * Time.deltaTime;
+            rb.MoveRotation(Quaternion.Euler(0.0f, smoothRotation, 0.0f));
         }
     }
     IEnumerator IsSighted()
     {
-        while (true)
+        while (!inRange)
         {
             yield return new WaitForSeconds(0.25f);
             if (GameManager.Instance.player != null)
@@ -103,7 +134,7 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
                 Vector3 dir = (GameManager.Instance.player.transform.position + Vector3.up) - (transform.position + Vector3.up);
                 dir.Normalize();
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position + Vector3.up, dir, out hit, distanceToSight, sightLayer))
+                if (Physics.Raycast(transform.position + Vector3.up, dir, out hit, distanceToSight, ~sightLayer))
                 {
                     if (hit.collider.CompareTag("Player"))
                     {
@@ -122,30 +153,49 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
             }
         }
     }
+    IEnumerator InRange()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.25f);
+            if (isSighted)
+            {
+                if (GameManager.Instance.player != null)
+                {
+                    if (Vector3.Distance(transform.position, GameManager.Instance.player.transform.position) <= rangeToCombat)
+                    {
+                        inRange = true;
+                    }
+                    else
+                    {
+                        inRange = false;
+                    }
+                }
+                else
+                {
+                    inRange = false;
+                }
+            }
+        }
+    }
     private void OnDrawGizmos()
     {
-        if (GameManager.Instance != null && GameManager.Instance.player != null)
+        if (onGizmos)
         {
-            if (isSighted)
-                Gizmos.color = Color.green;
-            else
-                Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position + Vector3.up, GameManager.Instance.player.transform.position + Vector3.up);
-
-            NavMeshPath path = new NavMeshPath();
-            bool pathFound = NavMesh.CalculatePath(transform.position, GameManager.Instance.player.transform.position, navMeshAgent.areaMask, path);
+            // Path
             if (pathFound)
             {
-                pathPoints = path.corners;
                 for (int i = 0; i < pathPoints.Length; i++)
                 {
                     Gizmos.color = Color.blue;
                     Gizmos.DrawSphere(pathPoints[i], .5f);
                 }
             }
-            else
+            // Sight Player
+            if (GameManager.Instance != null && GameManager.Instance.player != null)
             {
-                Debug.LogWarning("Failed to find a valid path to the player.");
+                Gizmos.color = isSighted ? Color.green : Color.red;
+                Gizmos.DrawLine(transform.position + Vector3.up, GameManager.Instance.player.transform.position + Vector3.up);
             }
         }
     }

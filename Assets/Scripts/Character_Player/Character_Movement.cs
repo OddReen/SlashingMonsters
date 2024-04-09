@@ -6,8 +6,8 @@ public class Character_Movement : CharacterActions
 
     [Header("Stats")]
     public float currentSpeed;
-    [SerializeField] float walkingSpeed = 5;
-    [SerializeField] float runningSpeed = 8;
+    [SerializeField] public  float walkingSpeed = 5;
+    [SerializeField] public  float runningSpeed = 8;
     [SerializeField] float blendSpeed;
     [SerializeField] public float rotationSpeed = 10;
 
@@ -32,8 +32,9 @@ public class Character_Movement : CharacterActions
 
     private RaycastHit slopeHit;
     private bool triggerOffTheGround = false;
+    float _targetRotation = 0;
 
-    public override void Action()
+    public override void UpdateAction()
     {
         IsGrounded();
         if (isGrounded)
@@ -77,9 +78,12 @@ public class Character_Movement : CharacterActions
     }
     private void Rotation()
     {
-        if (canRotate && Player_Input.Instance.movementInput.magnitude > .1f)
+        if (canRotate)
         {
-            float _targetRotation = Mathf.Atan2(moveDirectionWorldRelative.x, moveDirectionWorldRelative.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
+            if (Player_Input.Instance.movementInput.magnitude > .1f)
+            {
+                _targetRotation = Mathf.Atan2(moveDirectionWorldRelative.x, moveDirectionWorldRelative.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
+            }
             float rotation = Mathf.LerpAngle(transform.eulerAngles.y, _targetRotation, Time.deltaTime * rotationSpeed);
 
             characterBehaviour_Player.rb.MoveRotation(Quaternion.Euler(0.0f, rotation, 0.0f));
@@ -142,24 +146,24 @@ public class Character_Movement : CharacterActions
     }
     private void OnDrawGizmos()
     {
-        // Detect Ground
         if (isGroundedGizmo)
         {
+            // Detect Ground
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(transform.position + Vector3.up * sphereOverlapHeight, sphereOverlapRadius);
-        }
 
-        // Detect Slope
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * rayDistanceDown);
-        Gizmos.DrawWireSphere(slopeHit.point, sphereOverlapRadius);
+            // Detect Slope
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, transform.position + Vector3.down * rayDistanceDown);
+            Gizmos.DrawWireSphere(slopeHit.point, sphereOverlapRadius);
 
-        if (characterBehaviour_Player != null)
-        {
-            // Forward Direction
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(transform.position, OnSlope() + transform.position);
-            Gizmos.DrawWireSphere(OnSlope() + transform.position, sphereOverlapRadius);
+            if (characterBehaviour_Player != null)
+            {
+                // Forward Direction
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawLine(transform.position, OnSlope() + transform.position);
+                Gizmos.DrawWireSphere(OnSlope() + transform.position, sphereOverlapRadius);
+            }
         }
     }
 }

@@ -3,14 +3,8 @@ using UnityEngine;
 
 public class Character_TargetAim : CharacterActions
 {
-    Rigidbody rb;
-    Character_Attack player_Attack;
-    Player_Input inputHandler;
-    Character_Movement playerController;
-    Player_CameraController cameraController;
     [SerializeField] CinemachineVirtualCamera AimCamera;
 
-    [SerializeField] GameObject cameraTarget;
     [SerializeField] GameObject target;
     [SerializeField] float aimRadius;
     [SerializeField] float rotationSpeed = 20;
@@ -18,16 +12,10 @@ public class Character_TargetAim : CharacterActions
     [SerializeField] LayerMask playerLayerMask;
     [SerializeField] bool isAiming = false;
 
-
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-        player_Attack = GetComponent<Character_Attack>();
-        inputHandler = GetComponent<Player_Input>();
-        cameraController = GetComponent<Player_CameraController>();
-        playerController = GetComponent<Character_Movement>();
-    }
     private void FixedUpdate()
+    {
+    }
+    public override void UpdateAction()
     {
         if (isAiming && target != null && !characterBehaviour_Player.isRootAnimating) // On Aiming
         {
@@ -36,7 +24,7 @@ public class Character_TargetAim : CharacterActions
     }
     private void LateUpdate()
     {
-        if (inputHandler.isAiming)
+        if (Player_Input.Instance.isAiming)
         {
             isAiming = !isAiming;
         }
@@ -56,7 +44,7 @@ public class Character_TargetAim : CharacterActions
         float _targetRotation = Mathf.Atan2(targetDir.x, targetDir.z) * Mathf.Rad2Deg;
         float rotation = Mathf.LerpAngle(transform.eulerAngles.y, _targetRotation, Time.deltaTime * rotationSpeed);
 
-        rb.MoveRotation(Quaternion.Euler(0.0f, rotation, 0.0f));
+        characterBehaviour_Player.rb.MoveRotation(Quaternion.Euler(0.0f, rotation, 0.0f));
     }
     void OnAim()
     {
@@ -72,28 +60,28 @@ public class Character_TargetAim : CharacterActions
             return;
         }
 
-        Vector3 dir = target.transform.position - cameraTarget.transform.position;
+        Vector3 dir = target.transform.position - characterBehaviour_Player.player_CameraController.cameraTarget.transform.position;
         dir.Normalize();
         Quaternion rotation = Quaternion.LookRotation(dir, Vector3.up);
 
-        cameraController.cameraTargetPitch = rotation.eulerAngles.x;
-        cameraController.cameraTargetYaw = rotation.eulerAngles.y;
+        characterBehaviour_Player.player_CameraController.cameraTargetPitch = rotation.eulerAngles.x;
+        characterBehaviour_Player.player_CameraController.cameraTargetYaw = rotation.eulerAngles.y;
 
-        playerController.canRotate = false;
-        cameraController.enabled = false;
+        characterBehaviour_Player.player_Movement.canRotate = false;
+        characterBehaviour_Player.player_CameraController.enabled = false;
         AimCamera.gameObject.SetActive(true);
     }
     void OnStopAim()
     {
-        Vector3 dir = target.transform.position - cameraTarget.transform.position;
+        Vector3 dir = target.transform.position - characterBehaviour_Player.player_CameraController.cameraTarget.transform.position;
         dir.Normalize();
         Quaternion rotation = Quaternion.LookRotation(dir, Vector3.up);
 
-        cameraController.cameraTargetPitch = rotation.eulerAngles.x;
-        cameraController.cameraTargetYaw = rotation.eulerAngles.y;
+        characterBehaviour_Player.player_CameraController.cameraTargetPitch = rotation.eulerAngles.x;
+        characterBehaviour_Player.player_CameraController.cameraTargetYaw = rotation.eulerAngles.y;
 
-        playerController.canRotate = true;
-        cameraController.enabled = true;
+        characterBehaviour_Player.player_Movement.canRotate = true;
+        characterBehaviour_Player.player_CameraController.enabled = true;
         AimCamera.gameObject.SetActive(false);
 
         target = null;
@@ -106,15 +94,15 @@ public class Character_TargetAim : CharacterActions
 
         for (int i = 0; i < collider.Length; i++)
         {
-            Vector3 dir = (collider[i].transform.position - cameraTarget.transform.position);
+            Vector3 dir = (collider[i].transform.position - characterBehaviour_Player.player_CameraController.cameraTarget.transform.position);
             dir.Normalize();
 
-            float currentDot = Vector3.Dot(cameraTarget.transform.forward, dir);
+            float currentDot = Vector3.Dot(characterBehaviour_Player.player_CameraController.cameraTarget.transform.forward, dir);
 
             if (currentDot > 0.5f)
             {
                 RaycastHit raycastHit;
-                if (Physics.Raycast(cameraTarget.transform.position, dir, out raycastHit, aimRadius, ~playerLayerMask))
+                if (Physics.Raycast(characterBehaviour_Player.player_CameraController.cameraTarget.transform.position, dir, out raycastHit, aimRadius, ~playerLayerMask))
                 {
                     if (raycastHit.collider.CompareTag("Enemy"))
                     {

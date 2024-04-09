@@ -1,8 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 public class Player_Input : MonoBehaviour
 {
+    [SerializeField] float cameraMouseSensivity = 1f;
+    [SerializeField] float cameraControllerSensivity = 2f;
+
     public PlayerControls inputActions;
 
     public static Player_Input Instance;
@@ -39,7 +44,15 @@ public class Player_Input : MonoBehaviour
             inputActions.Gameplay.Movement.performed += context => movementInput = context.ReadValue<Vector2>();
             inputActions.Gameplay.Movement.canceled += context => movementInput = context.ReadValue<Vector2>();
 
-            inputActions.Gameplay.Camera.performed += context => cameraInput = context.ReadValue<Vector2>();
+            inputActions.Gameplay.Camera.performed += context =>
+            {
+                if (context.control.device is Mouse)
+                cameraInput = context.ReadValue<Vector2>() * cameraMouseSensivity;
+                else
+                {
+                    cameraInput = context.ReadValue<Vector2>() * cameraControllerSensivity;
+                }
+            };
             inputActions.Gameplay.Camera.canceled += context => cameraInput = context.ReadValue<Vector2>();
 
             inputActions.Gameplay.Run.performed += context => isRunning = context.ReadValueAsButton();
@@ -61,7 +74,6 @@ public class Player_Input : MonoBehaviour
         }
         inputActions.Enable();
     }
-
     void StartMenu()
     {
         StartCoroutine(TriggerMenu());
@@ -110,6 +122,12 @@ public class Player_Input : MonoBehaviour
         yield return new WaitForEndOfFrame();
         isMenuing = false;
     }
+    IEnumerator TriggerAim()
+    {
+        isAiming = true;
+        yield return new WaitForEndOfFrame();
+        isAiming = false;
+    }
     IEnumerator TriggerInteract()
     {
         isInteracting = true;
@@ -139,12 +157,6 @@ public class Player_Input : MonoBehaviour
         isDodging = true;
         yield return new WaitForSeconds(triggerTime);
         isDodging = false;
-    }
-    IEnumerator TriggerAim()
-    {
-        isAiming = true;
-        yield return new WaitForSeconds(triggerTime);
-        isAiming = false;
     }
 
     private void OnDisable()

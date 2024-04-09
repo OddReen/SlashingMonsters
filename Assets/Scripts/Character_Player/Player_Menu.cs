@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Player_Menu : CharacterActions
 {
-    public override void Action()
+    public override void UpdateAction()
     {
         if (Player_Input.Instance.isMenuing)
         {

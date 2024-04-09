@@ -22,6 +22,7 @@ public class HitBox : MonoBehaviour
     CharacterBehaviour characterBehaviour;
     Collider hitBox;
     CinemachineImpulseSource cinemachineImpulseSource;
+    Interactable_Weapon interactable_Weapon;
 
     [Header("Target Type")]
     [SerializeField] string targetTypeTag;
@@ -30,6 +31,7 @@ public class HitBox : MonoBehaviour
 
     public virtual void Start()
     {
+        interactable_Weapon = GetComponentInParent<Interactable_Weapon>();
         characterBehaviour = GetComponentInParent<CharacterBehaviour>();
         cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
         hitBox = GetComponent<Collider>();
@@ -71,7 +73,7 @@ public class HitBox : MonoBehaviour
             switch (attackType)
             {
                 case AttackType.Attack:
-                    targetBehaviour.healthSystem.TakeDamage(characterBehaviour.weaponDamageAmount);
+                    targetBehaviour.healthSystem.TakeDamage(interactable_Weapon.damageAmount);
                     Instantiate(bloodPref, target.ClosestPointOnBounds(hitBox.transform.position), transform.rotation);
                     break;
                 case AttackType.Kick:

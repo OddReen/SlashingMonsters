@@ -6,7 +6,7 @@ public class Player_CameraController : CharacterActions
 
     [SerializeField] private float globalShakeForce = 1f;
 
-    [SerializeField] GameObject cameraTarget;
+    [SerializeField] public GameObject cameraTarget;
     [SerializeField] Transform cameraTargetPosition;
     [SerializeField] CinemachineVirtualCamera thirdPersonCamera;
     [SerializeField] CinemachineVirtualCamera thirdPersonCameraAim;
@@ -52,7 +52,7 @@ public class Player_CameraController : CharacterActions
 
         cameraTarget.transform.position = cameraTargetPosition.position;
     }
-    public override void Action()
+    public override void UpdateAction()
     {
         cameraTarget.transform.position = cameraTargetPosition.position;
         CameraRotation();

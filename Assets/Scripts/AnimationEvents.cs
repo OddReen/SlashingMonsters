@@ -2,22 +2,27 @@ using UnityEngine;
 
 public class AnimationEventHandler : MonoBehaviour
 {
-    [SerializeField] HitBox hitBox_Weapon;
-    [SerializeField] HitBox hitBox_Kick;
+    [SerializeField] Transform kickSlot;
+    [SerializeField] Transform weaponSlot;
+    [SerializeField] FootSteps footSteps;
     public void Weapon_EnableHitBox()
     {
-        hitBox_Weapon.EnableHitBox();
+        weaponSlot.GetComponentInChildren<HitBox>().EnableHitBox();
     }
     public void Weapon_DisableHitBox()
     {
-        hitBox_Weapon.DisableHitBox();
+        weaponSlot.GetComponentInChildren<HitBox>().DisableHitBox();
     }
     public void Kick_EnableHitBox()
     {
-        hitBox_Kick.EnableHitBox();
+        kickSlot.GetComponentInChildren<HitBox>().EnableHitBox();
     }
     public void Kick_DisableHitBox()
     {
-        hitBox_Kick.DisableHitBox();
+        kickSlot.GetComponentInChildren<HitBox>().DisableHitBox();
+    }
+    public void FootStep()
+    {
+        footSteps.FootStep();
     }
 }

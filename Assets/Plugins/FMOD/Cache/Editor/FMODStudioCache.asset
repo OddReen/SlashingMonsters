@@ -1,5 +1,59 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8831840768318567186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: snapshot:/Menu
+  m_EditorClassIdentifier: 
+  Path: snapshot:/Menu
+  Guid:
+    Data1: 835713771
+    Data2: 1239887242
+    Data3: 34209668
+    Data4: 1970445286
+  Banks:
+  - {fileID: 7470329225063525575}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &-5568224675872736600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: snapshot:/Reverb
+  m_EditorClassIdentifier: 
+  Path: snapshot:/Reverb
+  Guid:
+    Data1: 605797626
+    Data2: 1320953607
+    Data3: 448253090
+    Data4: -1960012931
+  Banks:
+  - {fileID: 7470329225063525575}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
 --- !u!114 &-971675957615608976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21,7 +75,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 7470329225063525575}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -74,12 +128,16 @@ MonoBehaviour:
   - {fileID: -971675957615608976}
   - {fileID: 8637084754068683961}
   - {fileID: 1749412428213969538}
+  - {fileID: 6328179900633154495}
+  - {fileID: 8878637270504646170}
+  - {fileID: -5568224675872736600}
+  - {fileID: -8831840768318567186}
   EditorParameters: []
   MasterBanks:
   - {fileID: 7470329225063525575}
   StringsBanks:
   - {fileID: 1230464026080418092}
-  cacheTime: 638441439822486288
+  cacheTime: 638480283679434427
   cacheVersion: 131616
 --- !u!114 &1230464026080418092
 MonoBehaviour:
@@ -96,10 +154,10 @@ MonoBehaviour:
   Path: ../../../Desktop/Slashing Monsters/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638441439822486288
+  lastModified: 638480283679434427
   FileSizes:
   - Name: Desktop
-    Value: 888
+    Value: 1222
   Exists: 1
 --- !u!114 &1749412428213969538
 MonoBehaviour:
@@ -128,6 +186,58 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &2057445683283324561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FootSteps/run
+  m_EditorClassIdentifier: 
+  Name: run
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 398683211
+    data2: 3759146066
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &6328179900633154495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FootSteps
+  m_EditorClassIdentifier: 
+  Path: event:/FootSteps
+  Guid:
+    Data1: -1510310925
+    Data2: 1130700692
+    Data3: -368328809
+    Data4: 1878689119
+  Banks:
+  - {fileID: 7470329225063525575}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 2057445683283324561}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &7470329225063525575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,10 +253,10 @@ MonoBehaviour:
   Path: ../../../Desktop/Slashing Monsters/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638441439822466096
+  lastModified: 638480283679404137
   FileSizes:
   - Name: Desktop
-    Value: 3829504
+    Value: 3916992
   Exists: 1
 --- !u!114 &8637084754068683961
 MonoBehaviour:
@@ -175,3 +285,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 273449
+--- !u!114 &8878637270504646170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: snapshot:/Main
+  m_EditorClassIdentifier: 
+  Path: snapshot:/Main
+  Guid:
+    Data1: 1165636456
+    Data2: 1169910013
+    Data3: -533686114
+    Data4: -1301048969
+  Banks:
+  - {fileID: 7470329225063525575}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
