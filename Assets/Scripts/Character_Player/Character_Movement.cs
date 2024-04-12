@@ -34,6 +34,14 @@ public class Character_Movement : CharacterActions
     private bool triggerOffTheGround = false;
     float _targetRotation = 0;
 
+    enum State
+    {
+        idle,
+        walk,
+        run
+    }
+    [SerializeField] State state = State.idle;
+
     public override void UpdateAction()
     {
         IsGrounded();
@@ -57,16 +65,19 @@ public class Character_Movement : CharacterActions
 
             if (Player_Input.Instance.isRunning && Player_Input.Instance.movementInput.magnitude > 0.1f)
             {
+                state = State.run;
                 currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, Time.deltaTime * blendSpeed);
                 characterBehaviour_Player.animator.SetFloat("Move", currentSpeed);
             }
             else if (Player_Input.Instance.movementInput.magnitude > 0.1f)
             {
+                state = State.walk;
                 currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, Time.deltaTime * blendSpeed);
                 characterBehaviour_Player.animator.SetFloat("Move", currentSpeed);
             }
             else
             {
+                state = State.idle;
                 currentSpeed = Mathf.MoveTowards(currentSpeed, 0, Time.deltaTime * blendSpeed);
                 characterBehaviour_Player.animator.SetFloat("Move", currentSpeed);
             }

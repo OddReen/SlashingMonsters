@@ -1,9 +1,12 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Character_Interact : CharacterActions
 {
+    [SerializeField] GameObject highlightPref;
+    GameObject highlight;
+
     [SerializeField] GameObject target;
 
     [SerializeField] private float positionSpeed;
@@ -11,7 +14,12 @@ public class Character_Interact : CharacterActions
 
     [SerializeField] private float targetRotation;
     [SerializeField] private Vector3 targetPosition;
-
+    private void Start()
+    {
+        highlight = Instantiate(highlightPref);
+        highlight.transform.SetParent(transform);
+        highlight.SetActive(false);
+    }
     public override void UpdateAction()
     {
         TargetInteractable();
@@ -29,7 +37,7 @@ public class Character_Interact : CharacterActions
     {
         target = null;
 
-        Collider[] collider = Physics.OverlapSphere(transform.position, characterBehaviour_Player.interactRadius, characterBehaviour_Player.interactableMask);
+        Collider[] collider = Physics.OverlapSphere(characterBehaviour_Player.player_CameraController.cameraTarget.transform.position, characterBehaviour_Player.interactRadius, characterBehaviour_Player.interactableMask);
         if (collider.Length == 0)
             return;
 
@@ -37,9 +45,9 @@ public class Character_Interact : CharacterActions
 
         for (int i = 0; i < collider.Length; i++)
         {
-            float currentDis = Vector3.Distance(transform.position + Vector3.up, collider[i].transform.position);
+            float currentDis = Vector3.Distance(characterBehaviour_Player.player_CameraController.cameraTarget.transform.position, collider[i].transform.position);
 
-            Vector3 dir = collider[i].transform.position - (transform.position + Vector3.up);
+            Vector3 dir = collider[i].transform.position - characterBehaviour_Player.player_CameraController.cameraTarget.transform.position;
             dir.Normalize();
 
             RaycastHit raycastHit;
@@ -57,11 +65,14 @@ public class Character_Interact : CharacterActions
         }
         if (target != null)
         {
+            highlight.SetActive(true);
+            highlight.transform.position = target.transform.position + Vector3.up * 2;
             characterBehaviour_Player.interactUI.SetActive(true);
             characterBehaviour_Player.canInteract = true;
         }
         else
         {
+            highlight.SetActive(false);
             characterBehaviour_Player.interactUI.SetActive(false);
             characterBehaviour_Player.canInteract = false;
         }

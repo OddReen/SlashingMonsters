@@ -6,23 +6,25 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField] Transform spawner;
-    [SerializeField] List<SpawnEnemy> enemySpawners;
-    [SerializeField] List<GameObject> enemies;
-
-    [SerializeField] public GameObject interactUI;
-    [SerializeField] public float nonActiveTime = 3;
+    [Header("Player")]
     [SerializeField] public GameObject player;
     [SerializeField] private GameObject playerPref;
 
+    [Header("Enemies")]
+    [SerializeField] Transform enemySpawnerParent;
+    [SerializeField] List<SpawnEnemy> enemySpawnerList;
+    [SerializeField] List<GameObject> enemyList;
+
+    [SerializeField] public GameObject interactUI;
+    [SerializeField] public float nonActiveTime = 3;
     [SerializeField] public Transform checkpoint;
 
     private void Start()
     {
         if (Instance == null) Instance = this;
-        for (int i = 0; i < spawner.childCount; i++)
+        for (int i = 0; i < enemySpawnerParent.childCount; i++)
         {
-            enemySpawners.Add(spawner.GetChild(i).GetComponent<SpawnEnemy>());
+            enemySpawnerList.Add(enemySpawnerParent.GetChild(i).GetComponent<SpawnEnemy>());
         }
         SpawnPlayer();
         SpawnEnemies();
@@ -30,19 +32,19 @@ public class GameManager : MonoBehaviour
     }
     public void SpawnEnemies()
     {
-        for (int i = 0; i < enemySpawners.Count; i++)
+        for (int i = 0; i < enemySpawnerList.Count; i++)
         {
-            enemySpawners[i].Spawn();
-            enemies.Add(enemySpawners[i].spawnedEnemy);
+            enemySpawnerList[i].Spawn();
+            enemyList.Add(enemySpawnerList[i].spawnedEnemy);
         }
     }
     public void DeleteEnemies()
     {
-        for (int i = 0; i < enemySpawners.Count; i++)
+        for (int i = 0; i < enemySpawnerList.Count; i++)
         {
-            Destroy(enemies[i]);
+            Destroy(enemyList[i]);
         }
-        enemies.Clear();
+        enemyList.Clear();
     }
     public void SpawnPlayer()
     {

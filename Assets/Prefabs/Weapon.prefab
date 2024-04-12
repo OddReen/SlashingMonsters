@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8226761901818974008}
   - component: {fileID: 8298421353455895912}
   - component: {fileID: 2405055965363402867}
+  - component: {fileID: 4839439871756164325}
   m_Layer: 9
   m_Name: Weapon
   m_TagString: Interactable
@@ -69,6 +70,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1, y: 1.2, z: 0.1}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &4839439871756164325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4075832436813552495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4694f2cd34023964ab1b977f546937e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaderGraphMaterial: {fileID: 2100000, guid: a046efbdf9e93624badaaa9826460689, type: 2}
 --- !u!1001 &3193586006923623381
 PrefabInstance:
   m_ObjectHideFlags: 0

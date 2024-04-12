@@ -5,12 +5,12 @@ using UnityEngine.InputSystem.LowLevel;
 
 public class Player_Input : MonoBehaviour
 {
-    [SerializeField] float cameraMouseSensivity = 1f;
-    [SerializeField] float cameraControllerSensivity = 2f;
-
+    public static Player_Input Instance;
     public PlayerControls inputActions;
 
-    public static Player_Input Instance;
+    public bool isInGameMenu = false;
+    [SerializeField] float cameraMouseSensivity = 1f;
+    [SerializeField] float cameraControllerSensivity = 2f;
 
     public Vector2 movementInput;
     public Vector2 cameraInput;
@@ -80,24 +80,28 @@ public class Player_Input : MonoBehaviour
     }
     void StartInteract()
     {
+        if (isInGameMenu) return;
         if (c_Interact != null)
             StopCoroutine(c_Interact);
         c_Interact = StartCoroutine(TriggerInteract());
     }
     void StartKick()
     {
+        if (isInGameMenu) return;
         if (c_Kick != null)
             StopCoroutine(c_Kick);
         c_Kick = StartCoroutine(TriggerKick());
     }
     void StartParry()
     {
+        if (isInGameMenu) return;
         if (c_Parry != null)
             StopCoroutine(c_Parry);
         c_Parry = StartCoroutine(TriggerParry());
     }
     void StartAttack()
     {
+        if (isInGameMenu) return;
         if (c_Attack != null)
             StopCoroutine(c_Attack);
         c_Attack = StartCoroutine(TriggerAttack());
@@ -105,12 +109,14 @@ public class Player_Input : MonoBehaviour
     }
     void StartDodge()
     {
+        if (isInGameMenu) return;
         if (c_Dodge != null)
             StopCoroutine(c_Dodge);
         c_Dodge = StartCoroutine(TriggerDodge());
     }
     void StartAim()
     {
+        if (isInGameMenu) return;
         if (c_Aim != null)
             StopCoroutine(c_Aim);
         c_Aim = StartCoroutine(TriggerAim());

@@ -4,7 +4,6 @@ using UnityEngine;
 public class Character_Attack : CharacterActions
 {
     [SerializeField] GameObject menu;
-    [SerializeField] GameObject weaponSlot;
     [SerializeField] public GameObject interactUI;
 
     [SerializeField] public bool canInteract = false;

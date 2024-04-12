@@ -9,19 +9,19 @@ public class Player_Menu : CharacterActions
     {
         if (Player_Input.Instance.isMenuing)
         {
-            if (characterBehaviour_Player.menu.activeSelf)
-            {
-                characterBehaviour_Player.menu.SetActive(false);
-                Time.timeScale = 1f;
-                Player_Input.Instance.enabled = true;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-            else
+            if (!Player_Input.Instance.isInGameMenu) // Go to menu
             {
                 characterBehaviour_Player.menu.SetActive(true);
                 Time.timeScale = 0f;
-                Player_Input.Instance.enabled = false;
+                Player_Input.Instance.isInGameMenu = true;
                 Cursor.lockState = CursorLockMode.None;
+            }
+            else // Get out of menu
+            {
+                characterBehaviour_Player.menu.SetActive(false);
+                Time.timeScale = 1f;
+                Player_Input.Instance.isInGameMenu = false;
+                Cursor.lockState = CursorLockMode.Locked;
             }
         }
     }
