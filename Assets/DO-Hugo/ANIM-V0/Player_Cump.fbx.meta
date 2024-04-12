@@ -33,7 +33,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG
+      name: A_Pose
       takeName: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG
       internalID: 5909623432939645103
       firstFrame: 0
@@ -62,7 +62,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG.001
+      name: Got Hit_A
       takeName: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG.001
       internalID: 2222347461257208770
       firstFrame: 0
@@ -91,7 +91,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG.002
+      name: Idle + Weapon
       takeName: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG.002
       internalID: -295043910020966939
       firstFrame: 0
@@ -102,7 +102,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -120,7 +120,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG.003
+      name: Combat_Idle + Weapon
       takeName: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG.003
       internalID: -2142193563291844825
       firstFrame: 0
@@ -131,7 +131,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -149,7 +149,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG.004
+      name: Kick (Unpushable Hit)
       takeName: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG.004
       internalID: -4771172078712274184
       firstFrame: 0
@@ -178,7 +178,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG.005
+      name: Run
       takeName: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG.005
       internalID: 7035264164065423058
       firstFrame: 0
@@ -189,7 +189,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -207,7 +207,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG.006
+      name: Walk
       takeName: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG.006
       internalID: 7342591379837931519
       firstFrame: 0
@@ -218,7 +218,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -236,7 +236,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG.007
+      name: Attack - 2
       takeName: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG.007
       internalID: 7916160610641479008
       firstFrame: 0
@@ -265,7 +265,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG.008
+      name: Attack - 3
       takeName: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG.008
       internalID: 1385995688116041802
       firstFrame: 0
@@ -294,8 +294,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|a
-        T
+      name: T-Pose
       takeName: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|a
         T
       internalID: 3116987574612215981
@@ -325,7 +324,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Dod
+      name: Dodge
       takeName: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Dod
       internalID: -8593884086197249798
       firstFrame: 0
@@ -354,7 +353,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Got
+      name: Got Hit_B
       takeName: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Got
       internalID: -774096187703301193
       firstFrame: 0
@@ -383,36 +382,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Gra
-      takeName: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Gra
-      internalID: 8526936714504077092
-      firstFrame: 0
-      lastFrame: 2
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Idl
+      name: Idle
       takeName: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Idl
       internalID: -6467657004216978796
       firstFrame: 0
@@ -423,7 +393,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -441,7 +411,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|InC
+      name: Combat_Idle
       takeName: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|InC
       internalID: 6514641929476786341
       firstFrame: 0
@@ -452,7 +422,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -470,7 +440,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Kic
+      name: Kick
       takeName: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Kic
       internalID: -1042691967453934961
       firstFrame: 0
@@ -499,7 +469,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Par
+      name: P_Parry
       takeName: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Par
       internalID: 5617466794763566870
       firstFrame: 0
@@ -528,7 +498,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Run
+      name: Run + Weapon
       takeName: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Run
       internalID: -1873366045730780711
       firstFrame: 0
@@ -539,7 +509,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -557,7 +527,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Wal
+      name: Walk + Weapon
       takeName: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Wal
       internalID: -6102792939630690723
       firstFrame: 0
@@ -568,7 +538,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -586,7 +556,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Wea
+      name: Attack - 1
       takeName: Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Def-PLAYER-RIG|Wea
       internalID: 4805780025872636953
       firstFrame: 0
