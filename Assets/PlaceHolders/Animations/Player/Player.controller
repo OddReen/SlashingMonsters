@@ -84,8 +84,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: cd6e0cd60b5b75e41829a77e1a33ce77,
-      type: 3}
+    m_Motion: {fileID: 7400000, guid: fc2e0023e17699a4b83fbb957c258a01, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -93,17 +92,15 @@ BlendTree:
     m_DirectBlendParameter: Horizontal
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 59257925fcbabb74ebcc8d2cd3729a82,
-      type: 3}
-    m_Threshold: 1
+    m_Motion: {fileID: 7400000, guid: 009c2f163c7341f4fb51a4897bc71c5c, type: 2}
+    m_Threshold: 3
     m_Position: {x: 0, y: 0.5}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Horizontal
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 16670e5b3c34e76438dfa3bc3591188b,
-      type: 3}
+    m_Motion: {fileID: 7400000, guid: 1a2a3d49216b2f941ba36fd0946cb519, type: 2}
     m_Threshold: 6
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
@@ -160,8 +157,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 692fdc53eb0f80849980f8bc209974bf,
-    type: 3}
+  m_Motion: {fileID: 7400000, guid: f63c591b5773537439b26d73c1f91c46, type: 2}
   m_Tag: isAttacking
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -247,7 +243,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Dodge
-  m_Speed: 1.5
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -485449305907316821}
@@ -260,8 +256,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: e2688f1d1b4c2544d82f9b796f9dbe40,
-    type: 3}
+  m_Motion: {fileID: 7400000, guid: 6fa4c42627c3b8543b85d9e896f664a4, type: 2}
   m_Tag: isDodging
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -310,8 +305,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 46f9b5aa52dca7f49a7b7d4d03607351,
-    type: 3}
+  m_Motion: {fileID: 7400000, guid: 23155bdb565c31f4aa575c6fd09fb754, type: 2}
   m_Tag: isKicking
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -542,7 +536,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: mixamo_com
-  m_Speed: 1.5
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -1872832507241330458}
@@ -555,8 +549,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: f9dc0b4a5d1fe7d419f2324cd0426123,
-    type: 3}
+  m_Motion: {fileID: 7400000, guid: 2980946eed25fd44b9a46e374966801d, type: 2}
   m_Tag: isAttacking
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -677,8 +670,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 2cea11fa22b56f1419d2b376653728ae,
-    type: 3}
+  m_Motion: {fileID: 7400000, guid: d4a4692f05071aa41bc8c33834359a57, type: 2}
   m_Tag: isParrying
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -774,8 +766,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 692fdc53eb0f80849980f8bc209974bf,
-    type: 3}
+  m_Motion: {fileID: 7400000, guid: bfed5f4b4ebbff842af1e8a7dcf51352, type: 2}
   m_Tag: isAttacking
   m_SpeedParameter: 
   m_MirrorParameter: 

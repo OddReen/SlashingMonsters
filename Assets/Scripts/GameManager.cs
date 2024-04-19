@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     [Header("Player")]
     [SerializeField] public GameObject player;
     [SerializeField] private GameObject playerPref;
+    [SerializeField] private GameObject playerPlaceholderPref;
+    public bool isPlaceholder = false;
 
     [Header("Enemies")]
     [SerializeField] Transform enemySpawnerParent;
@@ -52,8 +54,17 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator SpawnPlayerCoroutine()
     {
-        GameObject newPlayer = Instantiate(playerPref, checkpoint.position - checkpoint.transform.forward, checkpoint.rotation);
-        newPlayer.name = playerPref.name;
+        GameObject whichPlayer = null;
+        if (isPlaceholder)
+        {
+            whichPlayer = playerPref;
+        }
+        else
+        {
+            whichPlayer = playerPlaceholderPref;
+        }
+        GameObject newPlayer = Instantiate(whichPlayer, checkpoint.position - checkpoint.transform.forward, checkpoint.rotation);
+        newPlayer.name = whichPlayer.name;
         player = newPlayer;
 
         CharacterBehaviour_Player characterBehaviour_Player = player.GetComponent<CharacterBehaviour_Player>();
