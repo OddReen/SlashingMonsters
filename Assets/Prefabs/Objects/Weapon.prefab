@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 35
+  stunAmount: 5
 --- !u!65 &2405055965363402867
 BoxCollider:
   m_ObjectHideFlags: 0

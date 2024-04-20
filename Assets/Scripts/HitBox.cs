@@ -8,7 +8,8 @@ public class HitBox : MonoBehaviour
     enum AttackType
     {
         Attack,
-        Kick
+        Kick,
+        Throwable
     }
     [SerializeField] AttackType attackType;
 
@@ -22,7 +23,7 @@ public class HitBox : MonoBehaviour
     CharacterBehaviour characterBehaviour;
     Collider hitBox;
     CinemachineImpulseSource cinemachineImpulseSource;
-    Interactable_Weapon interactable_Weapon;
+    Interactable_Equipables interactable;
 
     [Header("Target Type")]
     [SerializeField] string targetTypeTag;
@@ -31,7 +32,7 @@ public class HitBox : MonoBehaviour
 
     public virtual void Start()
     {
-        interactable_Weapon = GetComponentInParent<Interactable_Weapon>();
+        interactable = GetComponentInParent<Interactable_Equipables>();
         characterBehaviour = GetComponentInParent<CharacterBehaviour>();
         cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
         hitBox = GetComponent<Collider>();
@@ -70,19 +71,10 @@ public class HitBox : MonoBehaviour
                 characterBehaviour.healthSystem.Stun(targetBehaviour.stunTimeAmount);
                 return;
             }
-            switch (attackType)
-            {
-                case AttackType.Attack:
-                    targetBehaviour.healthSystem.TakeDamage(interactable_Weapon.damageAmount);
-                    Instantiate(bloodPref, target.ClosestPointOnBounds(hitBox.transform.position), transform.rotation);
-                    break;
-                case AttackType.Kick:
-                    targetBehaviour.healthSystem.TakeDamage(characterBehaviour.kickDamageAmount);
-                    targetBehaviour.healthSystem.Stun(characterBehaviour.stunTimeAmount);
-                    break;
-                default:
-                    break;
-            }
+
+            Instantiate(bloodPref, target.ClosestPointOnBounds(hitBox.transform.position), transform.rotation);
+            targetBehaviour.healthSystem.TakeDamage(interactable.damageAmount);
+            targetBehaviour.healthSystem.Stun(interactable.stunAmount);
 
             Player_CameraController.Instance.CameraShake(cinemachineImpulseSource);
 

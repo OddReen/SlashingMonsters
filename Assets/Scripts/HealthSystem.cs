@@ -5,12 +5,11 @@ using UnityEngine.UI;
 public class HealthSystem : MonoBehaviour
 {
     [Header("References")]
-    CharacterBehaviour characterBehaviour;
+    public CharacterBehaviour characterBehaviour;
 
     [Header("Health Stats")]
     [SerializeField] float maxHealth = 100;
     [SerializeField] float currentHealth;
-
 
     [Header("Health Bar")]
     [SerializeField] protected GameObject healthBarBackground;
@@ -80,21 +79,12 @@ public class HealthSystem : MonoBehaviour
     {
         characterBehaviour.isDead = true;
         StartCoroutine(HealthBarUpdate());
-        Ragdoll(true);
+        StartCoroutine(TriggerAnimation("isDead"));
+        GetComponent<Rigidbody>().isKinematic = true;
+        GetComponent<Collider>().enabled = false;
         for (int i = 0; i < characterBehaviour.actions.Count; i++)
         {
             characterBehaviour.actions[i].enabled = false;
-        }
-    }
-    public void Revive()
-    {
-        characterBehaviour.isDead = false;
-        currentHealth = maxHealth;
-        StartCoroutine(HealthBarUpdate());
-        Ragdoll(false);
-        for (int i = 0; i < characterBehaviour.actions.Count; i++)
-        {
-            characterBehaviour.actions[i].enabled = true;
         }
     }
     IEnumerator HealthBarUpdate()
@@ -110,21 +100,6 @@ public class HealthSystem : MonoBehaviour
                 yield return null;
             }
 
-        }
-    }
-    public void Ragdoll(bool isRagdoll)
-    {
-        characterBehaviour.animator.enabled = !isRagdoll;
-        GetComponent<Rigidbody>().isKinematic = isRagdoll;
-        GetComponent<Collider>().enabled = !isRagdoll;
-        Collider[] colliders = GetComponentsInChildren<Collider>();
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            if (colliders[i].CompareTag("Ragdoll"))
-            {
-                colliders[i].enabled = isRagdoll;
-                colliders[i].GetComponent<Rigidbody>().isKinematic = !isRagdoll;
-            }
         }
     }
     IEnumerator TriggerAnimation(string boolName)

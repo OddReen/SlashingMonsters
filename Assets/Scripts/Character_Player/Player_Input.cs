@@ -15,7 +15,7 @@ public class Player_Input : MonoBehaviour
     public Vector2 movementInput;
     public Vector2 cameraInput;
     public bool isRunning;
-    public bool isAiming;
+    public bool isThrowing;
     public bool isAttacking;
     public bool isDodging;
     public bool isKicking;
@@ -28,7 +28,7 @@ public class Player_Input : MonoBehaviour
     Coroutine c_Parry;
     Coroutine c_Attack;
     Coroutine c_Dodge;
-    Coroutine c_Aim;
+    Coroutine c_Throw;
 
     [SerializeField] float triggerTime = .5f;
 
@@ -58,7 +58,7 @@ public class Player_Input : MonoBehaviour
             inputActions.Gameplay.Run.performed += context => isRunning = context.ReadValueAsButton();
             inputActions.Gameplay.Run.canceled += context => isRunning = context.ReadValueAsButton();
 
-            inputActions.Gameplay.Aim.performed += context => StartAim();
+            inputActions.Gameplay.Throw.performed += context => StartThrow();
 
             inputActions.Gameplay.Attack.performed += context => StartAttack();
 
@@ -114,12 +114,12 @@ public class Player_Input : MonoBehaviour
             StopCoroutine(c_Dodge);
         c_Dodge = StartCoroutine(TriggerDodge());
     }
-    void StartAim()
+    void StartThrow()
     {
         if (isInGameMenu) return;
-        if (c_Aim != null)
-            StopCoroutine(c_Aim);
-        c_Aim = StartCoroutine(TriggerAim());
+        if (c_Throw != null)
+            StopCoroutine(c_Throw);
+        c_Throw = StartCoroutine(TriggerThrow());
     }
 
     IEnumerator TriggerMenu()
@@ -128,11 +128,11 @@ public class Player_Input : MonoBehaviour
         yield return new WaitForEndOfFrame();
         isMenuing = false;
     }
-    IEnumerator TriggerAim()
+    IEnumerator TriggerThrow()
     {
-        isAiming = true;
+        isThrowing = true;
         yield return new WaitForEndOfFrame();
-        isAiming = false;
+        isThrowing = false;
     }
     IEnumerator TriggerInteract()
     {

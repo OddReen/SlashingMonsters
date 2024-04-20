@@ -45,6 +45,7 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
     }
     private void FixedUpdate()
     {
+        if (isDead) return;
         float move = 0f;
         if (isSighted && inRange)
         {
@@ -69,32 +70,6 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
             state = State.Idle;
         }
         animator.SetFloat("Move", move);
-    }
-    IEnumerator Attack()
-    {
-        while (inRange)
-        {
-            yield return new WaitForSeconds(attackDelay);
-            canWalk = false;
-
-            animator.SetBool("hasAttacked", true);
-            yield return new WaitForEndOfFrame();
-            animator.SetBool("hasAttacked", false);
-
-            rb.velocity = Vector3.zero;
-            isRootAnimating = true;
-            elapsedTime = 0;
-            while (elapsedTime <= animator.GetCurrentAnimatorStateInfo(0).length * animator.GetCurrentAnimatorStateInfo(0).speedMultiplier && animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
-            {
-                rb.velocity = new Vector3(animator.velocity.x, rb.velocity.y, animator.velocity.z);
-                elapsedTime += Time.deltaTime;
-                yield return null;
-            }
-            isRootAnimating = false;
-            rb.velocity = Vector3.zero;
-            canWalk = true;
-        }
-        c_Attack = null;
     }
     private void MoveToPlayer()
     {
@@ -123,6 +98,32 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
 
             rb.MoveRotation(Quaternion.Euler(0.0f, smoothRotation, 0.0f));
         }
+    }
+    IEnumerator Attack()
+    {
+        while (inRange)
+        {
+            yield return new WaitForSeconds(attackDelay);
+            canWalk = false;
+
+            animator.SetBool("hasAttacked", true);
+            yield return new WaitForEndOfFrame();
+            animator.SetBool("hasAttacked", false);
+
+            rb.velocity = Vector3.zero;
+            isRootAnimating = true;
+            elapsedTime = 0;
+            while (elapsedTime <= animator.GetCurrentAnimatorStateInfo(0).length * animator.GetCurrentAnimatorStateInfo(0).speedMultiplier && animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+            {
+                rb.velocity = new Vector3(animator.velocity.x, rb.velocity.y, animator.velocity.z);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            isRootAnimating = false;
+            rb.velocity = Vector3.zero;
+            canWalk = true;
+        }
+        c_Attack = null;
     }
     IEnumerator IsSighted()
     {

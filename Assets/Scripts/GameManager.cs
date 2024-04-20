@@ -6,16 +6,18 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public float respawnTime = 5;
+
     [Header("Player")]
     [SerializeField] public GameObject player;
     [SerializeField] private GameObject playerPref;
     [SerializeField] private GameObject playerPlaceholderPref;
     public bool isPlaceholder = false;
 
-    [Header("Enemies")]
-    [SerializeField] Transform enemySpawnerParent;
-    [SerializeField] List<SpawnEnemy> enemySpawnerList;
-    [SerializeField] List<GameObject> enemyList;
+    [Header("Spawner")]
+    [SerializeField] Transform spawnerParent;
+    [SerializeField] List<SpawnPrefab> spawnerList;
+    [SerializeField] List<GameObject> spawnList;
 
     [SerializeField] public GameObject interactUI;
     [SerializeField] public float nonActiveTime = 3;
@@ -24,35 +26,18 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         if (Instance == null) Instance = this;
-        for (int i = 0; i < enemySpawnerParent.childCount; i++)
+        for (int i = 0; i < spawnerParent.childCount; i++)
         {
-            enemySpawnerList.Add(enemySpawnerParent.GetChild(i).GetComponent<SpawnEnemy>());
+            spawnerList.Add(spawnerParent.GetChild(i).GetComponent<SpawnPrefab>());
         }
         SpawnPlayer();
-        SpawnEnemies();
+        SpawnPrefs();
         interactUI = player.GetComponent<Character_Attack>().interactUI;
     }
-    public void SpawnEnemies()
-    {
-        for (int i = 0; i < enemySpawnerList.Count; i++)
-        {
-            enemySpawnerList[i].Spawn();
-            enemyList.Add(enemySpawnerList[i].spawnedEnemy);
-        }
-    }
-    public void DeleteEnemies()
-    {
-        for (int i = 0; i < enemySpawnerList.Count; i++)
-        {
-            Destroy(enemyList[i]);
-        }
-        enemyList.Clear();
-    }
-    public void SpawnPlayer()
-    {
-        StartCoroutine(SpawnPlayerCoroutine());
-    }
-    private IEnumerator SpawnPlayerCoroutine()
+
+    #region SpawnPlayer
+    public void SpawnPlayer() => StartCoroutine(C_SpawnPlayer());
+    private IEnumerator C_SpawnPlayer()
     {
         GameObject whichPlayer = null;
         if (isPlaceholder)
@@ -82,4 +67,36 @@ public class GameManager : MonoBehaviour
             characterBehaviour_Player.actions[i].enabled = true;
         }
     }
+    #endregion
+
+    #region Restart
+    public void Restart() => StartCoroutine(C_Restart());
+    private IEnumerator C_Restart()
+    {
+        yield return new WaitForSeconds(respawnTime);
+        Fade.Instance.FadeOut();
+        yield return new WaitForSeconds(respawnTime);
+        Fade.Instance.FadeIn();
+        Destroy(player);
+        DeleteSpawned();
+        SpawnPlayer();
+        SpawnPrefs();
+    }
+    public void SpawnPrefs()
+    {
+        for (int i = 0; i < spawnerList.Count; i++)
+        {
+            spawnerList[i].Spawn();
+            spawnList.Add(spawnerList[i].spawnedPref);
+        }
+    }
+    public void DeleteSpawned()
+    {
+        for (int i = 0; i < spawnerList.Count; i++)
+        {
+            Destroy(spawnList[i]);
+        }
+        spawnList.Clear();
+    }
+    #endregion
 }

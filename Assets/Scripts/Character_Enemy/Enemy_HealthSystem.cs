@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Enemy_HealthSystem : HealthSystem
 {
-    [SerializeField] float bodyLifeSpan = 10.0f;
     public override void Die()
     {
         base.Die();
+        characterBehaviour.StopAllCoroutines();
         healthBarBackground.SetActive(false);
-    }
-    public IEnumerator BodyLifeSpan()
-    {
-        yield return new WaitForSeconds(bodyLifeSpan);
-        Destroy(gameObject);
     }
 }

@@ -130,7 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6172a47e104427d4da8df59e6db38a68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 35
+  damageAmount: 5
+  stunAmount: 35
 --- !u!136 &2416516578485705999
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -306,22 +307,27 @@ PrefabInstance:
     - target: {fileID: 8963809781439349959, guid: cdc8c19afd8c5f5439ba74a669870f16,
         type: 3}
       propertyPath: m_Size.x
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8963809781439349959, guid: cdc8c19afd8c5f5439ba74a669870f16,
-        type: 3}
-      propertyPath: m_Size.y
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8963809781439349959, guid: cdc8c19afd8c5f5439ba74a669870f16,
         type: 3}
+      propertyPath: m_Size.y
+      value: 2.0024216
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963809781439349959, guid: cdc8c19afd8c5f5439ba74a669870f16,
+        type: 3}
       propertyPath: m_Size.z
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8963809781439349959, guid: cdc8c19afd8c5f5439ba74a669870f16,
         type: 3}
       propertyPath: m_Center.y
-      value: 0.6
+      value: 0.49797645
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963809781439349959, guid: cdc8c19afd8c5f5439ba74a669870f16,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -7.2204426e-15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

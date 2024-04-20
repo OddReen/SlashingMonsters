@@ -44,6 +44,7 @@ public class Character_Movement : CharacterActions
 
     public override void UpdateAction()
     {
+        if (characterBehaviour_Player.isDead) return;
         IsGrounded();
         if (isGrounded)
         {

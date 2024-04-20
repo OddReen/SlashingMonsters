@@ -672,8 +672,9 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../../Desktop/Slashing Monsters/Slashing Monsters.fspro
-  sourceBankPath: ../../../Desktop/Slashing Monsters/Build
+  sourceProjectPath: ../../../Desktop/Projects/Slashing Monsters/Slashing Monsters
+    Fmod/Slashing Monsters.fspro
+  sourceBankPath: ../../../Desktop/Projects/Slashing Monsters/Slashing Monsters Fmod/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1

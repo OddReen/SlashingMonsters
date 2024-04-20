@@ -4,7 +4,12 @@ public class AnimationEventHandler : MonoBehaviour
 {
     [SerializeField] Transform kickSlot;
     [SerializeField] Transform weaponSlot;
+    [SerializeField] Transform throwableSlot;
     [SerializeField] FootSteps footSteps;
+    public void Throw()
+    {
+        GetComponentInParent<Character_Throw>().Throw(throwableSlot);
+    }
     public void Weapon_EnableHitBox()
     {
         weaponSlot.GetComponentInChildren<HitBox>().EnableHitBox();

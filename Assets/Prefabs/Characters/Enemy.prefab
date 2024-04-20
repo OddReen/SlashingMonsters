@@ -1029,7 +1029,7 @@ MonoBehaviour:
   animator: {fileID: 7134305917780912572}
   healthSystem: {fileID: 0}
   rb: {fileID: 0}
-  weaponDamageAmount: 35
+  weaponDamageAmount: 15
   kickDamageAmount: 0
   stunTimeAmount: 0
   parryWindow: 0
@@ -4580,6 +4580,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298421353455895912, guid: 3d91ba60bca34a74e8b635cd830da9dd,
+        type: 3}
+      propertyPath: damageAmount
+      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4839439871756164325, guid: 3d91ba60bca34a74e8b635cd830da9dd, type: 3}
