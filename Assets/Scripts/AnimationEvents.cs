@@ -12,19 +12,19 @@ public class AnimationEventHandler : MonoBehaviour
     }
     public void Weapon_EnableHitBox()
     {
-        weaponSlot.GetComponentInChildren<HitBox>().EnableHitBox();
+        weaponSlot.GetComponentInChildren<HitBox_Melee>().EnableHitBox();
     }
     public void Weapon_DisableHitBox()
     {
-        weaponSlot.GetComponentInChildren<HitBox>().DisableHitBox();
+        weaponSlot.GetComponentInChildren<HitBox_Melee>().DisableHitBox();
     }
     public void Kick_EnableHitBox()
     {
-        kickSlot.GetComponentInChildren<HitBox>().EnableHitBox();
+        kickSlot.GetComponentInChildren<HitBox_Melee>().EnableHitBox();
     }
     public void Kick_DisableHitBox()
     {
-        kickSlot.GetComponentInChildren<HitBox>().DisableHitBox();
+        kickSlot.GetComponentInChildren<HitBox_Melee>().DisableHitBox();
     }
     public void FootStep()
     {

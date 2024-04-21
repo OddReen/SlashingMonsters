@@ -9,5 +9,6 @@ public class Enemy_HealthSystem : HealthSystem
         base.Die();
         characterBehaviour.StopAllCoroutines();
         healthBarBackground.SetActive(false);
+        stunBarBackground.SetActive(false);
     }
 }

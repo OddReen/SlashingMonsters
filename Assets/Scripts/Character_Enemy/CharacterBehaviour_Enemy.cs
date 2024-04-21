@@ -4,40 +4,39 @@ using UnityEngine.AI;
 public class CharacterBehaviour_Enemy : CharacterBehaviour
 {
     [SerializeField] bool onGizmos = false;
-    [SerializeField] float attackDelay = 1f;
-    [SerializeField] float rangeToCombat = 1f;
+
+    NavMeshPath path;
+
+    [Header("Movement")]
     [SerializeField] float rotateSpeed = 10f;
     [SerializeField] float speed = 10f;
+    [SerializeField] Vector3[] pathPoints;
+
+    [Header("Combat")]
+    [SerializeField] float attackDelay = 1f;
+    [SerializeField] float rangeToCombat = 1f;
+
+    [Header("Observations")]
     [SerializeField] float distanceToSight = 10f;
-    [SerializeField] float elapsedTime = 0;
+    [SerializeField] bool playerInRange = false;
+    [SerializeField] bool playerSighted = false;
     [SerializeField] LayerMask sightLayer;
-    [SerializeField] bool inRange = false;
-    [SerializeField] bool isSighted = false;
+
+    [Header("Booleans")]
     [SerializeField] bool canWalk = true;
     [SerializeField] bool isRootAnimating = false;
     [SerializeField] bool pathFound = false;
-
-    [SerializeField] Vector3[] pathPoints;
-
-    NavMeshPath path;
 
     Coroutine c_InRange;
     Coroutine c_IsSighted;
     Coroutine c_Attack;
 
-    [SerializeField] State state;
-    enum State
-    {
-        Idle,
-        Chase,
-        Combat
-    }
     private void Start()
     {
         path = new NavMeshPath();
 
-        c_IsSighted = StartCoroutine(IsSighted());
-        c_InRange = StartCoroutine(InRange());
+        c_IsSighted = StartCoroutine(C_IsSighted());
+        c_InRange = StartCoroutine(C_InRange());
     }
     private void LateUpdate()
     {
@@ -45,29 +44,23 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
     }
     private void FixedUpdate()
     {
-        if (isDead) return;
+        if (isDead || isStunned) return;
         float move = 0f;
-        if (isSighted && inRange)
+        if (playerSighted && playerInRange)
         {
-            state = State.Combat;
             move = 0;
             RotateTowards(GameManager.Instance.player.transform.position);
             if (c_Attack == null)
-                c_Attack = StartCoroutine(Attack());
+                c_Attack = StartCoroutine(C_Attack());
         }
-        else if (isSighted && !inRange)
+        else if (playerSighted && !playerInRange)
         {
-            state = State.Chase;
             move = 3;
             MoveToPlayer();
             if (pathPoints.Length != 0 && pathPoints[1] != null)
             {
                 RotateTowards(pathPoints[1]);
             }
-        }
-        else
-        {
-            state = State.Idle;
         }
         animator.SetFloat("Move", move);
     }
@@ -99,37 +92,33 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
             rb.MoveRotation(Quaternion.Euler(0.0f, smoothRotation, 0.0f));
         }
     }
-    IEnumerator Attack()
+    IEnumerator C_Attack()
     {
-        while (inRange)
+        yield return new WaitForSeconds(attackDelay);
+        canWalk = false;
+
+        animator.SetBool("hasAttacked", true);
+        yield return new WaitForEndOfFrame();
+        animator.SetBool("hasAttacked", false);
+
+        rb.velocity = Vector3.zero;
+        isRootAnimating = true;
+        while (animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
         {
-            yield return new WaitForSeconds(attackDelay);
-            canWalk = false;
-
-            animator.SetBool("hasAttacked", true);
-            yield return new WaitForEndOfFrame();
-            animator.SetBool("hasAttacked", false);
-
-            rb.velocity = Vector3.zero;
-            isRootAnimating = true;
-            elapsedTime = 0;
-            while (elapsedTime <= animator.GetCurrentAnimatorStateInfo(0).length * animator.GetCurrentAnimatorStateInfo(0).speedMultiplier && animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
-            {
-                rb.velocity = new Vector3(animator.velocity.x, rb.velocity.y, animator.velocity.z);
-                elapsedTime += Time.deltaTime;
-                yield return null;
-            }
-            isRootAnimating = false;
-            rb.velocity = Vector3.zero;
-            canWalk = true;
+            rb.velocity = new Vector3(animator.velocity.x, rb.velocity.y, animator.velocity.z);
+            yield return null;
         }
+        isRootAnimating = false;
+        rb.velocity = Vector3.zero;
+        canWalk = true;
         c_Attack = null;
     }
-    IEnumerator IsSighted()
+
+    IEnumerator C_IsSighted()
     {
-        while (!inRange)
+        while (!playerInRange)
         {
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.1f);
             if (GameManager.Instance.player != null)
             {
                 Vector3 dir = (GameManager.Instance.player.transform.position + Vector3.up) - (transform.position + Vector3.up);
@@ -139,42 +128,42 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
                 {
                     if (hit.collider.CompareTag("Player"))
                     {
-                        isSighted = true;
+                        playerSighted = true;
                     }
                     else
                     {
-                        isSighted = false;
+                        playerSighted = false;
                     }
                 }
                 else
                 {
-                    isSighted = false;
+                    playerSighted = false;
                 }
 
             }
         }
     }
-    IEnumerator InRange()
+    IEnumerator C_InRange()
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.25f);
-            if (isSighted)
+            yield return new WaitForSeconds(0.1f);
+            if (playerSighted)
             {
                 if (GameManager.Instance.player != null)
                 {
                     if (Vector3.Distance(transform.position, GameManager.Instance.player.transform.position) <= rangeToCombat)
                     {
-                        inRange = true;
+                        playerInRange = true;
                     }
                     else
                     {
-                        inRange = false;
+                        playerInRange = false;
                     }
                 }
                 else
                 {
-                    inRange = false;
+                    playerInRange = false;
                 }
             }
         }
@@ -195,7 +184,7 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
             // Sight Player
             if (GameManager.Instance != null && GameManager.Instance.player != null)
             {
-                Gizmos.color = isSighted ? Color.green : Color.red;
+                Gizmos.color = playerSighted ? Color.green : Color.red;
                 Gizmos.DrawLine(transform.position + Vector3.up, GameManager.Instance.player.transform.position + Vector3.up);
             }
         }

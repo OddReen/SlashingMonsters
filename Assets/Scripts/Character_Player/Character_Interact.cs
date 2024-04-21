@@ -1,12 +1,8 @@
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 
 public class Character_Interact : CharacterActions
 {
-    [SerializeField] GameObject highlightPref;
-    GameObject highlight;
-
     [SerializeField] GameObject target;
 
     [SerializeField] private float positionSpeed;
@@ -14,12 +10,6 @@ public class Character_Interact : CharacterActions
 
     [SerializeField] private float targetRotation;
     [SerializeField] private Vector3 targetPosition;
-    private void Start()
-    {
-        highlight = Instantiate(highlightPref);
-        highlight.transform.SetParent(transform);
-        highlight.SetActive(false);
-    }
     public override void UpdateAction()
     {
         TargetInteractable();
@@ -27,7 +17,7 @@ public class Character_Interact : CharacterActions
         {
             Vector3 direction = target.transform.position - transform.position;
             direction.Normalize();
-            targetPosition = target.transform.position - direction;
+            targetPosition = target.transform.position - direction * 0.5f;
             targetRotation = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
 
             StartCoroutine(OnAnimation());
@@ -36,6 +26,9 @@ public class Character_Interact : CharacterActions
     private void TargetInteractable()
     {
         target = null;
+
+        characterBehaviour_Player.interactUI.SetActive(false);
+        characterBehaviour_Player.canInteract = false;
 
         Collider[] collider = Physics.OverlapSphere(characterBehaviour_Player.player_CameraController.cameraTarget.transform.position, characterBehaviour_Player.interactRadius, characterBehaviour_Player.interactableMask);
         if (collider.Length == 0)
@@ -65,20 +58,13 @@ public class Character_Interact : CharacterActions
         }
         if (target != null)
         {
-            highlight.SetActive(true);
-            highlight.transform.position = target.transform.position + Vector3.up * 2;
             characterBehaviour_Player.interactUI.SetActive(true);
             characterBehaviour_Player.canInteract = true;
-        }
-        else
-        {
-            highlight.SetActive(false);
-            characterBehaviour_Player.interactUI.SetActive(false);
-            characterBehaviour_Player.canInteract = false;
         }
     }
     IEnumerator OnAnimation()
     {
+        GameObject currentTarget = target;
         StartCoroutine(TriggerAnimation());
         InitializeRootMotion();
         yield return new WaitForEndOfFrame();
@@ -95,7 +81,7 @@ public class Character_Interact : CharacterActions
             yield return null;
         }
         EndRootMotion();
-        target.GetComponent<Interactable>().Action(characterBehaviour_Player);
+        currentTarget.GetComponent<Interactable>().Action(characterBehaviour_Player);
     }
     private void OnDrawGizmos()
     {

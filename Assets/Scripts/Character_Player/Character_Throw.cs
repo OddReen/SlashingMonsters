@@ -7,19 +7,10 @@ public class Character_Throw : CharacterActions
 {
     [SerializeField] CinemachineVirtualCamera AimCamera;
 
-    [SerializeField] GameObject highlightPref;
-    [SerializeField] GameObject highlight;
     [SerializeField] GameObject target;
     [SerializeField] float aimRadius;
     [SerializeField] float rotationSpeed = 20;
 
-    private void Start()
-    {
-        highlight = Instantiate(highlightPref);
-        highlight.name = highlightPref.name;
-        highlight.SetActive(false);
-        highlight.transform.SetParent(transform);
-    }
     public override void UpdateAction()
     {
         if (characterBehaviour_Player.hasThrowable)
@@ -50,20 +41,22 @@ public class Character_Throw : CharacterActions
     }
     public void Throw(Transform throwableSlot)
     {
-        if (target != null)
+        if (characterBehaviour_Player.hasThrowable && target != null)
         {
+            characterBehaviour_Player.hasThrowable = false;
+
             Vector3 dir = target.transform.position - transform.position;
             dir.Normalize();
             
             Transform throwable = throwableSlot.GetChild(0);
 
+            throwable.SetParent(null);
+
+            throwable.GetComponent<Collider>().enabled = true;
             throwable.GetComponent<Rigidbody>().isKinematic = false;
-            throwable.GetComponent<Rigidbody>().AddForce(dir * Vector3.Distance(target.transform.position, transform.position));
+            throwable.GetComponent<Rigidbody>().AddForce(dir * Vector3.Distance(target.transform.position, transform.position) * 100);
 
-            throwable.GetComponent<HitBox>().EnableHitBox();
-
-
-            throwableSlot.DetachChildren();
+            throwable.GetComponentInChildren<HitBox_Throwable>().EnableHitBox();
         }
     }
     private void RotateTowardsTarget()
@@ -104,16 +97,6 @@ public class Character_Throw : CharacterActions
                     }
                 }
             }
-        }
-        if (target != null)
-        {
-            highlight.SetActive(true);
-            highlight.transform.position = target.transform.position + Vector3.up * 2;
-        }
-        else
-        {
-            highlight.SetActive(false);
-            return;
         }
     }
 }

@@ -14,6 +14,7 @@ public class Equipment : MonoBehaviour
     public void EquipRight(Transform gameObject)
     {
         characterBehaviour_Player.hasThrowable = true;
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
         gameObject.GetComponent<Collider>().enabled = false;
         gameObject.position = throwableSlot.position;
         gameObject.rotation = throwableSlot.rotation;
@@ -22,6 +23,7 @@ public class Equipment : MonoBehaviour
     public void EquipLeft(Transform gameObject)
     {
         characterBehaviour_Player.hasWeapon = true;
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
         gameObject.GetComponent<Collider>().enabled = false;
         gameObject.position = weaponSlot.position;
         gameObject.rotation = weaponSlot.rotation;

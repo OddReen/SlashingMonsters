@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8226761901818974008}
   - component: {fileID: 8298421353455895912}
   - component: {fileID: 2405055965363402867}
+  - component: {fileID: -5717543879733461875}
   m_Layer: 9
   m_Name: Weapon
   m_TagString: Interactable
@@ -31,8 +32,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3197379634612710025}
   - {fileID: 4142547703674517743}
+  - {fileID: 3197379634612710025}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &8298421353455895912
@@ -48,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 35
-  stunAmount: 5
+  stunAmount: 15
 --- !u!65 &2405055965363402867
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -70,6 +71,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1, y: 1.2, z: 0.1}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!54 &-5717543879733461875
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4075832436813552495}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &3193586006923623381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -227,10 +255,35 @@ PrefabInstance:
       propertyPath: execution.Guid.Data4
       value: -282832144
       objectReference: {fileID: 0}
+    - target: {fileID: 2138836909822266491, guid: cdc8c19afd8c5f5439ba74a669870f16,
+        type: 3}
+      propertyPath: m_Height
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138836909822266491, guid: cdc8c19afd8c5f5439ba74a669870f16,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138836909822266491, guid: cdc8c19afd8c5f5439ba74a669870f16,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138836909822266491, guid: cdc8c19afd8c5f5439ba74a669870f16,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4664787439812137522, guid: cdc8c19afd8c5f5439ba74a669870f16,
         type: 3}
       propertyPath: m_Name
       value: HitBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 4664787439812137522, guid: cdc8c19afd8c5f5439ba74a669870f16,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8580638417854020821, guid: cdc8c19afd8c5f5439ba74a669870f16,
         type: 3}

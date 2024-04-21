@@ -3,16 +3,8 @@ using FMODUnity;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitBox : MonoBehaviour
+public class HitBox_Melee : MonoBehaviour
 {
-    enum AttackType
-    {
-        Attack,
-        Kick,
-        Throwable
-    }
-    [SerializeField] AttackType attackType;
-
     [Header("Sounds")]
     public EventReference slash;
     public EventReference execution;
@@ -30,7 +22,7 @@ public class HitBox : MonoBehaviour
 
     List<Collider> enemiesHit = new List<Collider>();
 
-    public virtual void Start()
+    public void Start()
     {
         interactable = GetComponentInParent<Interactable_Equipables>();
         characterBehaviour = GetComponentInParent<CharacterBehaviour>();
@@ -38,12 +30,12 @@ public class HitBox : MonoBehaviour
         hitBox = GetComponent<Collider>();
         hitBox.enabled = false;
     }
-    public virtual void EnableHitBox()
+    public void EnableHitBox()
     {
         RuntimeManager.PlayOneShot(swing, transform.position);
         hitBox.enabled = true;
     }
-    public virtual void DisableHitBox()
+    public void DisableHitBox()
     {
         hitBox.enabled = false;
         if (enemiesHit.Count != 0)

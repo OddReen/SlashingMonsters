@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8580638417854020821}
-  - component: {fileID: 4930194165462624121}
+  - component: {fileID: 4844421974712050130}
   - component: {fileID: 2823133878825500547}
-  - component: {fileID: 2138836909822266491}
+  - component: {fileID: 6751229451752713286}
   m_Layer: 6
-  m_Name: HitBox
+  m_Name: HitBox Throwable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4930194165462624121
+--- !u!114 &4844421974712050130
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,7 +43,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4664787439812137522}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b03809d1fe0491d4fbec4f8e08d3c9ac, type: 3}
+  m_Script: {fileID: 11500000, guid: 650e501f60b103e4cafb37b9502dd1c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   slash:
@@ -123,7 +123,7 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0, y: -1, z: 0}
---- !u!136 &2138836909822266491
+--- !u!136 &6751229451752713286
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
