@@ -3128,6 +3128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f540ca97d2dda4844b268ca60006f3fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atackingState: 0
   animator: {fileID: 7506297574261503553}
   healthSystem: {fileID: 0}
   rb: {fileID: 0}
@@ -3139,7 +3140,7 @@ MonoBehaviour:
   isDead: 0
   isParrying: 0
   actions: []
-  isRootAnimating: 0
+  isPerformingAction: 0
   canInteract: 0
   hasWeapon: 0
   hasThrowable: 0
@@ -3210,6 +3211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionTag: 
+  canLook: 0
   globalShakeForce: 0.25
   cameraTarget: {fileID: 0}
   cameraTargetPosition: {fileID: 3907232707473301258}
@@ -3238,7 +3240,7 @@ MonoBehaviour:
   walkingSpeed: 3
   runningSpeed: 6
   blendSpeed: 25
-  rotationSpeed: 25
+  rotationSpeed: 2000
   moveDirectionWorldRelative: {x: 0, y: 0, z: 0}
   moveDirectionCameraRelative: {x: 0, y: 0, z: 0}
   isGrounded: 0
@@ -3269,7 +3271,7 @@ MonoBehaviour:
   menu: {fileID: 6721533142325735789}
   interactUI: {fileID: 5177117028484696886}
   canInteract: 0
-  damageAmount: 25
+  rotationSpeedOnPrepare: 250
 --- !u!114 &1698160843359872229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3283,6 +3285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionTag: isDodging
+  rotationSpeed: 1000
 --- !u!114 &6831109854136299371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3296,11 +3299,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionTag: isInteracting
-  highlightPref: {fileID: 8933045170601052219, guid: 5a04bdcf8df1d59468d9eab5fe7106cb,
-    type: 3}
   target: {fileID: 0}
   positionSpeed: 20
-  rotationSpeed: 20
+  rotationSpeed: 1000
   targetRotation: 0
   targetPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &3087955089477341497
@@ -3316,6 +3317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionTag: isKicking
+  rotationSpeed: 1000
 --- !u!114 &4002635667204180931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3342,6 +3344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionTag: isParrying
+  rotationSpeed: 1000
 --- !u!114 &2406863719901455524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3375,12 +3378,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionTag: isThrowing
   AimCamera: {fileID: 5502654384440220616}
-  highlightPref: {fileID: 8933045170601052219, guid: 5a04bdcf8df1d59468d9eab5fe7106cb,
-    type: 3}
-  highlight: {fileID: 0}
   target: {fileID: 0}
   aimRadius: 10
-  rotationSpeed: 20
+  rotationSpeed: 1000
 --- !u!114 &2665412157236812059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4303,6 +4303,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5028775353021078792, guid: 6aa6bda1d1b8f9146a18b8b1a351aa39,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b75ad449f12d5da48b48192b52c9ac17, type: 2}
     - target: {fileID: 919132149155446097, guid: 6aa6bda1d1b8f9146a18b8b1a351aa39,
         type: 3}
       propertyPath: m_Name

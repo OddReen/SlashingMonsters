@@ -25,16 +25,13 @@ public abstract class CharacterActions : MonoBehaviour
     }
     public void InitializeRootMotion()
     {
-        characterBehaviour_Player.player_Movement.currentSpeed = 0;
-        characterBehaviour_Player.animator.applyRootMotion = true;
-        characterBehaviour_Player.isRootAnimating = true;
+        characterBehaviour_Player.isPerformingAction = true;
         characterBehaviour_Player.player_Movement.canMove = false;
         characterBehaviour_Player.player_Movement.canRotate = false;
     }
     public void EndRootMotion()
     {
-        characterBehaviour_Player.animator.applyRootMotion = false;
-        characterBehaviour_Player.isRootAnimating = false;
+        characterBehaviour_Player.isPerformingAction = false;
         characterBehaviour_Player.player_Movement.canMove = true;
         characterBehaviour_Player.player_Movement.canRotate = true;
     }

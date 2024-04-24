@@ -39,33 +39,25 @@ public class GameManager : MonoBehaviour
     public void SpawnPlayer() => StartCoroutine(C_SpawnPlayer());
     private IEnumerator C_SpawnPlayer()
     {
-        GameObject whichPlayer = null;
-        if (isPlaceholder)
-        {
-            whichPlayer = playerPref;
-        }
-        else
-        {
-            whichPlayer = playerPlaceholderPref;
-        }
-        GameObject newPlayer = Instantiate(whichPlayer, checkpoint.position - checkpoint.transform.forward, checkpoint.rotation);
-        newPlayer.name = whichPlayer.name;
+        // Spawn Prefab
+        GameObject newPlayer = Instantiate(playerPref, checkpoint.position - checkpoint.transform.forward, checkpoint.rotation);
+        newPlayer.name = playerPref.name;
         player = newPlayer;
 
         CharacterBehaviour_Player characterBehaviour_Player = player.GetComponent<CharacterBehaviour_Player>();
-        Rigidbody rb = player.GetComponent<Rigidbody>();
-        rb.isKinematic = true;
-        yield return new WaitForEndOfFrame();
-        for (int i = 0; i < characterBehaviour_Player.actions.Count; i++)
-        {
-            characterBehaviour_Player.actions[i].enabled = false;
-        }
+
+        // Stuck Player
+        characterBehaviour_Player.player_Movement.canMove = false;
+        characterBehaviour_Player.player_Movement.canRotate = false;
+        characterBehaviour_Player.player_CameraController.canLook = false;
+        characterBehaviour_Player.rb.isKinematic = true;
+
         yield return new WaitForSeconds(nonActiveTime);
-        rb.isKinematic = false;
-        for (int i = 0; i < characterBehaviour_Player.actions.Count; i++)
-        {
-            characterBehaviour_Player.actions[i].enabled = true;
-        }
+
+        characterBehaviour_Player.player_Movement.canMove = true;
+        characterBehaviour_Player.player_Movement.canRotate = true;
+        characterBehaviour_Player.player_CameraController.canLook = true;
+        characterBehaviour_Player.rb.isKinematic = false;
     }
     #endregion
 

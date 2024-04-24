@@ -24,7 +24,6 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
 
     [Header("Booleans")]
     [SerializeField] bool canWalk = true;
-    [SerializeField] bool isRootAnimating = false;
     [SerializeField] bool pathFound = false;
 
     Coroutine c_InRange;
@@ -66,17 +65,20 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
     }
     private void MoveToPlayer()
     {
-        pathFound = NavMesh.CalculatePath(transform.position, GameManager.Instance.player.transform.position, -1, path);
-        if (pathFound)
+        if (canWalk)
         {
-            pathPoints = path.corners;
-            Vector3 direction = pathPoints[1] - transform.position;
-            direction.Normalize();
-            rb.velocity = direction * speed;
-        }
-        else
-        {
-            Debug.LogWarning("No Path");
+            pathFound = NavMesh.CalculatePath(transform.position, GameManager.Instance.player.transform.position, -1, path);
+            if (pathFound)
+            {
+                pathPoints = path.corners;
+                Vector3 direction = pathPoints[1] - transform.position;
+                direction.Normalize();
+                rb.velocity = direction * speed;
+            }
+            else
+            {
+                Debug.LogWarning("No Path");
+            }
         }
     }
     void RotateTowards(Vector3 target)
@@ -102,13 +104,11 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
         animator.SetBool("hasAttacked", false);
 
         rb.velocity = Vector3.zero;
-        isRootAnimating = true;
         while (animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
         {
             rb.velocity = new Vector3(animator.velocity.x, rb.velocity.y, animator.velocity.z);
             yield return null;
         }
-        isRootAnimating = false;
         rb.velocity = Vector3.zero;
         canWalk = true;
         c_Attack = null;

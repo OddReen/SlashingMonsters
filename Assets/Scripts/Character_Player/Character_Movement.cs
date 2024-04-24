@@ -48,12 +48,47 @@ public class Character_Movement : CharacterActions
         IsGrounded();
         if (isGrounded)
         {
-            Movement();
+            RootMovement();
             Rotation();
         }
         StickToTheGround();
     }
     private void Movement()
+    {
+        moveDirectionWorldRelative = new Vector3(Player_Input.Instance.movementInput.x, 0, Player_Input.Instance.movementInput.y);
+
+        moveDirectionCameraRelative = (new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z).normalized * moveDirectionWorldRelative.z) + (new Vector3(Camera.main.transform.right.x, 0, Camera.main.transform.right.z).normalized * moveDirectionWorldRelative.x);
+        moveDirectionCameraRelative.Normalize();
+
+        float targetSpeed = Player_Input.Instance.isRunning ? runningSpeed : walkingSpeed;
+
+        if (Player_Input.Instance.isRunning && Player_Input.Instance.movementInput.magnitude > 0.1f)
+        {
+            state = State.run;
+            currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, Time.deltaTime * blendSpeed);
+            characterBehaviour_Player.animator.SetFloat("Move", currentSpeed);
+        }
+        else if (Player_Input.Instance.movementInput.magnitude > 0.1f)
+        {
+            state = State.walk;
+            currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, Time.deltaTime * blendSpeed);
+            characterBehaviour_Player.animator.SetFloat("Move", currentSpeed);
+        }
+        else
+        {
+            state = State.idle;
+            currentSpeed = Mathf.MoveTowards(currentSpeed, 0, Time.deltaTime * blendSpeed);
+            characterBehaviour_Player.animator.SetFloat("Move", currentSpeed);
+        }
+
+        Vector3 moveVelocity = OnSlope() * targetSpeed;
+
+        if (canMove)
+        {
+            characterBehaviour_Player.rb.velocity = moveVelocity;
+        }
+    }
+    private void RootMovement()
     {
         if (canMove)
         {
@@ -83,7 +118,7 @@ public class Character_Movement : CharacterActions
                 characterBehaviour_Player.animator.SetFloat("Move", currentSpeed);
             }
 
-            Vector3 moveVelocity = OnSlope() * targetSpeed;
+            Vector3 moveVelocity = OnSlope() * characterBehaviour_Player.animator.velocity.magnitude;
 
             characterBehaviour_Player.rb.velocity = moveVelocity;
         }
@@ -96,7 +131,7 @@ public class Character_Movement : CharacterActions
             {
                 _targetRotation = Mathf.Atan2(moveDirectionWorldRelative.x, moveDirectionWorldRelative.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
             }
-            float rotation = Mathf.LerpAngle(transform.eulerAngles.y, _targetRotation, Time.deltaTime * rotationSpeed);
+            float rotation = Mathf.MoveTowardsAngle(transform.eulerAngles.y, _targetRotation, Time.deltaTime * rotationSpeed);
 
             characterBehaviour_Player.rb.MoveRotation(Quaternion.Euler(0.0f, rotation, 0.0f));
         }

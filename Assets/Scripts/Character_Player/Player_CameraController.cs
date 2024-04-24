@@ -2,6 +2,8 @@ using Cinemachine;
 using UnityEngine;
 public class Player_CameraController : CharacterActions
 {
+    public bool canLook;
+
     public static Player_CameraController Instance;
 
     [SerializeField] private float globalShakeForce = 1f;
@@ -28,6 +30,7 @@ public class Player_CameraController : CharacterActions
 
     protected override void Awake()
     {
+        canLook = true;
         Instance = this;
         Cursor.lockState = CursorLockMode.Locked;
         GameObject newCameraTarget = GameObject.Find("Camera Target");
@@ -55,7 +58,7 @@ public class Player_CameraController : CharacterActions
     public override void UpdateAction()
     {
         cameraTarget.transform.position = cameraTargetPosition.position;
-        CameraRotation();
+        if (canLook) CameraRotation(); 
     }
     private void CameraRotation()
     {

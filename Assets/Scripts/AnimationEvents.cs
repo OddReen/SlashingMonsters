@@ -13,10 +13,12 @@ public class AnimationEventHandler : MonoBehaviour
     public void Weapon_EnableHitBox()
     {
         weaponSlot.GetComponentInChildren<HitBox_Melee>().EnableHitBox();
+        GetComponentInParent<CharacterBehaviour>().atackingState = CharacterBehaviour.AttackingState.Attacking;
     }
     public void Weapon_DisableHitBox()
     {
         weaponSlot.GetComponentInChildren<HitBox_Melee>().DisableHitBox();
+        GetComponentInParent<CharacterBehaviour>().atackingState = CharacterBehaviour.AttackingState.Ending;
     }
     public void Kick_EnableHitBox()
     {

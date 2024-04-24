@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterBehaviour_Player : CharacterBehaviour
 {
-    [SerializeField] public bool isRootAnimating = false;
+    [SerializeField] public bool isPerformingAction = false;
     [SerializeField] public bool canInteract = false;
     [SerializeField] public bool hasWeapon = false;
     [SerializeField] public bool hasThrowable = false;

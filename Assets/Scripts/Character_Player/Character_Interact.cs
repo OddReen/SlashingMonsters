@@ -13,7 +13,7 @@ public class Character_Interact : CharacterActions
     public override void UpdateAction()
     {
         TargetInteractable();
-        if (Player_Input.Instance.isInteracting && !characterBehaviour_Player.isRootAnimating && characterBehaviour_Player.canInteract)
+        if (Player_Input.Instance.isInteracting && !characterBehaviour_Player.isPerformingAction && characterBehaviour_Player.canInteract)
         {
             Vector3 direction = target.transform.position - transform.position;
             direction.Normalize();
@@ -68,12 +68,12 @@ public class Character_Interact : CharacterActions
         StartCoroutine(TriggerAnimation());
         InitializeRootMotion();
         yield return new WaitForEndOfFrame();
-        while (characterBehaviour_Player.animator.GetCurrentAnimatorStateInfo(0).IsTag(actionTag) && !characterBehaviour_Player.isDead)
+        while (characterBehaviour_Player.animator.GetNextAnimatorStateInfo(0).IsTag(actionTag) || characterBehaviour_Player.animator.GetCurrentAnimatorStateInfo(0).IsTag(actionTag) && !characterBehaviour_Player.isDead)
         {
-            float rotation = Mathf.LerpAngle(transform.eulerAngles.y, targetRotation, Time.deltaTime * rotationSpeed);
+            float rotation = Mathf.MoveTowardsAngle(transform.eulerAngles.y, targetRotation, Time.deltaTime * rotationSpeed);
 
-            float positionX = Mathf.Lerp(transform.position.x, targetPosition.x, Time.deltaTime * positionSpeed);
-            float positionZ = Mathf.Lerp(transform.position.z, targetPosition.z, Time.deltaTime * positionSpeed);
+            float positionX = Mathf.MoveTowards(transform.position.x, targetPosition.x, Time.deltaTime * positionSpeed);
+            float positionZ = Mathf.MoveTowards(transform.position.z, targetPosition.z, Time.deltaTime * positionSpeed);
 
             characterBehaviour_Player.rb.MovePosition(new Vector3(positionX, transform.position.y, positionZ));
 

@@ -3,6 +3,15 @@ using UnityEngine;
 
 public abstract class CharacterBehaviour : MonoBehaviour
 {
+    public enum AttackingState
+    {
+        None,
+        Preparing,
+        Attacking,
+        Ending
+    }
+    public AttackingState atackingState = AttackingState.None;
+
     [Header("References")]
     public Animator animator;
     [HideInInspector] public HealthSystem healthSystem;
@@ -19,11 +28,12 @@ public abstract class CharacterBehaviour : MonoBehaviour
     public bool isDead = false;
     public bool isParrying = false;
 
-    [Header("Actions"), HideInInspector]
+    [Header("Actions")]
     [SerializeField] public List<CharacterActions> actions;
 
     public virtual void Awake()
     {
+        atackingState = AttackingState.None;
         healthSystem = GetComponent<HealthSystem>();
         rb = GetComponent<Rigidbody>();
     }
