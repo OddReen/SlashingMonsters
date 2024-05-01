@@ -6,36 +6,53 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public float respawnTime = 5;
-
     [Header("Player")]
     [SerializeField] public GameObject player;
     [SerializeField] private GameObject playerPref;
-    [SerializeField] private GameObject playerPlaceholderPref;
-    public bool isPlaceholder = false;
 
-    [Header("Spawner")]
-    [SerializeField] Transform spawnerParent;
-    [SerializeField] List<SpawnPrefab> spawnerList;
-    [SerializeField] List<GameObject> spawnList;
+    [Header("Interactable Spawner")]
+    [SerializeField] Transform interactableSpawnerParent;
+    [SerializeField] List<SpawnPrefab> interactableSpawnerList;
+    [SerializeField] List<GameObject> interactableList;
 
+    [Header("Enemy Spawner")]
+    [SerializeField] Transform enemySpawnerParent;
+    [SerializeField] List<SpawnPrefab> enemySpawnerList;
+    [SerializeField] public List<GameObject> enemyList;
+
+    [Header("Misc")]
     [SerializeField] public GameObject interactUI;
+    public float respawnTime = 5;
     [SerializeField] public float nonActiveTime = 3;
     [SerializeField] public Transform checkpoint;
+
+    [Header("Abyss Fall")]
+    [SerializeField] Transform dieOnFallLimit;
 
     private void Start()
     {
         if (Instance == null) Instance = this;
-        for (int i = 0; i < spawnerParent.childCount; i++)
-        {
-            spawnerList.Add(spawnerParent.GetChild(i).GetComponent<SpawnPrefab>());
-        }
         SpawnPlayer();
-        SpawnPrefs();
+        SpawnInteractables();
+        SpawnEnemies();
+        DieOnFall();
         interactUI = player.GetComponent<Character_Attack>().interactUI;
     }
-
-    #region SpawnPlayer
+    void DieOnFall()
+    {
+        StartCoroutine(C_DieOnFall());
+    }
+    IEnumerator C_DieOnFall()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(2.5f);
+            if (player.transform.position.y < dieOnFallLimit.transform.position.y)
+            {
+                player.GetComponent<HealthSystem>().Die();
+            }
+        }
+    }
     public void SpawnPlayer() => StartCoroutine(C_SpawnPlayer());
     private IEnumerator C_SpawnPlayer()
     {
@@ -59,9 +76,7 @@ public class GameManager : MonoBehaviour
         characterBehaviour_Player.player_CameraController.canLook = true;
         characterBehaviour_Player.rb.isKinematic = false;
     }
-    #endregion
 
-    #region Restart
     public void Restart() => StartCoroutine(C_Restart());
     private IEnumerator C_Restart()
     {
@@ -69,26 +84,53 @@ public class GameManager : MonoBehaviour
         Fade.Instance.FadeOut();
         yield return new WaitForSeconds(respawnTime);
         Fade.Instance.FadeIn();
+        // Delete
         Destroy(player);
-        DeleteSpawned();
+        DeleteInteractables();
+        DeleteEnemies();
+        //Spawn
         SpawnPlayer();
-        SpawnPrefs();
+        SpawnEnemies();
+        SpawnInteractables();
     }
-    public void SpawnPrefs()
+    public void SpawnInteractables()
     {
-        for (int i = 0; i < spawnerList.Count; i++)
+        for (int i = 0; i < interactableSpawnerParent.childCount; i++)
         {
-            spawnerList[i].Spawn();
-            spawnList.Add(spawnerList[i].spawnedPref);
+            interactableSpawnerList.Add(interactableSpawnerParent.GetChild(i).GetComponent<SpawnPrefab>());
+        }
+        for (int i = 0; i < interactableSpawnerList.Count; i++)
+        {
+            interactableSpawnerList[i].Spawn();
+            interactableList.Add(interactableSpawnerList[i].spawnedPref);
         }
     }
-    public void DeleteSpawned()
+    public void SpawnEnemies()
     {
-        for (int i = 0; i < spawnerList.Count; i++)
+        for (int i = 0; i < enemySpawnerParent.childCount; i++)
         {
-            Destroy(spawnList[i]);
+            enemySpawnerList.Add(enemySpawnerParent.GetChild(i).GetComponent<SpawnPrefab>());
         }
-        spawnList.Clear();
+        for (int i = 0; i < enemySpawnerList.Count; i++)
+        {
+            enemySpawnerList[i].Spawn();
+            enemyList.Add(enemySpawnerList[i].spawnedPref);
+        }
     }
-    #endregion
+    public void DeleteInteractables()
+    {
+        for (int i = 0; i < interactableSpawnerList.Count; i++)
+        {
+            Destroy(interactableList[i]);
+        }
+        interactableList.Clear();
+    }
+    public void DeleteEnemies()
+    {
+        for (int i = 0; i < enemySpawnerList.Count; i++)
+        {
+            Destroy(enemyList[i]);
+        }
+        enemyList.Clear();
+    }
 }

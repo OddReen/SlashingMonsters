@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Character_Throw : CharacterActions
 {
-    [SerializeField] CinemachineVirtualCamera AimCamera;
-
     [SerializeField] GameObject target;
     [SerializeField] float aimRadius;
     [SerializeField] float rotationSpeed = 20;
@@ -54,7 +52,7 @@ public class Character_Throw : CharacterActions
             throwable.GetComponent<Rigidbody>().isKinematic = false;
             throwable.GetComponent<Rigidbody>().AddForce(dir * Vector3.Distance(target.transform.position, transform.position) * 100);
 
-            throwable.GetComponentInChildren<HitBox_Throwable>().EnableHitBox();
+            throwable.GetComponentInChildren<Interactable_Throwable>().EnableHitBox();
         }
     }
     private void RotateTowardsTarget()

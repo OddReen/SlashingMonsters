@@ -124,6 +124,7 @@ public class HealthSystem : MonoBehaviour
 
     public virtual void Die()
     {
+        currentHealth = 0;
         characterBehaviour.isDead = true;
         StartCoroutine(C_HealthBarUpdate());
         StartCoroutine(TriggerAnimation("isDead"));

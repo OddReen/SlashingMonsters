@@ -1,7 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 public class CharacterBehaviour_Player : CharacterBehaviour
 {
+    [SerializeField] public bool inCombat = false;
+
     [SerializeField] public bool isPerformingAction = false;
     [SerializeField] public bool canInteract = false;
     [SerializeField] public bool hasWeapon = false;
@@ -21,9 +24,28 @@ public class CharacterBehaviour_Player : CharacterBehaviour
     [SerializeField] public LayerMask enemyMask;
     [SerializeField] public LayerMask interactableMask;
 
+    IEnumerator InCombat()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.25f);
+            inCombat = false;
+            for (int i = 0; i < GameManager.Instance.enemyList.Count; i++)
+            {
+                if (GameManager.Instance.enemyList[i].GetComponent<CharacterBehaviour_Enemy>().isSighted)
+                {
+                    inCombat = true;
+                    break;
+                }
+            }
+            animator.SetBool("inCombat", inCombat);
+            Player_CameraController.Instance.InCombat(inCombat);
+        }
+    }
     public override void Awake()
     {
         base.Awake();
+        StartCoroutine(InCombat());
         player_Movement = GetComponent<Character_Movement>();
         player_CameraController = GetComponent<Player_CameraController>();
 

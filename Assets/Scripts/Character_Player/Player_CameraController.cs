@@ -1,4 +1,5 @@
 using Cinemachine;
+using System.Collections;
 using UnityEngine;
 public class Player_CameraController : CharacterActions
 {
@@ -10,8 +11,9 @@ public class Player_CameraController : CharacterActions
 
     [SerializeField] public GameObject cameraTarget;
     [SerializeField] Transform cameraTargetPosition;
+
     [SerializeField] CinemachineVirtualCamera thirdPersonCamera;
-    [SerializeField] CinemachineVirtualCamera thirdPersonCameraAim;
+    [SerializeField] CinemachineVirtualCamera thirdPersonCameraCombat;
 
     public float rotationSpeed = 50f;
 
@@ -23,11 +25,14 @@ public class Player_CameraController : CharacterActions
     public float cameraTargetPitch;
     public float cameraTargetYaw;
 
+    public void InCombat(bool context)
+    {
+        thirdPersonCameraCombat.gameObject.SetActive(context);
+    }
     public void CameraShake(CinemachineImpulseSource impulseSource)
     {
         impulseSource.GenerateImpulseWithForce(globalShakeForce);
     }
-
     protected override void Awake()
     {
         canLook = true;
@@ -45,7 +50,9 @@ public class Player_CameraController : CharacterActions
         }
         thirdPersonCamera.Follow = cameraTarget.transform;
         thirdPersonCamera.LookAt = cameraTarget.transform;
-        thirdPersonCameraAim.Follow = cameraTarget.transform;
+
+        thirdPersonCameraCombat.Follow = cameraTarget.transform;
+        thirdPersonCameraCombat.LookAt = cameraTarget.transform;
 
         cameraTarget.transform.forward = transform.forward;
         cameraTarget.transform.right = transform.right;

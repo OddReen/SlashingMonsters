@@ -17,7 +17,7 @@ public class Character_Interact : CharacterActions
         {
             Vector3 direction = target.transform.position - transform.position;
             direction.Normalize();
-            targetPosition = target.transform.position - direction * 0.5f;
+            targetPosition = target.transform.position - direction * target.GetComponent<Interactable>().distanceToInteract;
             targetRotation = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
 
             StartCoroutine(OnAnimation());

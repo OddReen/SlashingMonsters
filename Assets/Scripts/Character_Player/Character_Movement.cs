@@ -48,7 +48,7 @@ public class Character_Movement : CharacterActions
         IsGrounded();
         if (isGrounded)
         {
-            RootMovement();
+            Movement();
             Rotation();
         }
         StickToTheGround();
