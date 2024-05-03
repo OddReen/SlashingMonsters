@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Leaving Stun State
+  m_Name: Stunned C - C (fr.37)
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
