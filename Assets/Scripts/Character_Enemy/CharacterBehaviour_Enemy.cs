@@ -62,7 +62,8 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
                 animator.SetBool("isMoving", false);
                 StartCoroutine(C_Attack());
                 break;
-            default:
+            case State.Idle:
+                animator.SetBool("isMoving", false);
                 break;
         }
     }

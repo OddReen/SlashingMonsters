@@ -21,7 +21,7 @@ public class Interactable_Weapon : Interactable_Equipables
     [Header("Target Type")]
     [SerializeField] string targetTypeTag;
 
-    List<Collider> enemiesHit = new List<Collider>();
+    List<GameObject> enemiesHit = new List<GameObject>();
 
     public override void Action(CharacterBehaviour_Player characterBehaviour_Player)
     {
@@ -51,17 +51,18 @@ public class Interactable_Weapon : Interactable_Equipables
     {
         if (target.CompareTag(targetTypeTag))
         {
+            GameObject targetGameObject = target.gameObject;
             for (int i = 0; i < enemiesHit.Count; i++)
             {
-                if (target == enemiesHit[i])
+                if (targetGameObject == enemiesHit[i])
                 {
                     return;
                 }
             }
 
-            enemiesHit.Add(target);
+            enemiesHit.Add(targetGameObject);
 
-            CharacterBehaviour targetBehaviour = target.GetComponent<CharacterBehaviour>();
+            CharacterBehaviour targetBehaviour = targetGameObject.GetComponent<CharacterBehaviour>();
 
             if (targetBehaviour.isParrying)
             {
@@ -69,7 +70,7 @@ public class Interactable_Weapon : Interactable_Equipables
                 return;
             }
 
-            Instantiate(bloodPref, target.ClosestPointOnBounds(hitBox.transform.position), transform.rotation);
+            Instantiate(bloodPref, targetGameObject.GetComponent<Collider>().ClosestPointOnBounds(hitBox.transform.position), transform.rotation);
             targetBehaviour.healthSystem.TakeDamage(interactable.damageAmount);
             targetBehaviour.healthSystem.Stun(interactable.stunAmount);
 

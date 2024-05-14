@@ -672,9 +672,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../../Desktop/Projects/Slashing Monsters/Slashing Monsters
-    Fmod/Slashing Monsters.fspro
-  sourceBankPath: ../../../Desktop/Projects/Slashing Monsters/Slashing Monsters Fmod/Build
+  sourceProjectPath: ../../../Dropbox/CURSE_AUDIO/CURSE_AUDIO.fspro
+  sourceBankPath: ../../../Dropbox/CURSE_AUDIO/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1

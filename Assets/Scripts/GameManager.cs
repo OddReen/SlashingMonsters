@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class GameManager : MonoBehaviour
 {
@@ -38,10 +39,8 @@ public class GameManager : MonoBehaviour
         DieOnFall();
         interactUI = player.GetComponent<Character_Attack>().interactUI;
     }
-    void DieOnFall()
-    {
-        StartCoroutine(C_DieOnFall());
-    }
+    void DieOnFall() => StartCoroutine(C_DieOnFall());
+    public void Restart() => StartCoroutine(C_Restart());
     IEnumerator C_DieOnFall()
     {
         while (true)
@@ -54,30 +53,7 @@ public class GameManager : MonoBehaviour
         }
     }
     public void SpawnPlayer() => StartCoroutine(C_SpawnPlayer());
-    private IEnumerator C_SpawnPlayer()
-    {
-        // Spawn Prefab
-        GameObject newPlayer = Instantiate(playerPref, checkpoint.position - checkpoint.transform.forward, checkpoint.rotation);
-        newPlayer.name = playerPref.name;
-        player = newPlayer;
 
-        CharacterBehaviour_Player characterBehaviour_Player = player.GetComponent<CharacterBehaviour_Player>();
-
-        // Stuck Player
-        characterBehaviour_Player.player_Movement.canMove = false;
-        characterBehaviour_Player.player_Movement.canRotate = false;
-        characterBehaviour_Player.player_CameraController.canLook = false;
-        characterBehaviour_Player.rb.isKinematic = true;
-
-        yield return new WaitForSeconds(nonActiveTime);
-
-        characterBehaviour_Player.player_Movement.canMove = true;
-        characterBehaviour_Player.player_Movement.canRotate = true;
-        characterBehaviour_Player.player_CameraController.canLook = true;
-        characterBehaviour_Player.rb.isKinematic = false;
-    }
-
-    public void Restart() => StartCoroutine(C_Restart());
     private IEnumerator C_Restart()
     {
         yield return new WaitForSeconds(respawnTime);
@@ -93,6 +69,37 @@ public class GameManager : MonoBehaviour
         SpawnEnemies();
         SpawnInteractables();
     }
+    private IEnumerator C_SpawnPlayer()
+    {
+        // Spawn Prefab
+        GameObject newPlayer = Instantiate(playerPref, checkpoint.position, checkpoint.rotation);
+        newPlayer.name = playerPref.name;
+        player = newPlayer;
+
+        CharacterBehaviour_Player characterBehaviour_Player = player.GetComponent<CharacterBehaviour_Player>();
+
+        // Stuck Player
+        characterBehaviour_Player.player_Movement.canMove = false;
+        characterBehaviour_Player.player_Movement.canRotate = false;
+        characterBehaviour_Player.player_CameraController.canLook = false;
+        characterBehaviour_Player.rb.isKinematic = true;
+
+        yield return new WaitUntil(() => Player_Input.Instance.movementInput.magnitude <= .1f);
+
+        StartCoroutine(C_AnimTrigger(characterBehaviour_Player));
+        yield return new WaitForSeconds(nonActiveTime);
+
+        characterBehaviour_Player.player_Movement.canMove = true;
+        characterBehaviour_Player.player_Movement.canRotate = true;
+        characterBehaviour_Player.player_CameraController.canLook = true;
+        characterBehaviour_Player.rb.isKinematic = false;
+    }
+    IEnumerator C_AnimTrigger(CharacterBehaviour_Player characterBehaviour_Player)
+    {
+        characterBehaviour_Player.animator.SetBool("GetUp", true);
+        yield return new WaitForEndOfFrame();
+        characterBehaviour_Player.animator.SetBool("GetUp", false);
+    } 
     public void SpawnInteractables()
     {
         for (int i = 0; i < interactableSpawnerParent.childCount; i++)

@@ -6,8 +6,8 @@ public class Character_Movement : CharacterActions
 
     [Header("Stats")]
     public float currentSpeed;
-    [SerializeField] public  float walkingSpeed = 5;
-    [SerializeField] public  float runningSpeed = 8;
+    [SerializeField] public float walkingSpeed = 5;
+    [SerializeField] public float runningSpeed = 8;
     [SerializeField] float blendSpeed;
     [SerializeField] public float rotationSpeed = 10;
 
@@ -125,14 +125,14 @@ public class Character_Movement : CharacterActions
     }
     private void Rotation()
     {
+        if (Player_Input.Instance.movementInput.magnitude > .1f)
+        {
+            _targetRotation = Mathf.Atan2(moveDirectionWorldRelative.x, moveDirectionWorldRelative.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
+        }
+        float rotation = Mathf.MoveTowardsAngle(transform.eulerAngles.y, _targetRotation, Time.deltaTime * rotationSpeed);
+
         if (canRotate)
         {
-            if (Player_Input.Instance.movementInput.magnitude > .1f)
-            {
-                _targetRotation = Mathf.Atan2(moveDirectionWorldRelative.x, moveDirectionWorldRelative.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
-            }
-            float rotation = Mathf.MoveTowardsAngle(transform.eulerAngles.y, _targetRotation, Time.deltaTime * rotationSpeed);
-
             characterBehaviour_Player.rb.MoveRotation(Quaternion.Euler(0.0f, rotation, 0.0f));
         }
     }
