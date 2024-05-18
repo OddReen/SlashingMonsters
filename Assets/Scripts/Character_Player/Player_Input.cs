@@ -32,7 +32,7 @@ public class Player_Input : MonoBehaviour
 
     [SerializeField] float triggerTime = .5f;
 
-    private void Start()
+    private void Awake()
     {
         Instance = this;
     }

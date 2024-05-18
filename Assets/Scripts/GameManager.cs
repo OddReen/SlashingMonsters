@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class GameManager : MonoBehaviour
 {
@@ -39,9 +38,12 @@ public class GameManager : MonoBehaviour
         DieOnFall();
         interactUI = player.GetComponent<Character_Attack>().interactUI;
     }
+
     void DieOnFall() => StartCoroutine(C_DieOnFall());
     public void Restart() => StartCoroutine(C_Restart());
-    IEnumerator C_DieOnFall()
+    public void SpawnPlayer() => StartCoroutine(C_SpawnPlayer());
+
+    private IEnumerator C_DieOnFall()
     {
         while (true)
         {
@@ -52,8 +54,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    public void SpawnPlayer() => StartCoroutine(C_SpawnPlayer());
-
     private IEnumerator C_Restart()
     {
         yield return new WaitForSeconds(respawnTime);
@@ -84,22 +84,24 @@ public class GameManager : MonoBehaviour
         characterBehaviour_Player.player_CameraController.canLook = false;
         characterBehaviour_Player.rb.isKinematic = true;
 
-        yield return new WaitUntil(() => Player_Input.Instance.movementInput.magnitude <= .1f);
+        //Remember booooooooooooooooooo
+        while (Player_Input.Instance.movementInput.magnitude <= .1f)
+            yield return null;
 
         StartCoroutine(C_AnimTrigger(characterBehaviour_Player));
-        yield return new WaitForSeconds(nonActiveTime);
 
         characterBehaviour_Player.player_Movement.canMove = true;
         characterBehaviour_Player.player_Movement.canRotate = true;
         characterBehaviour_Player.player_CameraController.canLook = true;
         characterBehaviour_Player.rb.isKinematic = false;
     }
-    IEnumerator C_AnimTrigger(CharacterBehaviour_Player characterBehaviour_Player)
+    private IEnumerator C_AnimTrigger(CharacterBehaviour_Player characterBehaviour_Player)
     {
         characterBehaviour_Player.animator.SetBool("GetUp", true);
         yield return new WaitForEndOfFrame();
         characterBehaviour_Player.animator.SetBool("GetUp", false);
-    } 
+    }
+
     public void SpawnInteractables()
     {
         for (int i = 0; i < interactableSpawnerParent.childCount; i++)
