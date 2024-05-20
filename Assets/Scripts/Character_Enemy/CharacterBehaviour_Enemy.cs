@@ -14,6 +14,8 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
     NavMeshPath path;
 
     [Header("Movement")]
+    [SerializeField] float currentSpeed = 0;
+    [SerializeField] float blendSpeed = 10;
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float rotateSpeed = 10f;
     [SerializeField] Vector3[] pathPoints;
@@ -54,16 +56,19 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
         switch (state)
         {
             case State.Chase:
-                animator.SetBool("isMoving", true);
+                currentSpeed = Mathf.MoveTowards(currentSpeed, 1, Time.deltaTime * blendSpeed);
+                animator.SetFloat("Move", currentSpeed);
                 Chase_Movement();
                 Chase_Rotation();
                 break;
             case State.Attack:
-                animator.SetBool("isMoving", false);
+                currentSpeed = 0;
+                animator.SetFloat("Move", currentSpeed);
                 StartCoroutine(C_Attack());
                 break;
             case State.Idle:
-                animator.SetBool("isMoving", false);
+                currentSpeed = Mathf.MoveTowards(currentSpeed, 0, Time.deltaTime * blendSpeed);
+                animator.SetFloat("Move", currentSpeed);
                 break;
         }
     }
@@ -73,6 +78,7 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
         pathFound = NavMesh.CalculatePath(transform.position, GameManager.Instance.player.transform.position, -1, path);
         if (pathFound)
         {
+            animator.SetFloat("Move", 1);
             pathPoints = path.corners;
             Vector3 direction = pathPoints[1] - transform.position;
             direction.Normalize();

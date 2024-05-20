@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5560938457200395103}
   - component: {fileID: 7507664513001232417}
   - component: {fileID: 5250110963710751141}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Visual
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6172a47e104427d4da8df59e6db38a68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distanceToInteract: 0
   damageAmount: 15
   stunAmount: 75
   slash:

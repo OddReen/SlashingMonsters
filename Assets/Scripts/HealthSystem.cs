@@ -79,7 +79,7 @@ public class HealthSystem : MonoBehaviour
         }
     } // Health Bar
 
-    public void Stun(float stunAmount)
+    public virtual void StackStun(float stunAmount)
     {
         if (characterBehaviour.isDead)
             return;
@@ -87,24 +87,35 @@ public class HealthSystem : MonoBehaviour
 
         if (currentStun >= maxStun)
         {
-            if (c_stunTime != null) StopCoroutine(c_stunTime);
-            c_stunTime = StartCoroutine(C_Stun());
+            Stun();
+        }
+        else
+        {
+            StartCoroutine(TriggerAnimation("isDamaged"));
         }
 
         if (c_stunBarUpdate != null) StopCoroutine(c_stunBarUpdate);
         c_stunBarUpdate = StartCoroutine(C_StunBarUpdate());
     } // Stun
-    IEnumerator C_Stun()
+    public virtual void StunEnd()
     {
-        characterBehaviour.isStunned = true;
-        characterBehaviour.animator.SetBool("isStunned", true);
-        yield return new WaitForSeconds(stunTime);
         characterBehaviour.isStunned = false;
-        characterBehaviour.animator.SetBool("isStunned", false);
 
         currentStun = 0;
         if (c_stunBarUpdate != null) StopCoroutine(c_stunBarUpdate);
         c_stunBarUpdate = StartCoroutine(C_StunBarUpdate());
+    }
+    public virtual void Stun()
+    {
+        characterBehaviour.isStunned = true;
+        StartCoroutine(TriggerAnimation("isStunned"));
+        if (c_stunTime != null) StopCoroutine(c_stunTime);
+        c_stunTime = StartCoroutine(C_Stun());
+    }
+    IEnumerator C_Stun()
+    {
+        yield return new WaitForSeconds(stunTime);
+        StunEnd();
     } // Time in stun
     IEnumerator C_StunBarUpdate()
     {

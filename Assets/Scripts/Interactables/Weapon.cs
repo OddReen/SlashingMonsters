@@ -1,0 +1,86 @@
+using Cinemachine;
+using FMODUnity;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Weapon : Interactable_Equipables
+{
+    [Header("Sounds")]
+    public EventReference slash;
+    public EventReference execution;
+    public EventReference swing;
+
+    [Header("References")]
+    [SerializeField] GameObject bloodPref;
+    CharacterBehaviour characterBehaviour;
+    [SerializeField] Collider hitBox;
+    CinemachineImpulseSource cinemachineImpulseSource;
+    Interactable_Equipables interactable;
+
+    [Header("Target Type")]
+    [SerializeField] public string targetTypeTag;
+
+    List<GameObject> enemiesHit = new List<GameObject>();
+
+    public override void Action(CharacterBehaviour_Player characterBehaviour_Player)
+    {
+        if (!characterBehaviour_Player.hasWeapon && characterBehaviour.isStunned)
+        {
+            characterBehaviour_Player.GetComponent<Equipment>().EquipWeapon(transform);
+        }
+    }
+    public void Start()
+    {
+        canInteract = false;
+        interactable = GetComponentInParent<Interactable_Equipables>();
+        characterBehaviour = GetComponentInParent<CharacterBehaviour>();
+        cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
+        hitBox.enabled = false;
+    }
+    public void EnableHitBox()
+    {
+        RuntimeManager.PlayOneShot(swing, transform.position);
+        hitBox.enabled = true;
+    }
+    public void DisableHitBox()
+    {
+        hitBox.enabled = false;
+        if (enemiesHit.Count != 0) enemiesHit.Clear();
+    }
+    private void OnTriggerEnter(Collider target)
+    {
+        if (target.CompareTag(targetTypeTag))
+        {
+            GameObject targetGameObject = target.gameObject;
+            for (int i = 0; i < enemiesHit.Count; i++)
+            {
+                if (targetGameObject == enemiesHit[i])
+                {
+                    return;
+                }
+            }
+
+            enemiesHit.Add(targetGameObject);
+
+            CharacterBehaviour targetBehaviour = targetGameObject.GetComponent<CharacterBehaviour>();
+
+            if (targetBehaviour.isParrying)
+            {
+                characterBehaviour.healthSystem.StackStun(targetBehaviour.parryStunAmount);
+                return;
+            }
+
+            Instantiate(bloodPref, targetGameObject.GetComponent<Collider>().ClosestPointOnBounds(hitBox.transform.position), transform.rotation);
+            targetBehaviour.healthSystem.TakeDamage(interactable.damageAmount);
+            targetBehaviour.healthSystem.StackStun(interactable.stunAmount);
+
+            Player_CameraController.Instance.CameraShake(cinemachineImpulseSource);
+
+            if (targetBehaviour.isDead)
+                RuntimeManager.PlayOneShot(execution, transform.position);
+            else
+                RuntimeManager.PlayOneShot(slash, transform.position);
+        }
+    }
+}

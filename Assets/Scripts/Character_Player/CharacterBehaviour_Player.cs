@@ -32,7 +32,7 @@ public class CharacterBehaviour_Player : CharacterBehaviour
             inCombat = false;
             for (int i = 0; i < GameManager.Instance.enemyList.Count; i++)
             {
-                if (GameManager.Instance.enemyList[i].GetComponent<CharacterBehaviour_Enemy>().isSighted)
+                if (GameManager.Instance.enemyList[i] != null && GameManager.Instance.enemyList[i].GetComponent<CharacterBehaviour_Enemy>().isSighted)
                 {
                     inCombat = true;
                     break;

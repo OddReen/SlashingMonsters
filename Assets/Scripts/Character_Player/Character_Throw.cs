@@ -52,7 +52,7 @@ public class Character_Throw : CharacterActions
             throwable.GetComponent<Rigidbody>().isKinematic = false;
             throwable.GetComponent<Rigidbody>().AddForce(dir * Vector3.Distance(target.transform.position, transform.position) * 100);
 
-            throwable.GetComponentInChildren<Interactable_Throwable>().EnableHitBox();
+            throwable.GetComponentInChildren<Throwable>().EnableHitBox();
         }
     }
     private void RotateTowardsTarget()

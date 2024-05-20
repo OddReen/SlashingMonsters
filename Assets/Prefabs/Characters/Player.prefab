@@ -7127,8 +7127,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6636869361707254284}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0643708, y: -0.05689598, z: -0.6383051, w: 0.7649745}
-  m_LocalPosition: {x: 0.018235609, y: -0.019455275, z: 0.0058347154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.00115, y: 0.00494, z: 0.00013}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7518,13 +7518,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7215758973440428245}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.43684033, y: 0.53634965, z: 0.4764147, w: 0.54270506}
-  m_LocalPosition: {x: -0.018688649, y: -0.018088618, z: 0.008911888}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: -0.00164, y: 0.00424, z: 0.00017}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7923429000042782179}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
 --- !u!1 &7358489453768575529
 GameObject:
   m_ObjectHideFlags: 0
@@ -12744,16 +12744,16 @@ GameObject:
   - component: {fileID: 3191499613551069843}
   - component: {fileID: 3090417190239579327}
   - component: {fileID: 5745557194589111392}
+  - component: {fileID: 6831109854136299371}
   - component: {fileID: 4172132024710928022}
   - component: {fileID: 4195002081206634356}
   - component: {fileID: 5768785739844001432}
   - component: {fileID: 1698160843359872229}
-  - component: {fileID: 6831109854136299371}
   - component: {fileID: 3087955089477341497}
   - component: {fileID: 4002635667204180931}
   - component: {fileID: 3808304157965921465}
-  - component: {fileID: 2406863719901455524}
   - component: {fileID: 8545102316149945161}
+  - component: {fileID: 2406863719901455524}
   - component: {fileID: 2665412157236812059}
   - component: {fileID: 2906658348630554893}
   - component: {fileID: 5406999133079375036}
@@ -12811,7 +12811,7 @@ MonoBehaviour:
   isParrying: 0
   isInteracting: 0
   isMenuing: 0
-  triggerTime: 0.5
+  triggerTime: 0.25
 --- !u!114 &3191499613551069843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12830,7 +12830,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   weaponDamageAmount: 35
   kickDamageAmount: 5
-  stunTimeAmount: 2
+  parryStunAmount: 50
   parryWindow: 0.25
   isStunned: 0
   isDead: 0
@@ -12893,8 +12893,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8435b2d915b3d4095ea4b134439664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwableSlot: {fileID: 0}
-  weaponSlot: {fileID: 0}
+  throwableSlot: {fileID: 7543173884096555780}
+  weaponSlot: {fileID: 6292084156720999686}
+--- !u!114 &6831109854136299371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8636731778826161994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d06b10e4e3fe54cbe0f996629e5abd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionTag: isInteracting
+  target: {fileID: 0}
+  positionSpeed: 5
+  rotationSpeed: 750
+  targetRotation: 0
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &4172132024710928022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12934,7 +12952,7 @@ MonoBehaviour:
   actionTag: isMoving
   canMove: 1
   currentSpeed: 0
-  walkingSpeed: 3
+  walkingSpeed: 4.5
   runningSpeed: 6
   blendSpeed: 25
   rotationSpeed: 2000
@@ -12983,24 +13001,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionTag: isDodging
   rotationSpeed: 1000
---- !u!114 &6831109854136299371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8636731778826161994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81d06b10e4e3fe54cbe0f996629e5abd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionTag: isInteracting
-  target: {fileID: 0}
-  positionSpeed: 5
-  rotationSpeed: 750
-  targetRotation: 0
-  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &3087955089477341497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13042,25 +13042,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionTag: isParrying
   rotationSpeed: 1000
---- !u!114 &2406863719901455524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8636731778826161994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58370489447df174db4e7d970c1d4328, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  footStep:
-    Guid:
-      Data1: -1510310925
-      Data2: 1130700692
-      Data3: -368328809
-      Data4: 1878689119
-    Path: event:/FootSteps
 --- !u!114 &8545102316149945161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13077,6 +13058,25 @@ MonoBehaviour:
   target: {fileID: 0}
   aimRadius: 10
   rotationSpeed: 1000
+--- !u!114 &2406863719901455524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8636731778826161994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58370489447df174db4e7d970c1d4328, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footStep:
+    Guid:
+      Data1: 711396167
+      Data2: 1180975032
+      Data3: -1114711680
+      Data4: -612773600
+    Path: event:/MC/DODGEKICKSTEPS/STEPS
 --- !u!114 &2665412157236812059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13725,9 +13725,9 @@ GameObject:
   - component: {fileID: 3624007073359488945}
   - component: {fileID: 6191816718250171593}
   - component: {fileID: 1114822952980934176}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Weapon
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13756,33 +13756,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 9006549130681514019}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a206610f43c664a4bbc2ac65e7d93048, type: 3}
+  m_Script: {fileID: 11500000, guid: 789a05be42411c745be75fa588856675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToInteract: 0
-  damageAmount: 35
-  stunAmount: 15
+  canInteract: 0
+  damageAmount: 15
+  stunAmount: 35
   slash:
     Guid:
-      Data1: -1839343777
-      Data2: 1317823972
-      Data3: 994337946
-      Data4: -700842072
-    Path: event:/Slash
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   execution:
     Guid:
-      Data1: -1595535618
-      Data2: 1250739777
-      Data3: -1816471372
-      Data4: -282832144
-    Path: event:/Execute
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   swing:
     Guid:
-      Data1: 1979048662
-      Data2: 1116610952
-      Data3: 121352638
-      Data4: 2001318778
-    Path: event:/Swing
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   bloodPref: {fileID: 9045431972357251138, guid: 71a869bea7b447942be29c23df489b65,
     type: 3}
   hitBox: {fileID: 1114822952980934176}

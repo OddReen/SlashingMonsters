@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public GameObject[] interactables = null;
+
     [Header("Player")]
     [SerializeField] public GameObject player;
     [SerializeField] private GameObject playerPref;
@@ -32,10 +34,13 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         if (Instance == null) Instance = this;
+
         SpawnPlayer();
         SpawnInteractables();
         SpawnEnemies();
         DieOnFall();
+
+        interactables = GameObject.FindGameObjectsWithTag("Interactable");
         interactUI = player.GetComponent<Character_Attack>().interactUI;
     }
 
@@ -47,8 +52,8 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(2.5f);
-            if (player.transform.position.y < dieOnFallLimit.transform.position.y)
+            yield return null;
+            if (player.transform.position.y < dieOnFallLimit.transform.position.y && !player.GetComponent<CharacterBehaviour_Player>().isDead)
             {
                 player.GetComponent<HealthSystem>().Die();
             }

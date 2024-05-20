@@ -20,7 +20,7 @@ public abstract class CharacterBehaviour : MonoBehaviour
     [Header("Variables")]
     public float weaponDamageAmount;
     public float kickDamageAmount;
-    public float stunTimeAmount;
+    public float parryStunAmount;
     public float parryWindow;
 
     [Header("Stats")]

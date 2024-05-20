@@ -46,7 +46,7 @@ public class Character_Movement : CharacterActions
     {
         if (characterBehaviour_Player.isDead) return;
         IsGrounded();
-        if (isGrounded)
+        if (isGrounded && !characterBehaviour_Player.isPerformingAction)
         {
             Movement();
             Rotation();

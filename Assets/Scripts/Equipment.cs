@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,9 @@ public class Equipment : MonoBehaviour
     {
         characterBehaviour_Player = GetComponent<CharacterBehaviour_Player>();
     }
-    public void EquipRight(Transform gameObject)
+    public void EquipThrowable(Transform gameObject)
     {
+        gameObject.GetComponent<Throwable>().canInteract = false;
         characterBehaviour_Player.hasThrowable = true;
         gameObject.GetComponent<Rigidbody>().isKinematic = true;
         gameObject.GetComponent<Collider>().enabled = false;
@@ -20,13 +22,19 @@ public class Equipment : MonoBehaviour
         gameObject.rotation = throwableSlot.rotation;
         gameObject.SetParent(throwableSlot);
     }
-    public void EquipLeft(Transform gameObject)
+    public void EquipWeapon(Transform gameObject)
     {
+        GameObject parent = gameObject.GetComponentInParent<CharacterBehaviour>().gameObject;
+        gameObject.GetComponent<Weapon>().canInteract = false;
+        gameObject.GetComponent<Weapon>().targetTypeTag = "Enemy";
+        gameObject.GetComponentInChildren<Animator>().applyRootMotion = false;
+        gameObject.GetComponentInChildren<Animator>().Play("isWeapon");
+        //gameObject.GetComponentInChildren<Animator>().enabled = false;
         characterBehaviour_Player.hasWeapon = true;
-        gameObject.GetComponent<Rigidbody>().isKinematic = true;
         gameObject.GetComponent<Collider>().enabled = false;
         gameObject.position = weaponSlot.position;
         gameObject.rotation = weaponSlot.rotation;
         gameObject.SetParent(weaponSlot);
+        Destroy(parent);
     }
 }

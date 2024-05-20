@@ -1,4 +1,5 @@
 using UnityEngine;
+using FMODUnity;
 
 public class AnimationEventHandler : MonoBehaviour
 {
@@ -12,12 +13,12 @@ public class AnimationEventHandler : MonoBehaviour
     }
     public void Weapon_EnableHitBox()
     {
-        weaponSlot.GetComponentInChildren<Interactable_Weapon>().EnableHitBox();
+        weaponSlot.GetComponentInChildren<Weapon>().EnableHitBox();
         GetComponentInParent<CharacterBehaviour>().atackingState = CharacterBehaviour.AttackingState.Attacking;
     }
     public void Weapon_DisableHitBox()
     {
-        weaponSlot.GetComponentInChildren<Interactable_Weapon>().DisableHitBox();
+        weaponSlot.GetComponentInChildren<Weapon>().DisableHitBox();
         GetComponentInParent<CharacterBehaviour>().atackingState = CharacterBehaviour.AttackingState.Ending;
     }
     public void Kick_EnableHitBox()

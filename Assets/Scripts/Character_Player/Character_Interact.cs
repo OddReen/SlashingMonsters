@@ -10,9 +10,10 @@ public class Character_Interact : CharacterActions
 
     [SerializeField] private float targetRotation;
     [SerializeField] private Vector3 targetPosition;
+
     public override void UpdateAction()
     {
-        TargetInteractable();
+        SeekInteractables();
         if (Player_Input.Instance.isInteracting && !characterBehaviour_Player.isPerformingAction && characterBehaviour_Player.canInteract)
         {
             Vector3 direction = target.transform.position - transform.position;
@@ -23,36 +24,25 @@ public class Character_Interact : CharacterActions
             StartCoroutine(OnAnimation());
         }
     }
-    private void TargetInteractable()
+    private void SeekInteractables()
     {
+        GameObject[] interactables = GameManager.Instance.interactables;
         target = null;
 
         characterBehaviour_Player.interactUI.SetActive(false);
         characterBehaviour_Player.canInteract = false;
 
-        Collider[] collider = Physics.OverlapSphere(characterBehaviour_Player.player_CameraController.cameraTarget.transform.position, characterBehaviour_Player.interactRadius, characterBehaviour_Player.interactableMask);
-        if (collider.Length == 0)
-            return;
-
         float minDis = float.PositiveInfinity;
 
-        for (int i = 0; i < collider.Length; i++)
+        for (int i = 0; i < interactables.Length; i++)
         {
-            float currentDis = Vector3.Distance(characterBehaviour_Player.player_CameraController.cameraTarget.transform.position, collider[i].transform.position);
-
-            Vector3 dir = collider[i].transform.position - characterBehaviour_Player.player_CameraController.cameraTarget.transform.position;
-            dir.Normalize();
-
-            RaycastHit raycastHit;
-            if (Physics.Raycast(characterBehaviour_Player.player_CameraController.cameraTarget.transform.position, dir, out raycastHit, characterBehaviour_Player.interactRadius, ~characterBehaviour_Player.playerMask))
+            if (interactables[i].GetComponent<Interactable>().canInteract)
             {
-                if (raycastHit.collider.CompareTag("Interactable"))
+                float currentDis = Vector3.Distance(characterBehaviour_Player.player_CameraController.cameraTarget.transform.position, interactables[i].transform.position);
+                if (currentDis < 2 && currentDis < minDis)
                 {
-                    if (currentDis < minDis)
-                    {
-                        target = raycastHit.collider.gameObject;
-                        minDis = currentDis;
-                    }
+                    target = interactables[i];
+                    minDis = currentDis;
                 }
             }
         }
