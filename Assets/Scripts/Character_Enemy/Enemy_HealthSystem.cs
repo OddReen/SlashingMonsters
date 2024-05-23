@@ -24,6 +24,9 @@ public class Enemy_HealthSystem : HealthSystem
         healthBarBackground.SetActive(false);
         stunBarBackground.SetActive(false);
         Destroy(GetComponent<CharacterBehaviour_Enemy>());
-
+    }
+    private void OnDestroy()
+    {
+        GameManager.Instance.GetEnemyOutOfArray(gameObject);
     }
 }

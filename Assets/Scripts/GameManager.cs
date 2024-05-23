@@ -44,6 +44,11 @@ public class GameManager : MonoBehaviour
         interactUI = player.GetComponent<Character_Attack>().interactUI;
     }
 
+    public void GetEnemyOutOfArray(GameObject gameObject)
+    {
+        enemyList.Remove(gameObject);
+    }
+
     void DieOnFall() => StartCoroutine(C_DieOnFall());
     public void Restart() => StartCoroutine(C_Restart());
     public void SpawnPlayer() => StartCoroutine(C_SpawnPlayer());
