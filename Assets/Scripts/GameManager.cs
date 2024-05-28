@@ -52,13 +52,12 @@ public class GameManager : MonoBehaviour
     void DieOnFall() => StartCoroutine(C_DieOnFall());
     public void Restart() => StartCoroutine(C_Restart());
     public void SpawnPlayer() => StartCoroutine(C_SpawnPlayer());
-
     private IEnumerator C_DieOnFall()
     {
         while (true)
         {
             yield return null;
-            if (player.transform.position.y < dieOnFallLimit.transform.position.y && !player.GetComponent<CharacterBehaviour_Player>().isDead)
+            if (player != null && player.transform.position.y < dieOnFallLimit.transform.position.y && !player.GetComponent<CharacterBehaviour_Player>().isDead)
             {
                 player.GetComponent<HealthSystem>().Die();
             }
@@ -78,38 +77,21 @@ public class GameManager : MonoBehaviour
         SpawnPlayer();
         SpawnEnemies();
         SpawnInteractables();
+        interactables = GameObject.FindGameObjectsWithTag("Interactable");
     }
     private IEnumerator C_SpawnPlayer()
     {
-        // Spawn Prefab
         GameObject newPlayer = Instantiate(playerPref, checkpoint.position, checkpoint.rotation);
         newPlayer.name = playerPref.name;
         player = newPlayer;
 
         CharacterBehaviour_Player characterBehaviour_Player = player.GetComponent<CharacterBehaviour_Player>();
 
-        // Stuck Player
-        characterBehaviour_Player.player_Movement.canMove = false;
-        characterBehaviour_Player.player_Movement.canRotate = false;
-        characterBehaviour_Player.player_CameraController.canLook = false;
-        characterBehaviour_Player.rb.isKinematic = true;
+        Player_Input.Instance.enabled = false;
 
-        //Remember booooooooooooooooooo
-        while (Player_Input.Instance.movementInput.magnitude <= .1f)
-            yield return null;
+        yield return new WaitForSeconds(nonActiveTime);
 
-        StartCoroutine(C_AnimTrigger(characterBehaviour_Player));
-
-        characterBehaviour_Player.player_Movement.canMove = true;
-        characterBehaviour_Player.player_Movement.canRotate = true;
-        characterBehaviour_Player.player_CameraController.canLook = true;
-        characterBehaviour_Player.rb.isKinematic = false;
-    }
-    private IEnumerator C_AnimTrigger(CharacterBehaviour_Player characterBehaviour_Player)
-    {
-        characterBehaviour_Player.animator.SetBool("GetUp", true);
-        yield return new WaitForEndOfFrame();
-        characterBehaviour_Player.animator.SetBool("GetUp", false);
+        Player_Input.Instance.enabled = true;
     }
 
     public void SpawnInteractables()
@@ -117,9 +99,6 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < interactableSpawnerParent.childCount; i++)
         {
             interactableSpawnerList.Add(interactableSpawnerParent.GetChild(i).GetComponent<SpawnPrefab>());
-        }
-        for (int i = 0; i < interactableSpawnerList.Count; i++)
-        {
             interactableSpawnerList[i].Spawn();
             interactableList.Add(interactableSpawnerList[i].spawnedPref);
         }
@@ -129,16 +108,13 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < enemySpawnerParent.childCount; i++)
         {
             enemySpawnerList.Add(enemySpawnerParent.GetChild(i).GetComponent<SpawnPrefab>());
-        }
-        for (int i = 0; i < enemySpawnerList.Count; i++)
-        {
             enemySpawnerList[i].Spawn();
             enemyList.Add(enemySpawnerList[i].spawnedPref);
         }
     }
     public void DeleteInteractables()
     {
-        for (int i = 0; i < interactableSpawnerList.Count; i++)
+        for (int i = 0; i < interactableList.Count; i++)
         {
             Destroy(interactableList[i]);
         }
@@ -146,9 +122,13 @@ public class GameManager : MonoBehaviour
     }
     public void DeleteEnemies()
     {
-        for (int i = 0; i < enemySpawnerList.Count; i++)
+        for (int i = 0; i < enemyList.Count; i++)
         {
-            Destroy(enemyList[i]);
+
+            if (enemyList[i] != null)
+            {
+                Destroy(enemyList[i]);
+            }
         }
         enemyList.Clear();
     }

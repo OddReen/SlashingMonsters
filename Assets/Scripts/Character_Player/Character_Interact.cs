@@ -36,13 +36,16 @@ public class Character_Interact : CharacterActions
 
         for (int i = 0; i < interactables.Length; i++)
         {
-            if (interactables[i].GetComponent<Interactable>().canInteract)
+            if (interactables[i] != null)
             {
-                float currentDis = Vector3.Distance(characterBehaviour_Player.player_CameraController.cameraTarget.transform.position, interactables[i].transform.position);
-                if (currentDis < 2 && currentDis < minDis)
+                if (interactables[i].GetComponent<Interactable>().canInteract)
                 {
-                    target = interactables[i];
-                    minDis = currentDis;
+                    float currentDis = Vector3.Distance(characterBehaviour_Player.player_CameraController.cameraTarget.transform.position, interactables[i].transform.position);
+                    if (currentDis < 2 && currentDis < minDis)
+                    {
+                        target = interactables[i];
+                        minDis = currentDis;
+                    }
                 }
             }
         }
@@ -55,22 +58,23 @@ public class Character_Interact : CharacterActions
     IEnumerator OnAnimation()
     {
         GameObject currentTarget = target;
-        StartCoroutine(TriggerAnimation());
-        InitializeRootMotion();
-        yield return new WaitForEndOfFrame();
-        while (characterBehaviour_Player.animator.GetNextAnimatorStateInfo(0).IsTag(actionTag) || characterBehaviour_Player.animator.GetCurrentAnimatorStateInfo(0).IsTag(actionTag) && !characterBehaviour_Player.isDead)
-        {
-            float rotation = Mathf.MoveTowardsAngle(transform.eulerAngles.y, targetRotation, Time.deltaTime * rotationSpeed);
+        //StartCoroutine(TriggerAnimation());
+        //InitializeRootMotion();
+        //yield return new WaitForEndOfFrame();
+        //while (characterBehaviour_Player.animator.GetNextAnimatorStateInfo(0).IsTag(actionTag) || characterBehaviour_Player.animator.GetCurrentAnimatorStateInfo(0).IsTag(actionTag) && !characterBehaviour_Player.isDead)
+        //{
+        //    float rotation = Mathf.MoveTowardsAngle(transform.eulerAngles.y, targetRotation, Time.deltaTime * rotationSpeed);
 
-            float positionX = Mathf.MoveTowards(transform.position.x, targetPosition.x, Time.deltaTime * positionSpeed);
-            float positionZ = Mathf.MoveTowards(transform.position.z, targetPosition.z, Time.deltaTime * positionSpeed);
+        //    float positionX = Mathf.MoveTowards(transform.position.x, targetPosition.x, Time.deltaTime * positionSpeed);
+        //    float positionZ = Mathf.MoveTowards(transform.position.z, targetPosition.z, Time.deltaTime * positionSpeed);
 
-            characterBehaviour_Player.rb.MovePosition(new Vector3(positionX, transform.position.y, positionZ));
+        //    characterBehaviour_Player.rb.MovePosition(new Vector3(positionX, transform.position.y, positionZ));
 
-            characterBehaviour_Player.rb.MoveRotation(Quaternion.Euler(0.0f, rotation, 0.0f));
-            yield return null;
-        }
-        EndRootMotion();
+        //    characterBehaviour_Player.rb.MoveRotation(Quaternion.Euler(0.0f, rotation, 0.0f));
+        //    yield return null;
+        //}
+        //EndRootMotion();
+        yield return null;
         currentTarget.GetComponent<Interactable>().Action(characterBehaviour_Player);
     }
     private void OnDrawGizmos()

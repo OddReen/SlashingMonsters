@@ -1,6 +1,4 @@
-using Cinemachine;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Character_Throw : CharacterActions
@@ -43,7 +41,7 @@ public class Character_Throw : CharacterActions
 
             Vector3 dir = target.transform.position - transform.position;
             dir.Normalize();
-            
+
             Transform throwable = throwableSlot.GetChild(0);
 
             throwable.SetParent(null);
@@ -57,12 +55,15 @@ public class Character_Throw : CharacterActions
     }
     private void RotateTowardsTarget()
     {
-        Vector3 targetDir = target.transform.position - transform.position;
-        targetDir.Normalize();
-        float _targetRotation = Mathf.Atan2(targetDir.x, targetDir.z) * Mathf.Rad2Deg;
-        float rotation = Mathf.MoveTowardsAngle(transform.eulerAngles.y, _targetRotation, Time.deltaTime * rotationSpeed);
+        if (target != null)
+        {
+            Vector3 targetDir = target.transform.position - transform.position;
+            targetDir.Normalize();
+            float _targetRotation = Mathf.Atan2(targetDir.x, targetDir.z) * Mathf.Rad2Deg;
+            float rotation = Mathf.MoveTowardsAngle(transform.eulerAngles.y, _targetRotation, Time.deltaTime * rotationSpeed);
 
-        characterBehaviour_Player.rb.MoveRotation(Quaternion.Euler(0.0f, rotation, 0.0f));
+            characterBehaviour_Player.rb.MoveRotation(Quaternion.Euler(0.0f, rotation, 0.0f));
+        }
     }
     private void TargetEnemy()
     {

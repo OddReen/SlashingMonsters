@@ -1,5 +1,4 @@
 using UnityEngine;
-using FMODUnity;
 
 public class AnimationEventHandler : MonoBehaviour
 {
@@ -14,22 +13,41 @@ public class AnimationEventHandler : MonoBehaviour
     public void Weapon_EnableHitBox()
     {
         weaponSlot.GetComponentInChildren<Weapon>().EnableHitBox();
-        GetComponentInParent<CharacterBehaviour>().atackingState = CharacterBehaviour.AttackingState.Attacking;
+        CharacterBehaviour characterBehaviour = GetComponentInParent<CharacterBehaviour>();
+        if (characterBehaviour != null)
+        {
+            characterBehaviour.atackingState = CharacterBehaviour.AttackingState.Attacking;
+        }
     }
     public void Weapon_DisableHitBox()
     {
-        weaponSlot.GetComponentInChildren<Weapon>().DisableHitBox();
-        GetComponentInParent<CharacterBehaviour>().atackingState = CharacterBehaviour.AttackingState.Ending;
+        if (weaponSlot.GetComponentInChildren<Weapon>() != null)
+        {
+            weaponSlot.GetComponentInChildren<Weapon>().DisableHitBox();
+        }
+        CharacterBehaviour characterBehaviour = GetComponentInParent<CharacterBehaviour>();
+        if (characterBehaviour != null)
+        {
+            characterBehaviour.atackingState = CharacterBehaviour.AttackingState.Ending;
+        }
     }
     public void Kick_EnableHitBox()
     {
-        //kickSlot.GetComponentInChildren<HitBox_Melee>().EnableHitBox();
-        GetComponentInParent<CharacterBehaviour>().atackingState = CharacterBehaviour.AttackingState.Attacking;
+        kickSlot.GetComponentInChildren<Weapon>().EnableHitBox();
+        CharacterBehaviour characterBehaviour = GetComponentInParent<CharacterBehaviour>();
+        if (characterBehaviour != null)
+        {
+            characterBehaviour.atackingState = CharacterBehaviour.AttackingState.Attacking;
+        }
     }
     public void Kick_DisableHitBox()
     {
-        //kickSlot.GetComponentInChildren<HitBox_Melee>().DisableHitBox();
-        GetComponentInParent<CharacterBehaviour>().atackingState = CharacterBehaviour.AttackingState.Ending;
+        kickSlot.GetComponentInChildren<Weapon>().DisableHitBox();
+        CharacterBehaviour characterBehaviour = GetComponentInParent<CharacterBehaviour>();
+        if (characterBehaviour != null)
+        {
+            characterBehaviour.atackingState = CharacterBehaviour.AttackingState.Ending;
+        }
     }
     public void FootStep()
     {

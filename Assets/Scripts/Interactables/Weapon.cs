@@ -3,17 +3,32 @@ using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Weapon : Interactable_Equipables
 {
+    [Header("Boolean")]
+    public bool isHitBoxActive;
+
+    [Header("Durability")]
+    public int maxDurability = 5;
+    public int currentDurability;
+    public int CurrentDurability
+    {
+        get { return currentDurability; }
+        set { Mathf.Clamp(value, 0, maxDurability); }
+    }
+    Coroutine c_DurabilityBarUpdate;
+
     [Header("Sounds")]
     public EventReference slash;
     public EventReference execution;
     public EventReference swing;
 
     [Header("References")]
+    public Equipment equipment;
     [SerializeField] GameObject bloodPref;
-    CharacterBehaviour characterBehaviour;
+    public CharacterBehaviour characterBehaviour;
     [SerializeField] Collider hitBox;
     CinemachineImpulseSource cinemachineImpulseSource;
     Interactable_Equipables interactable;
@@ -27,11 +42,12 @@ public class Weapon : Interactable_Equipables
     {
         if (!characterBehaviour_Player.hasWeapon && characterBehaviour.isStunned)
         {
-            characterBehaviour_Player.GetComponent<Equipment>().EquipWeapon(transform);
+            characterBehaviour_Player.GetComponent<Equipment>().EquipWeapon(gameObject);
         }
     }
     public void Start()
     {
+        currentDurability = maxDurability;
         canInteract = false;
         interactable = GetComponentInParent<Interactable_Equipables>();
         characterBehaviour = GetComponentInParent<CharacterBehaviour>();
@@ -40,13 +56,48 @@ public class Weapon : Interactable_Equipables
     }
     public void EnableHitBox()
     {
+        isHitBoxActive = true;
         RuntimeManager.PlayOneShot(swing, transform.position);
         hitBox.enabled = true;
     }
     public void DisableHitBox()
     {
+        isHitBoxActive = false;
         hitBox.enabled = false;
         if (enemiesHit.Count != 0) enemiesHit.Clear();
+    }
+    public void DurabilityLoss()
+    {
+        currentDurability--;
+
+        DurabilityBarUpdate();
+
+        if (currentDurability <= 0)
+        {
+            GameManager.Instance.player.GetComponent<CharacterBehaviour_Player>().hasWeapon = false;
+            GameManager.Instance.player.GetComponent<Equipment>().durabilityBarBackground.SetActive(false);
+            Destroy(gameObject);
+        }
+    }
+    public void DurabilityBarUpdate()
+    {
+        if (c_DurabilityBarUpdate != null) StopCoroutine(c_DurabilityBarUpdate);
+        c_DurabilityBarUpdate = StartCoroutine(C_DurabilityBarUpdate());
+    }
+    IEnumerator C_DurabilityBarUpdate()
+    {
+        float targetDurabilty = (float)currentDurability / (float)maxDurability;
+        Debug.Log(targetDurabilty);
+        equipment.durabilityBar.GetComponent<Image>().fillAmount = targetDurabilty;
+
+        yield return new WaitForSeconds(equipment.durabilityBarLossTime);
+
+        while (equipment.durabilityBarLossAmount != targetDurabilty)
+        {
+            equipment.durabilityBarLossAmount = Mathf.MoveTowards(equipment.durabilityBarLossAmount, targetDurabilty, Time.deltaTime * equipment.durabilityBarLossSpeed);
+            equipment.durabilityBarLoss.GetComponent<Image>().fillAmount = equipment.durabilityBarLossAmount;
+            yield return null;
+        }
     }
     private void OnTriggerEnter(Collider target)
     {
@@ -59,6 +110,11 @@ public class Weapon : Interactable_Equipables
                 {
                     return;
                 }
+            }
+
+            if (equipment != null)
+            {
+                DurabilityLoss();
             }
 
             enemiesHit.Add(targetGameObject);

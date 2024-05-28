@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
+    [Header("Invincibility")]
+    [SerializeField] bool isInvincible = false;
+
     [Header("References")]
     public CharacterBehaviour characterBehaviour;
 
@@ -14,8 +17,10 @@ public class HealthSystem : MonoBehaviour
     [Header("Health Bar")]
     [SerializeField] protected GameObject healthBarBackground;
     [SerializeField] protected GameObject healthBar;
-    [SerializeField] float healthBarSpeed = 1;
-    [SerializeField] float healthBarAmount = 1;
+    [SerializeField] public GameObject healthBarLoss;
+    [SerializeField] public float healthBarLossSpeed = 1;
+    [SerializeField] public float healthBarLossAmount = 1;
+    [SerializeField] public float healthBarLossTime = 1;
 
     [Header("Stun Stats")]
     [SerializeField] float maxStun = 100;
@@ -25,10 +30,13 @@ public class HealthSystem : MonoBehaviour
     [Header("Stun Bar")]
     [SerializeField] protected GameObject stunBarBackground;
     [SerializeField] protected GameObject stunBar;
-    [SerializeField] float stunBarSpeed = 1;
-    [SerializeField] float stunBarAmount = 0;
+    [SerializeField] protected GameObject stunBarLoss;
+    [SerializeField] public float stunBarLossSpeed = 1;
+    [SerializeField] public float stunBarLossAmount = 1;
+    [SerializeField] public float stunBarLossTime = 1;
     Coroutine c_stunTime;
     Coroutine c_stunBarUpdate;
+    Coroutine c_healthBarUpdate;
 
     float CurrentHealth
     {
@@ -48,97 +56,68 @@ public class HealthSystem : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        currentHealth -= damageAmount;
-        if (currentHealth <= 0)
-            Die();
-        if (characterBehaviour.isDead)
-            return;
-        StartCoroutine(TriggerAnimation("isDamaged"));
-        StartCoroutine(C_HealthBarUpdate());
-    } // Take Health
+        if (!characterBehaviour.isDead)
+        {
+            TriggerAnimation("isDamaged");
+            if (!isInvincible)
+            {
+                currentHealth -= damageAmount;
+                if (currentHealth <= 0)
+                {
+                    Die();
+                    return;
+                }
+                HealthBarUpdate();
+            }
+        }
+    }
     public void Heal(float healAmount)
     {
         if (characterBehaviour.isDead)
             return;
         currentHealth += healAmount;
-        StartCoroutine(C_HealthBarUpdate());
-    } // Heal Health
-    IEnumerator C_HealthBarUpdate()
-    {
-        if (healthBar != null)
-        {
-            float targetHealth = currentHealth / maxHealth;
-
-            while (healthBarAmount != targetHealth)
-            {
-                healthBarAmount = Mathf.MoveTowards(healthBarAmount, targetHealth, Time.deltaTime * healthBarSpeed);
-                healthBar.GetComponent<Image>().fillAmount = healthBarAmount;
-                yield return null;
-            }
-
-        }
-    } // Health Bar
+        HealthBarUpdate();
+    }
 
     public virtual void StackStun(float stunAmount)
     {
-        if (characterBehaviour.isDead)
-            return;
-        currentStun += stunAmount;
-
-        if (currentStun >= maxStun)
+        if (!isInvincible && !characterBehaviour.isDead)
         {
-            Stun();
+            currentStun += stunAmount;
+            if (currentStun >= maxStun)
+                Stun();
+            else
+            {
+                TriggerAnimation("isDamaged");
+            }
+            StunBarUpdate();
         }
-        else
-        {
-            StartCoroutine(TriggerAnimation("isDamaged"));
-        }
-
-        if (c_stunBarUpdate != null) StopCoroutine(c_stunBarUpdate);
-        c_stunBarUpdate = StartCoroutine(C_StunBarUpdate());
-    } // Stun
-    public virtual void StunEnd()
-    {
-        characterBehaviour.isStunned = false;
-
-        currentStun = 0;
-        if (c_stunBarUpdate != null) StopCoroutine(c_stunBarUpdate);
-        c_stunBarUpdate = StartCoroutine(C_StunBarUpdate());
     }
     public virtual void Stun()
     {
         characterBehaviour.isStunned = true;
-        StartCoroutine(TriggerAnimation("isStunned"));
+        TriggerAnimation("isStunned");
         if (c_stunTime != null) StopCoroutine(c_stunTime);
         c_stunTime = StartCoroutine(C_Stun());
+    }
+    public virtual void StunEnd()
+    {
+        characterBehaviour.isStunned = false;
+        currentStun = 0;
+        StunBarUpdate();
     }
     IEnumerator C_Stun()
     {
         yield return new WaitForSeconds(stunTime);
         StunEnd();
-    } // Time in stun
-    IEnumerator C_StunBarUpdate()
-    {
-        if (stunBar != null)
-        {
-            float targetStun = currentStun / maxStun;
-
-            while (stunBarAmount != targetStun)
-            {
-                stunBarAmount = Mathf.MoveTowards(stunBarAmount, targetStun, Time.deltaTime * stunBarSpeed);
-                stunBar.GetComponent<Image>().fillAmount = stunBarAmount;
-                yield return null;
-            }
-
-        }
-    } // Stun Bar
+    }
 
     public virtual void Die()
     {
         currentHealth = 0;
         characterBehaviour.isDead = true;
         StartCoroutine(C_HealthBarUpdate());
-        StartCoroutine(TriggerAnimation("isDead"));
+        TriggerAnimation("isDead");
         GetComponent<Rigidbody>().isKinematic = true;
         GetComponent<Collider>().enabled = false;
         for (int i = 0; i < characterBehaviour.actions.Count; i++)
@@ -146,10 +125,59 @@ public class HealthSystem : MonoBehaviour
             characterBehaviour.actions[i].enabled = false;
         }
     }
-    IEnumerator TriggerAnimation(string boolName)
+
+    #region Health Bar
+    public virtual void HealthBarUpdate()
+    {
+        if (c_healthBarUpdate != null) StopCoroutine(c_healthBarUpdate);
+        c_healthBarUpdate = StartCoroutine(C_HealthBarUpdate());
+    }
+    IEnumerator C_HealthBarUpdate()
+    {
+        float health = (float)currentHealth / (float)maxHealth;
+        healthBar.GetComponent<Image>().fillAmount = health;
+
+        yield return new WaitForSeconds(healthBarLossTime);
+
+        while (healthBarLossAmount != health)
+        {
+            healthBarLossAmount = Mathf.MoveTowards(healthBarLossAmount, health, Time.deltaTime * healthBarLossSpeed);
+            healthBarLoss.GetComponent<Image>().fillAmount = healthBarLossAmount;
+            yield return null;
+        }
+    }
+    #endregion
+    #region Stun Bar
+    public virtual void StunBarUpdate()
+    {
+        if (c_stunBarUpdate != null) StopCoroutine(c_stunBarUpdate);
+        c_stunBarUpdate = StartCoroutine(C_StunBarUpdate());
+    }
+    IEnumerator C_StunBarUpdate()
+    {
+        float stun = (float)currentStun / (float)maxStun;
+        stunBar.GetComponent<Image>().fillAmount = stun;
+
+        yield return new WaitForSeconds(stunBarLossTime);
+
+        while (stunBarLossAmount != stun)
+        {
+            stunBarLossAmount = Mathf.MoveTowards(stunBarLossAmount, stun, Time.deltaTime * stunBarLossSpeed);
+            stunBarLoss.GetComponent<Image>().fillAmount = stunBarLossAmount;
+            yield return null;
+        }
+    }
+    #endregion
+    #region Trigger Animation
+    public void TriggerAnimation(string boolName)
+    {
+        StartCoroutine(C_TriggerAnimation(boolName));
+    }
+    IEnumerator C_TriggerAnimation(string boolName)
     {
         characterBehaviour.animator.SetBool(boolName, true);
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(.1f);
         characterBehaviour.animator.SetBool(boolName, false);
     }
+#endregion
 }

@@ -36,8 +36,13 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
     [SerializeField] bool pathFound = false;
     [SerializeField] bool onGizmos = false;
 
+    [Header("References")]
+    private Weapon weapon;
+
     private void Start()
     {
+        weapon = GetComponentInChildren<Weapon>();
+
         state = State.Idle;
 
         path = new NavMeshPath();
@@ -140,6 +145,14 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
         rb.velocity = Vector3.zero;
         while (animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack") || animator.GetNextAnimatorStateInfo(0).IsTag("Attack"))
         {
+            if (isDead || isStunned)
+            {
+                if (weapon.isHitBoxActive)
+                {
+                    weapon.DisableHitBox();
+                }
+                break;
+            }
             rb.velocity = new Vector3(animator.velocity.x, rb.velocity.y, animator.velocity.z);
             yield return null;
         }

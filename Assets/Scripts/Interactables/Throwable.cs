@@ -26,7 +26,7 @@ public class Throwable : Interactable_Equipables
     {
         if (!characterBehaviour_Player.hasThrowable)
         {
-            characterBehaviour_Player.GetComponent<Equipment>().EquipThrowable(transform);
+            characterBehaviour_Player.GetComponent<Equipment>().EquipThrowable(gameObject);
         }
     }
     public void Start()

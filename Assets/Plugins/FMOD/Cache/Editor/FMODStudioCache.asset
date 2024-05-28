@@ -43,10 +43,10 @@ MonoBehaviour:
   Path: ../../../Dropbox/CURSE_AUDIO/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638503493340000000
+  lastModified: 638521653440000000
   FileSizes:
   - Name: Desktop
-    Value: 1186
+    Value: 1290
   Exists: 1
 --- !u!114 &-2225040200455186771
 MonoBehaviour:
@@ -75,6 +75,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 870
+--- !u!114 &-1867604326731684157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MUSIC
+  m_EditorClassIdentifier: 
+  Path: event:/MUSIC
+  Guid:
+    Data1: -450315190
+    Data2: 1254841640
+    Data3: 1834981530
+    Data4: -1968388428
+  Banks:
+  - {fileID: 3401710763570678736}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 120120
 --- !u!114 &-1594372716952527457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +210,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2094
+--- !u!114 &-280840956741798913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/AMBIENT/BRIDGE
+  m_EditorClassIdentifier: 
+  Path: event:/AMBIENT/BRIDGE
+  Guid:
+    Data1: 329459058
+    Data2: 1341365952
+    Data3: -169175162
+    Data4: 684236679
+  Banks:
+  - {fileID: 3401710763570678736}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5712
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,12 +262,14 @@ MonoBehaviour:
   - {fileID: 4701283115443591090}
   - {fileID: 9086288404453590221}
   - {fileID: -1008443651299370970}
+  - {fileID: -1867604326731684157}
+  - {fileID: -280840956741798913}
   EditorParameters: []
   MasterBanks:
   - {fileID: 3401710763570678736}
   StringsBanks:
   - {fileID: -2755619220777466940}
-  cacheTime: 638503515690000000
+  cacheTime: 638521653440000000
   cacheVersion: 131616
 --- !u!114 &3145664414835284219
 MonoBehaviour:
@@ -257,10 +313,10 @@ MonoBehaviour:
   Path: ../../../Dropbox/CURSE_AUDIO/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638503515690000000
+  lastModified: 638521653440000000
   FileSizes:
   - Name: Desktop
-    Value: 90912
+    Value: 1856512
   Exists: 1
 --- !u!114 &4701283115443591090
 MonoBehaviour:
