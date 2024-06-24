@@ -43,10 +43,10 @@ MonoBehaviour:
   Path: ../../../Dropbox/CURSE_AUDIO/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638521653440000000
+  lastModified: 638543176860000000
   FileSizes:
   - Name: Desktop
-    Value: 1290
+    Value: 1346
   Exists: 1
 --- !u!114 &-2225040200455186771
 MonoBehaviour:
@@ -75,33 +75,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 870
---- !u!114 &-1867604326731684157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MUSIC
-  m_EditorClassIdentifier: 
-  Path: event:/MUSIC
-  Guid:
-    Data1: -450315190
-    Data2: 1254841640
-    Data3: 1834981530
-    Data4: -1968388428
-  Banks:
-  - {fileID: 3401710763570678736}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 120120
 --- !u!114 &-1594372716952527457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,15 +235,43 @@ MonoBehaviour:
   - {fileID: 4701283115443591090}
   - {fileID: 9086288404453590221}
   - {fileID: -1008443651299370970}
-  - {fileID: -1867604326731684157}
   - {fileID: -280840956741798913}
+  - {fileID: 338772875701594834}
+  - {fileID: 7960724770356132380}
   EditorParameters: []
   MasterBanks:
   - {fileID: 3401710763570678736}
   StringsBanks:
   - {fileID: -2755619220777466940}
-  cacheTime: 638521653440000000
+  cacheTime: 638543176860000000
   cacheVersion: 131616
+--- !u!114 &338772875701594834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/AMBIENT/BOSS FIGHT
+  m_EditorClassIdentifier: 
+  Path: event:/AMBIENT/BOSS FIGHT
+  Guid:
+    Data1: 316793135
+    Data2: 1155440644
+    Data3: -1765182530
+    Data4: 1995319532
+  Banks:
+  - {fileID: 3401710763570678736}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 112848
 --- !u!114 &3145664414835284219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,10 +314,10 @@ MonoBehaviour:
   Path: ../../../Dropbox/CURSE_AUDIO/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638521653440000000
+  lastModified: 638543176860000000
   FileSizes:
   - Name: Desktop
-    Value: 1856512
+    Value: 3419104
   Exists: 1
 --- !u!114 &4701283115443591090
 MonoBehaviour:
@@ -372,6 +373,33 @@ MonoBehaviour:
   - Roof
   - Cathedral
   Exists: 1
+--- !u!114 &7960724770356132380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MENU MUSIC
+  m_EditorClassIdentifier: 
+  Path: event:/MENU MUSIC
+  Guid:
+    Data1: -450315190
+    Data2: 1254841640
+    Data3: 1834981530
+    Data4: -1968388428
+  Banks:
+  - {fileID: 3401710763570678736}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 120120
 --- !u!114 &9086288404453590221
 MonoBehaviour:
   m_ObjectHideFlags: 0
