@@ -8,7 +8,9 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
     {
         Idle,
         Chase,
-        Attack
+        Surround,
+        Attack,
+        Retreat
     }
 
     NavMeshPath path;
@@ -35,9 +37,12 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
     [SerializeField] bool isPerformingAction = false;
     [SerializeField] bool pathFound = false;
     [SerializeField] bool onGizmos = false;
+    [SerializeField] bool preparedToAttack = false;
 
     [Header("References")]
     private Weapon weapon;
+
+    Coroutine c_Attack;
 
     private void Start()
     {
@@ -69,7 +74,9 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
             case State.Attack:
                 currentSpeed = 0;
                 animator.SetFloat("Move", currentSpeed);
-                StartCoroutine(C_Attack());
+
+                if (c_Attack == null)
+                    c_Attack = StartCoroutine(C_Attack());
                 break;
             case State.Idle:
                 currentSpeed = Mathf.MoveTowards(currentSpeed, 0, Time.deltaTime * blendSpeed);
@@ -120,7 +127,15 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
         {
             if (isSighted && inRange)
             {
-                state = State.Attack;
+
+                if (preparedToAttack)
+                {
+                    state = State.Attack;
+                }
+                else
+                {
+                    state = State.Surround;
+                }
             }
             else if (isSighted && !inRange && !isPerformingAction)
             {
@@ -136,12 +151,12 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
     IEnumerator C_Attack()
     {
         isPerformingAction = true;
-        yield return new WaitForSeconds(attackDelay);
 
         animator.SetBool("hasAttacked", true);
         yield return new WaitForEndOfFrame();
         animator.SetBool("hasAttacked", false);
 
+        atackingState = AtackingState.Preparing;
         rb.velocity = Vector3.zero;
         while (animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack") || animator.GetNextAnimatorStateInfo(0).IsTag("Attack"))
         {
@@ -153,11 +168,17 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
                 }
                 break;
             }
+            if (atackingState == AtackingState.Preparing)
+            {
+                Attack_Rotation();
+            }
             rb.velocity = new Vector3(animator.velocity.x, rb.velocity.y, animator.velocity.z);
             yield return null;
         }
+        atackingState = AtackingState.None;
         rb.velocity = Vector3.zero;
         isPerformingAction = false;
+        c_Attack = null;
     }
     IEnumerator C_IsSighted()
     {

@@ -13130,9 +13130,11 @@ GameObject:
   - component: {fileID: 5768785739844001432}
   - component: {fileID: 1698160843359872229}
   - component: {fileID: 3087955089477341497}
+  - component: {fileID: 4110626509563695273}
   - component: {fileID: 4002635667204180931}
   - component: {fileID: 3808304157965921465}
   - component: {fileID: 8545102316149945161}
+  - component: {fileID: 4309723437327800880}
   - component: {fileID: 2406863719901455524}
   - component: {fileID: 2665412157236812059}
   - component: {fileID: 2906658348630554893}
@@ -13343,7 +13345,7 @@ MonoBehaviour:
   actionTag: isMoving
   canMove: 1
   currentSpeed: 0
-  walkingSpeed: 4.5
+  walkingSpeed: 3
   runningSpeed: 6
   blendSpeed: 25
   rotationSpeed: 2000
@@ -13406,6 +13408,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionTag: isKicking
   rotationSpeed: 1000
+--- !u!114 &4110626509563695273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8636731778826161994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c223e6ccccf5684aa965b5333f3c2ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionTag: isHit
 --- !u!114 &4002635667204180931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13449,6 +13464,19 @@ MonoBehaviour:
   target: {fileID: 0}
   aimRadius: 10
   rotationSpeed: 1000
+--- !u!114 &4309723437327800880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8636731778826161994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d62946ff355e11540a66ca34f4c62795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionTag: isLanding
 --- !u!114 &2406863719901455524
 MonoBehaviour:
   m_ObjectHideFlags: 0
