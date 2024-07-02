@@ -19,7 +19,7 @@ MonoBehaviour:
     Data3: -1114711680
     Data4: -612773600
   Banks:
-  - {fileID: 3401710763570678736}
+  - {fileID: -556038365322614560}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -28,7 +28,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-2755619220777466940
+--- !u!114 &-3510308435510691521
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,10 +40,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
-  Path: ../../../Dropbox/CURSE_AUDIO/Build/Desktop/Master.strings.bank
+  Path: ../../../Dropbox/CrestforgeCurseFmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638543176860000000
+  lastModified: 638543176861570371
   FileSizes:
   - Name: Desktop
     Value: 1346
@@ -67,7 +67,7 @@ MonoBehaviour:
     Data3: -219125595
     Data4: 561175898
   Banks:
-  - {fileID: 3401710763570678736}
+  - {fileID: -556038365322614560}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -94,7 +94,7 @@ MonoBehaviour:
     Data3: 1306762172
     Data4: 786986939
   Banks:
-  - {fileID: 3401710763570678736}
+  - {fileID: -556038365322614560}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
     Data3: 1598330026
     Data4: -767414021
   Banks:
-  - {fileID: 3401710763570678736}
+  - {fileID: -556038365322614560}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -148,7 +148,7 @@ MonoBehaviour:
     Data3: 1252835502
     Data4: 1930492679
   Banks:
-  - {fileID: 3401710763570678736}
+  - {fileID: -556038365322614560}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -156,6 +156,26 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &-556038365322614560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../Dropbox/CrestforgeCurseFmod/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638543176861538104
+  FileSizes:
+  - Name: Desktop
+    Value: 3419104
+  Exists: 1
 --- !u!114 &-341110775743482065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,7 +195,7 @@ MonoBehaviour:
     Data3: 1994860978
     Data4: 788587278
   Banks:
-  - {fileID: 3401710763570678736}
+  - {fileID: -556038365322614560}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -202,7 +222,7 @@ MonoBehaviour:
     Data3: -169175162
     Data4: 684236679
   Banks:
-  - {fileID: 3401710763570678736}
+  - {fileID: -556038365322614560}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
@@ -223,8 +243,8 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -2755619220777466940}
-  - {fileID: 3401710763570678736}
+  - {fileID: -3510308435510691521}
+  - {fileID: -556038365322614560}
   EditorEvents:
   - {fileID: -1594372716952527457}
   - {fileID: -999809620371332382}
@@ -240,10 +260,10 @@ MonoBehaviour:
   - {fileID: 7960724770356132380}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 3401710763570678736}
+  - {fileID: -556038365322614560}
   StringsBanks:
-  - {fileID: -2755619220777466940}
-  cacheTime: 638543176860000000
+  - {fileID: -3510308435510691521}
+  cacheTime: 638543176861570371
   cacheVersion: 131616
 --- !u!114 &338772875701594834
 MonoBehaviour:
@@ -264,7 +284,7 @@ MonoBehaviour:
     Data3: -1765182530
     Data4: 1995319532
   Banks:
-  - {fileID: 3401710763570678736}
+  - {fileID: -556038365322614560}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -291,7 +311,7 @@ MonoBehaviour:
     Data3: 129020290
     Data4: 373036685
   Banks:
-  - {fileID: 3401710763570678736}
+  - {fileID: -556038365322614560}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -299,26 +319,6 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
---- !u!114 &3401710763570678736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: ../../../Dropbox/CURSE_AUDIO/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638543176860000000
-  FileSizes:
-  - Name: Desktop
-    Value: 3419104
-  Exists: 1
 --- !u!114 &4701283115443591090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,7 +338,7 @@ MonoBehaviour:
     Data3: -1900894839
     Data4: -255224923
   Banks:
-  - {fileID: 3401710763570678736}
+  - {fileID: -556038365322614560}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -392,7 +392,7 @@ MonoBehaviour:
     Data3: 1834981530
     Data4: -1968388428
   Banks:
-  - {fileID: 3401710763570678736}
+  - {fileID: -556038365322614560}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -419,7 +419,7 @@ MonoBehaviour:
     Data3: 1177543811
     Data4: -1319143294
   Banks:
-  - {fileID: 3401710763570678736}
+  - {fileID: -556038365322614560}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1

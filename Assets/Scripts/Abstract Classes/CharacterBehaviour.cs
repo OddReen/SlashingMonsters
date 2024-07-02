@@ -3,14 +3,14 @@ using UnityEngine;
 
 public abstract class CharacterBehaviour : MonoBehaviour
 {
-    public enum AttackingState
+    public enum AtackingState
     {
         None,
         Preparing,
         Attacking,
         Ending
     }
-    public AttackingState atackingState = AttackingState.None;
+    public AtackingState atackingState = AtackingState.None;
 
     [Header("References")]
     public Animator animator;
@@ -33,7 +33,7 @@ public abstract class CharacterBehaviour : MonoBehaviour
 
     public virtual void Awake()
     {
-        atackingState = AttackingState.None;
+        atackingState = AtackingState.None;
         healthSystem = GetComponent<HealthSystem>();
         rb = GetComponent<Rigidbody>();
     }

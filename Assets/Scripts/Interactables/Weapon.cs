@@ -87,7 +87,6 @@ public class Weapon : Interactable_Equipables
     IEnumerator C_DurabilityBarUpdate()
     {
         float targetDurabilty = (float)currentDurability / (float)maxDurability;
-        Debug.Log(targetDurabilty);
         equipment.durabilityBar.GetComponent<Image>().fillAmount = targetDurabilty;
 
         yield return new WaitForSeconds(equipment.durabilityBarLossTime);

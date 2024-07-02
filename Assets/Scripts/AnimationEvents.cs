@@ -10,13 +10,17 @@ public class AnimationEventHandler : MonoBehaviour
     {
         GetComponentInParent<Character_Throw>().Throw(throwableSlot);
     }
+    public void Interact()
+    {
+        GetComponentInParent<Character_Interact>().Interact();
+    }
     public void Weapon_EnableHitBox()
     {
         weaponSlot.GetComponentInChildren<Weapon>().EnableHitBox();
         CharacterBehaviour characterBehaviour = GetComponentInParent<CharacterBehaviour>();
         if (characterBehaviour != null)
         {
-            characterBehaviour.atackingState = CharacterBehaviour.AttackingState.Attacking;
+            characterBehaviour.atackingState = CharacterBehaviour.AtackingState.Attacking;
         }
     }
     public void Weapon_DisableHitBox()
@@ -28,7 +32,7 @@ public class AnimationEventHandler : MonoBehaviour
         CharacterBehaviour characterBehaviour = GetComponentInParent<CharacterBehaviour>();
         if (characterBehaviour != null)
         {
-            characterBehaviour.atackingState = CharacterBehaviour.AttackingState.Ending;
+            characterBehaviour.atackingState = CharacterBehaviour.AtackingState.Ending;
         }
     }
     public void Kick_EnableHitBox()
@@ -37,7 +41,7 @@ public class AnimationEventHandler : MonoBehaviour
         CharacterBehaviour characterBehaviour = GetComponentInParent<CharacterBehaviour>();
         if (characterBehaviour != null)
         {
-            characterBehaviour.atackingState = CharacterBehaviour.AttackingState.Attacking;
+            characterBehaviour.atackingState = CharacterBehaviour.AtackingState.Attacking;
         }
     }
     public void Kick_DisableHitBox()
@@ -46,7 +50,7 @@ public class AnimationEventHandler : MonoBehaviour
         CharacterBehaviour characterBehaviour = GetComponentInParent<CharacterBehaviour>();
         if (characterBehaviour != null)
         {
-            characterBehaviour.atackingState = CharacterBehaviour.AttackingState.Ending;
+            characterBehaviour.atackingState = CharacterBehaviour.AtackingState.Ending;
         }
     }
     public void FootStep()

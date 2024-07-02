@@ -16,7 +16,7 @@ public class Character_Movement : CharacterActions
     public Vector3 moveDirectionCameraRelative;
 
     [Header("IsGrounded")]
-    [SerializeField] bool isGrounded;
+    [SerializeField] public bool isGrounded;
     [SerializeField] float sphereOverlapHeight;
     [SerializeField] float sphereOverlapRadius;
     [SerializeField] LayerMask layerMask;

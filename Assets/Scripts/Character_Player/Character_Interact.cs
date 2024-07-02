@@ -21,7 +21,7 @@ public class Character_Interact : CharacterActions
             targetPosition = target.transform.position - direction * target.GetComponent<Interactable>().distanceToInteract;
             targetRotation = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
 
-            StartCoroutine(OnAnimation());
+            StartCoroutine(TriggerAnimation());
         }
     }
     private void SeekInteractables()
@@ -55,27 +55,9 @@ public class Character_Interact : CharacterActions
             characterBehaviour_Player.canInteract = true;
         }
     }
-    IEnumerator OnAnimation()
+    public void Interact()
     {
-        GameObject currentTarget = target;
-        //StartCoroutine(TriggerAnimation());
-        //InitializeRootMotion();
-        //yield return new WaitForEndOfFrame();
-        //while (characterBehaviour_Player.animator.GetNextAnimatorStateInfo(0).IsTag(actionTag) || characterBehaviour_Player.animator.GetCurrentAnimatorStateInfo(0).IsTag(actionTag) && !characterBehaviour_Player.isDead)
-        //{
-        //    float rotation = Mathf.MoveTowardsAngle(transform.eulerAngles.y, targetRotation, Time.deltaTime * rotationSpeed);
-
-        //    float positionX = Mathf.MoveTowards(transform.position.x, targetPosition.x, Time.deltaTime * positionSpeed);
-        //    float positionZ = Mathf.MoveTowards(transform.position.z, targetPosition.z, Time.deltaTime * positionSpeed);
-
-        //    characterBehaviour_Player.rb.MovePosition(new Vector3(positionX, transform.position.y, positionZ));
-
-        //    characterBehaviour_Player.rb.MoveRotation(Quaternion.Euler(0.0f, rotation, 0.0f));
-        //    yield return null;
-        //}
-        //EndRootMotion();
-        yield return null;
-        currentTarget.GetComponent<Interactable>().Action(characterBehaviour_Player);
+        target.GetComponent<Interactable>().Action(characterBehaviour_Player);
     }
     private void OnDrawGizmos()
     {

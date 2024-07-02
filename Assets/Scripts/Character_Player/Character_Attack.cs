@@ -20,7 +20,7 @@ public class Character_Attack : CharacterActions
             {
                 c_OnAnimation = StartCoroutine(OnAnimation());
             }
-            if (characterBehaviour_Player.atackingState == CharacterBehaviour.AttackingState.Ending)
+            if (characterBehaviour_Player.atackingState == CharacterBehaviour.AtackingState.Ending)
             {
                 c_OnAnimation = StartCoroutine(OnAnimation());
             }
@@ -31,7 +31,7 @@ public class Character_Attack : CharacterActions
         StartCoroutine(TriggerAnimation());
         InitializeRootMotion();
 
-        characterBehaviour_Player.atackingState = CharacterBehaviour.AttackingState.Preparing;
+        characterBehaviour_Player.atackingState = CharacterBehaviour.AtackingState.Preparing;
 
         yield return new WaitForEndOfFrame();
 
@@ -39,9 +39,9 @@ public class Character_Attack : CharacterActions
 
         while (characterBehaviour_Player.animator.GetNextAnimatorStateInfo(0).IsTag(actionTag) || characterBehaviour_Player.animator.GetCurrentAnimatorStateInfo(0).IsTag(actionTag) && !characterBehaviour_Player.isDead)
         {
-            if (Player_Input.Instance.isAttacking && characterBehaviour_Player.atackingState == CharacterBehaviour.AttackingState.Ending) 
+            if (Player_Input.Instance.isAttacking && characterBehaviour_Player.atackingState == CharacterBehaviour.AtackingState.Ending) 
                 break; 
-            if (characterBehaviour_Player.player_Movement.moveDirectionWorldRelative != Vector3.zero && characterBehaviour_Player.atackingState == CharacterBehaviour.AttackingState.Preparing)
+            if (characterBehaviour_Player.player_Movement.moveDirectionWorldRelative != Vector3.zero && characterBehaviour_Player.atackingState == CharacterBehaviour.AtackingState.Preparing)
             {
                 float rotation = Mathf.MoveTowardsAngle(transform.eulerAngles.y, _targetRotation, Time.deltaTime * rotationSpeedOnPrepare);
                 characterBehaviour_Player.rb.MoveRotation(Quaternion.Euler(0.0f, rotation, 0.0f));
@@ -52,6 +52,6 @@ public class Character_Attack : CharacterActions
 
         EndRootMotion();
 
-        characterBehaviour_Player.atackingState = CharacterBehaviour.AttackingState.None;
+        characterBehaviour_Player.atackingState = CharacterBehaviour.AtackingState.None;
     }
 }

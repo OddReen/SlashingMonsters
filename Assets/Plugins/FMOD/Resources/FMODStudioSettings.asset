@@ -672,8 +672,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../../Dropbox/CURSE_AUDIO/CURSE_AUDIO.fspro
-  sourceBankPath: ../../../Dropbox/CURSE_AUDIO/Build
+  sourceProjectPath: ../../../Dropbox/CrestforgeCurseFmod/CURSE_AUDIO.fspro
+  sourceBankPath: ../../../Dropbox/CrestforgeCurseFmod/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1

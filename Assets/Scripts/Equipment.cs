@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Equipment : MonoBehaviour
@@ -44,9 +41,11 @@ public class Equipment : MonoBehaviour
         weapon.targetTypeTag = "Enemy";
         weapon.DurabilityBarUpdate();
 
-
-        animator.applyRootMotion = false;
-        animator.Play("isWeapon");
+        if (animator != null)
+        {
+            animator.applyRootMotion = false;
+            animator.Play("isWeapon");
+        }
 
         characterBehaviour_Player.hasWeapon = true;
         weaponGameObject.GetComponent<Collider>().enabled = false;
