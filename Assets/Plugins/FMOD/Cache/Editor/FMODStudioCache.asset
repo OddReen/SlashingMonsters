@@ -21,13 +21,40 @@ MonoBehaviour:
   Banks:
   - {fileID: -556038365322614560}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters:
   - {fileID: 7458191340640172487}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-5453328222991269332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MC/Scythe Man/Hurt
+  m_EditorClassIdentifier: 
+  Path: event:/MC/Scythe Man/Hurt
+  Guid:
+    Data1: 1016207200
+    Data2: 1170307473
+    Data3: 632144540
+    Data4: 1451277642
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2222
 --- !u!114 &-3510308435510691521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43,10 +70,10 @@ MonoBehaviour:
   Path: ../../../Dropbox/CrestforgeCurseFmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638543176861570371
+  lastModified: 638552014483513826
   FileSizes:
   - Name: Desktop
-    Value: 1346
+    Value: 1596
   Exists: 1
 --- !u!114 &-2225040200455186771
 MonoBehaviour:
@@ -102,6 +129,33 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &-1327588524407176406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MC/ATTACKS/Swing
+  m_EditorClassIdentifier: 
+  Path: event:/MC/ATTACKS/Swing
+  Guid:
+    Data1: 1378281751
+    Data2: 1167640165
+    Data3: 1313756336
+    Data4: -1430284658
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1130
 --- !u!114 &-1008443651299370970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,7 +182,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1334
+  Length: 500
 --- !u!114 &-999809620371332382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,10 +225,10 @@ MonoBehaviour:
   Path: ../../../Dropbox/CrestforgeCurseFmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638543176861538104
+  lastModified: 638552014483478655
   FileSizes:
   - Name: Desktop
-    Value: 3419104
+    Value: 11128096
   Exists: 1
 --- !u!114 &-341110775743482065
 MonoBehaviour:
@@ -202,7 +256,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2094
+  Length: 520
 --- !u!114 &-280840956741798913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,13 +277,13 @@ MonoBehaviour:
     Data4: 684236679
   Banks:
   - {fileID: -556038365322614560}
-  IsStream: 0
+  IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 5712
+  Length: 10040
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,13 +312,45 @@ MonoBehaviour:
   - {fileID: -280840956741798913}
   - {fileID: 338772875701594834}
   - {fileID: 7960724770356132380}
+  - {fileID: 2663538191676376152}
+  - {fileID: 7060797416977453664}
+  - {fileID: -5453328222991269332}
+  - {fileID: 134890567937077709}
+  - {fileID: -1327588524407176406}
   EditorParameters: []
   MasterBanks:
   - {fileID: -556038365322614560}
   StringsBanks:
   - {fileID: -3510308435510691521}
-  cacheTime: 638543176861570371
+  cacheTime: 638552014483513826
   cacheVersion: 131616
+--- !u!114 &134890567937077709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MC/Scythe Man/Noticed
+  m_EditorClassIdentifier: 
+  Path: event:/MC/Scythe Man/Noticed
+  Guid:
+    Data1: -778724708
+    Data2: 1177811026
+    Data3: 2020931005
+    Data4: 141155928
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2222
 --- !u!114 &338772875701594834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +378,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 112848
+--- !u!114 &2663538191676376152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MC/Shield Man/Notice
+  m_EditorClassIdentifier: 
+  Path: event:/MC/Shield Man/Notice
+  Guid:
+    Data1: 27142033
+    Data2: 1262544412
+    Data3: -81454959
+    Data4: 414459749
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2222
 --- !u!114 &3145664414835284219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,7 +458,34 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1200
+  Length: 600
+--- !u!114 &7060797416977453664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MC/Shield Man/Hurt
+  m_EditorClassIdentifier: 
+  Path: event:/MC/Shield Man/Hurt
+  Guid:
+    Data1: 130289086
+    Data2: 1284169483
+    Data3: -1789748309
+    Data4: -1441093472
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2222
 --- !u!114 &7458191340640172487
 MonoBehaviour:
   m_ObjectHideFlags: 0

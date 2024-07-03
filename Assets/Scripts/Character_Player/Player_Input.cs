@@ -35,8 +35,9 @@ public class Player_Input : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        EnableInput();
     }
-    private void OnEnable()
+    public void EnableInput()
     {
         if (inputActions == null)
         {
@@ -73,6 +74,48 @@ public class Player_Input : MonoBehaviour
             inputActions.Gameplay.Menu.performed += context => StartMenu();
         }
         inputActions.Enable();
+    }
+    public void DisableInput()
+    {
+        if (inputActions == null)
+        {
+            inputActions = new PlayerControls();
+            inputActions.Gameplay.Movement.performed -= context => movementInput = context.ReadValue<Vector2>();
+            inputActions.Gameplay.Movement.canceled -= context => movementInput = context.ReadValue<Vector2>();
+
+            inputActions.Gameplay.Camera.performed -= context =>
+            {
+                if (context.control.device is Mouse)
+                    cameraInput = context.ReadValue<Vector2>() * cameraMouseSensivity;
+                else
+                {
+                    cameraInput = context.ReadValue<Vector2>() * cameraControllerSensivity;
+                }
+            };
+            inputActions.Gameplay.Camera.canceled -= context => cameraInput = context.ReadValue<Vector2>();
+
+            inputActions.Gameplay.Run.performed -= context => isRunning = context.ReadValueAsButton();
+            inputActions.Gameplay.Run.canceled -= context => isRunning = context.ReadValueAsButton();
+
+            inputActions.Gameplay.Throw.performed -= context => StartThrow();
+
+            inputActions.Gameplay.Attack.performed -= context => StartAttack();
+
+            inputActions.Gameplay.Dodge.performed -= context => StartDodge();
+
+            inputActions.Gameplay.Kick.performed -= context => StartKick();
+
+            inputActions.Gameplay.Parry.performed -= context => StartParry();
+
+            inputActions.Gameplay.Interact.performed -= context => StartInteract();
+
+            inputActions.Gameplay.Menu.performed -= context => StartMenu();
+        }
+        inputActions.Disable();
+    }
+    private void OnDestroy()
+    {
+        DisableInput();
     }
     void StartMenu()
     {
@@ -165,8 +208,4 @@ public class Player_Input : MonoBehaviour
         isDodging = false;
     }
 
-    private void OnDisable()
-    {
-        inputActions.Disable();
-    }
 }

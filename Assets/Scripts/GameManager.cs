@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] GameObject mainMenu;
+
     public static GameManager Instance;
 
     public GameObject[] interactables = null;
@@ -31,8 +33,31 @@ public class GameManager : MonoBehaviour
     [Header("Abyss Fall")]
     [SerializeField] Transform dieOnFallLimit;
 
+    [SerializeField] bool isStarting = true;
+
+    public void OnStartGame()
+    {
+        mainMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        player.GetComponent<CharacterBehaviour_Player>().animator.SetBool("GetUp", true);
+
+        Invoke("EnableInput", 2);
+    }
+    public void OnQuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void EnableInput()
+    {
+        player.GetComponent<CharacterBehaviour_Player>().UI.SetActive(true);
+        Player_Input.Instance.EnableInput();
+    }
+
     private void Start()
     {
+        isStarting = true;
+
         if (Instance == null) Instance = this;
 
         SpawnPlayer();
@@ -40,8 +65,17 @@ public class GameManager : MonoBehaviour
         SpawnEnemies();
         DieOnFall();
 
+        player.GetComponent<CharacterBehaviour_Player>().animator.SetBool("GetUp", false);
+
         interactables = GameObject.FindGameObjectsWithTag("Interactable");
         interactUI = player.GetComponent<Character_Attack>().interactUI;
+
+        player.GetComponent<CharacterBehaviour_Player>().UI.SetActive(false);
+
+        Player_Input.Instance.DisableInput();
+
+        Cursor.lockState = CursorLockMode.None;
+        isStarting = false;
     }
 
     public void GetEnemyOutOfArray(GameObject gameObject)
@@ -51,7 +85,12 @@ public class GameManager : MonoBehaviour
 
     void DieOnFall() => StartCoroutine(C_DieOnFall());
     public void Restart() => StartCoroutine(C_Restart());
-    public void SpawnPlayer() => StartCoroutine(C_SpawnPlayer());
+    public void SpawnPlayer()
+    {
+        GameObject newPlayer = Instantiate(playerPref, checkpoint.position, checkpoint.rotation);
+        newPlayer.name = playerPref.name;
+        player = newPlayer;
+    }
     private IEnumerator C_DieOnFall()
     {
         while (true)
@@ -78,20 +117,6 @@ public class GameManager : MonoBehaviour
         SpawnEnemies();
         SpawnInteractables();
         interactables = GameObject.FindGameObjectsWithTag("Interactable");
-    }
-    private IEnumerator C_SpawnPlayer()
-    {
-        GameObject newPlayer = Instantiate(playerPref, checkpoint.position, checkpoint.rotation);
-        newPlayer.name = playerPref.name;
-        player = newPlayer;
-
-        CharacterBehaviour_Player characterBehaviour_Player = player.GetComponent<CharacterBehaviour_Player>();
-
-        Player_Input.Instance.enabled = false;
-
-        yield return new WaitForSeconds(nonActiveTime);
-
-        Player_Input.Instance.enabled = true;
     }
 
     public void SpawnInteractables()

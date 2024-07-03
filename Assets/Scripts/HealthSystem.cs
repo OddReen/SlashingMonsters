@@ -9,6 +9,7 @@ public class HealthSystem : MonoBehaviour
 
     [Header("References")]
     public CharacterBehaviour characterBehaviour;
+    public Sounds sounds;
 
     [Header("Health Stats")]
     [SerializeField] float maxHealth = 100;
@@ -45,6 +46,8 @@ public class HealthSystem : MonoBehaviour
     }
     private void Start()
     {
+        sounds = GetComponent<Sounds>();
+
         characterBehaviour = GetComponent<CharacterBehaviour>();
 
         currentHealth = maxHealth;
@@ -59,6 +62,7 @@ public class HealthSystem : MonoBehaviour
         if (!characterBehaviour.isDead)
         {
             TriggerAnimation("isDamaged");
+            sounds.Hurt();
             if (!isInvincible)
             {
                 currentHealth -= damageAmount;

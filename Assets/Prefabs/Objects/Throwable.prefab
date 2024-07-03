@@ -138,11 +138,11 @@ MonoBehaviour:
   stunAmount: 75
   slash:
     Guid:
-      Data1: -1839343777
-      Data2: 1317823972
-      Data3: 994337946
-      Data4: -700842072
-    Path: event:/Slash
+      Data1: 1177151745
+      Data2: 1101214561
+      Data3: 1994860978
+      Data4: 788587278
+    Path: event:/MC/ATTACKS/MC_ATTACK3
   execution:
     Guid:
       Data1: -1595535618
@@ -152,11 +152,11 @@ MonoBehaviour:
     Path: event:/Execute
   swing:
     Guid:
-      Data1: 1979048662
-      Data2: 1116610952
-      Data3: 121352638
-      Data4: 2001318778
-    Path: event:/Swing
+      Data1: 1378281751
+      Data2: 1167640165
+      Data3: 1313756336
+      Data4: -1430284658
+    Path: event:/MC/ATTACKS/Swing
   bloodPref: {fileID: 9045431972357251138, guid: 71a869bea7b447942be29c23df489b65,
     type: 3}
   hitBox: {fileID: 3147386635532517476}

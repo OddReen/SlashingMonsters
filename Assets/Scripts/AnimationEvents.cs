@@ -5,7 +5,7 @@ public class AnimationEventHandler : MonoBehaviour
     [SerializeField] Transform kickSlot;
     [SerializeField] Transform weaponSlot;
     [SerializeField] Transform throwableSlot;
-    [SerializeField] FootSteps footSteps;
+    [SerializeField] Sounds sounds;
     public void Throw()
     {
         GetComponentInParent<Character_Throw>().Throw(throwableSlot);
@@ -55,6 +55,14 @@ public class AnimationEventHandler : MonoBehaviour
     }
     public void FootStep()
     {
-        footSteps.FootStep();
+        sounds.FootStep();
+    }
+    public void Hurt()
+    {
+        sounds.FootStep();
+    }
+    public void Noticed()
+    {
+        sounds.FootStep();
     }
 }

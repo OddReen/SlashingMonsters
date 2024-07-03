@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class CharacterBehaviour_Player : CharacterBehaviour
 {
+
+
     [SerializeField] public bool inCombat = false;
 
     [SerializeField] public bool isPerformingAction = false;
@@ -12,6 +14,7 @@ public class CharacterBehaviour_Player : CharacterBehaviour
     [SerializeField] public float interactRadius = 1f;
 
     [Header("GameObject References")]
+    [SerializeField] public GameObject UI;
     [SerializeField] public GameObject menu;
     [SerializeField] public GameObject interactUI;
 

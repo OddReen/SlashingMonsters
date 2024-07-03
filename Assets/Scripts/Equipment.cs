@@ -32,7 +32,9 @@ public class Equipment : MonoBehaviour
     {
         durabilityBarBackground.SetActive(true);
 
-        GameObject parent = weaponGameObject.GetComponentInParent<CharacterBehaviour>().gameObject;
+        weaponGameObject.GetComponentInParent<CharacterBehaviour_Enemy>().sounds.Hurt();
+
+        GameObject parent = weaponGameObject.GetComponentInParent<CharacterBehaviour_Enemy>().gameObject;
         Weapon weapon = weaponGameObject.GetComponent<Weapon>();
         Animator animator = weaponGameObject.GetComponentInChildren<Animator>();
         weapon.equipment = this;

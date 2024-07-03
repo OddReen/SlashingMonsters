@@ -11,17 +11,28 @@ public class Character_Interact : CharacterActions
     [SerializeField] private float targetRotation;
     [SerializeField] private Vector3 targetPosition;
 
+    bool isSomtin;
+
     public override void UpdateAction()
     {
         SeekInteractables();
         if (Player_Input.Instance.isInteracting && !characterBehaviour_Player.isPerformingAction && characterBehaviour_Player.canInteract)
         {
+            if (!isSomtin)
+            {
+                characterBehaviour_Player.sounds.Swing();
+            } 
+            isSomtin = true;
             Vector3 direction = target.transform.position - transform.position;
             direction.Normalize();
             targetPosition = target.transform.position - direction * target.GetComponent<Interactable>().distanceToInteract;
             targetRotation = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
 
             StartCoroutine(TriggerAnimation());
+        }
+        else
+        {
+            isSomtin = false;
         }
     }
     private void SeekInteractables()

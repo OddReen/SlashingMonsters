@@ -46,6 +46,7 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
 
     private void Start()
     {
+        sounds = GetComponent<Sounds>();
         weapon = GetComponentInChildren<Weapon>();
 
         state = State.Idle;
@@ -127,15 +128,7 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
         {
             if (isSighted && inRange)
             {
-
-                if (preparedToAttack)
-                {
-                    state = State.Attack;
-                }
-                else
-                {
-                    state = State.Surround;
-                }
+                state = State.Attack;
             }
             else if (isSighted && !inRange && !isPerformingAction)
             {
@@ -194,6 +187,10 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
                 {
                     if (hit.collider.CompareTag("Player"))
                     {
+                        if (!isSighted)
+                        {
+                            sounds.Noticed();
+                        }
                         isSighted = true;
                     }
                     else

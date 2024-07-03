@@ -37,7 +37,6 @@ public class Player_CameraController : CharacterActions
     {
         canLook = true;
         Instance = this;
-        Cursor.lockState = CursorLockMode.Locked;
         GameObject newCameraTarget = GameObject.Find("Camera Target");
         if (newCameraTarget == null)
         {

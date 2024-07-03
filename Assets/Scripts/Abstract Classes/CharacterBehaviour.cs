@@ -3,6 +3,7 @@ using UnityEngine;
 
 public abstract class CharacterBehaviour : MonoBehaviour
 {
+    public Sounds sounds;
     public enum AtackingState
     {
         None,
