@@ -70,10 +70,10 @@ MonoBehaviour:
   Path: ../../../Dropbox/CrestforgeCurseFmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638552014483513826
+  lastModified: 638556357975248247
   FileSizes:
   - Name: Desktop
-    Value: 1596
+    Value: 1640
   Exists: 1
 --- !u!114 &-2225040200455186771
 MonoBehaviour:
@@ -225,10 +225,10 @@ MonoBehaviour:
   Path: ../../../Dropbox/CrestforgeCurseFmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638552014483478655
+  lastModified: 638556357975212985
   FileSizes:
   - Name: Desktop
-    Value: 11128096
+    Value: 13026464
   Exists: 1
 --- !u!114 &-341110775743482065
 MonoBehaviour:
@@ -317,12 +317,13 @@ MonoBehaviour:
   - {fileID: -5453328222991269332}
   - {fileID: 134890567937077709}
   - {fileID: -1327588524407176406}
+  - {fileID: 2424900320606399043}
   EditorParameters: []
   MasterBanks:
   - {fileID: -556038365322614560}
   StringsBanks:
   - {fileID: -3510308435510691521}
-  cacheTime: 638552014483513826
+  cacheTime: 638556357975248247
   cacheVersion: 131616
 --- !u!114 &134890567937077709
 MonoBehaviour:
@@ -378,6 +379,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 112848
+--- !u!114 &2424900320606399043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenu Song
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenu Song
+  Guid:
+    Data1: 1229604016
+    Data2: 1292612833
+    Data3: -2063901272
+    Data4: 1161037803
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 153000
 --- !u!114 &2663538191676376152
 MonoBehaviour:
   m_ObjectHideFlags: 0

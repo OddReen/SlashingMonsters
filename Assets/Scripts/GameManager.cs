@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         player.GetComponent<CharacterBehaviour_Player>().animator.SetBool("GetUp", true);
 
-        Invoke("EnableInput", 2);
+        Invoke("EnableInput", 6);
     }
     public void OnQuitGame()
     {
