@@ -183,7 +183,7 @@ public class CharacterBehaviour_Enemy : CharacterBehaviour
                 Vector3 dir = (GameManager.Instance.player.transform.position + Vector3.up) - (transform.position + Vector3.up);
                 dir.Normalize();
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position + Vector3.up, dir, out hit, distanceToSight, ~sightLayer))
+                if (Physics.Raycast(transform.position + Vector3.up, dir, out hit, distanceToSight, sightLayer))
                 {
                     if (hit.collider.CompareTag("Player"))
                     {

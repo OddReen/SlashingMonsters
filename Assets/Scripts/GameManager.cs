@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static MusicManager;
 
 public class GameManager : MonoBehaviour
 {
@@ -40,15 +41,16 @@ public class GameManager : MonoBehaviour
         mainMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         player.GetComponent<CharacterBehaviour_Player>().animator.SetBool("GetUp", true);
+        MusicManager.instance.TriggerMusic(MusicState.none);
 
-        Invoke("EnableInput", 6);
+        Invoke("OnPlayerGetUp", 3);
     }
     public void OnQuitGame()
     {
         Application.Quit();
     }
 
-    public void EnableInput()
+    public void OnPlayerGetUp()
     {
         player.GetComponent<CharacterBehaviour_Player>().UI.SetActive(true);
         Player_Input.Instance.EnableInput();
@@ -56,6 +58,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        MusicManager.instance.TriggerMusic(MusicState.mainMenu);
+
         isStarting = true;
 
         if (Instance == null) Instance = this;
@@ -116,6 +120,11 @@ public class GameManager : MonoBehaviour
         SpawnPlayer();
         SpawnEnemies();
         SpawnInteractables();
+
+        player.GetComponent<CharacterBehaviour_Player>().UI.SetActive(true);
+        Player_Input.Instance.DisableInput();
+        OnStartGame();
+
         interactables = GameObject.FindGameObjectsWithTag("Interactable");
     }
 

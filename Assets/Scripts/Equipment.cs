@@ -30,6 +30,7 @@ public class Equipment : MonoBehaviour
     }
     public void EquipWeapon(GameObject weaponGameObject)
     {
+
         durabilityBarBackground.SetActive(true);
 
         weaponGameObject.GetComponentInParent<CharacterBehaviour_Enemy>().sounds.Hurt();
@@ -37,6 +38,8 @@ public class Equipment : MonoBehaviour
         GameObject parent = weaponGameObject.GetComponentInParent<CharacterBehaviour_Enemy>().gameObject;
         Weapon weapon = weaponGameObject.GetComponent<Weapon>();
         Animator animator = weaponGameObject.GetComponentInChildren<Animator>();
+
+        characterBehaviour_Player.weaponHash = weapon.weaponHash;
         weapon.equipment = this;
 
         weapon.canInteract = false;

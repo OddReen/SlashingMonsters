@@ -1541,7 +1541,7 @@ MonoBehaviour:
   isSighted: 0
   sightLayer:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 64
   isPerformingAction: 0
   pathFound: 0
   onGizmos: 0
@@ -2803,6 +2803,7 @@ MonoBehaviour:
   canInteract: 0
   damageAmount: 50
   stunAmount: 5
+  weaponHash: 1
   isHitBoxActive: 0
   maxDurability: 5
   currentDurability: 0

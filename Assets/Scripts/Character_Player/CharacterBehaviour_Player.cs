@@ -1,9 +1,10 @@
 using System.Collections;
 using UnityEngine;
+using static MusicManager;
 
 public class CharacterBehaviour_Player : CharacterBehaviour
 {
-
+    public int weaponHash;
 
     [SerializeField] public bool inCombat = false;
 

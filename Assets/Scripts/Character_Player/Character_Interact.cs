@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Character_Interact : CharacterActions
@@ -21,7 +20,7 @@ public class Character_Interact : CharacterActions
             if (!isSomtin)
             {
                 characterBehaviour_Player.sounds.Swing();
-            } 
+            }
             isSomtin = true;
             Vector3 direction = target.transform.position - transform.position;
             direction.Normalize();
@@ -68,7 +67,10 @@ public class Character_Interact : CharacterActions
     }
     public void Interact()
     {
-        target.GetComponent<Interactable>().Action(characterBehaviour_Player);
+        if (target != null)
+        {
+            target.GetComponent<Interactable>().Action(characterBehaviour_Player);
+        }
     }
     private void OnDrawGizmos()
     {

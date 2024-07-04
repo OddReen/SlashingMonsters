@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class Weapon : Interactable_Equipables
 {
+    public int weaponHash;
+
     [Header("Boolean")]
     public bool isHitBoxActive;
 

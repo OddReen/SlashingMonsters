@@ -28,6 +28,7 @@ public class Character_Attack : CharacterActions
     }
     private IEnumerator OnAnimation()
     {
+        characterBehaviour_Player.animator.SetInteger("WeaponHash", characterBehaviour_Player.weaponHash);
         StartCoroutine(TriggerAnimation());
         InitializeRootMotion();
 

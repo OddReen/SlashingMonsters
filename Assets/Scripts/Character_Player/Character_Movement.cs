@@ -48,7 +48,7 @@ public class Character_Movement : CharacterActions
         IsGrounded();
         if (isGrounded && !characterBehaviour_Player.isPerformingAction)
         {
-            Movement();
+            RootMovement();
             Rotation();
         }
         StickToTheGround();
