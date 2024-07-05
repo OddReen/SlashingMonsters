@@ -51,7 +51,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.68
+    - _Alpha: 1
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -61,27 +61,27 @@ Material:
     - _DstBlend: 10
     - _FoamAmount: 32.7
     - _FoamCutoff: 8.74
-    - _FoamScale: 1
-    - _FoamSpeed: 0.6
-    - _FogPower: 0.33
-    - _FogScale_2: 0.3
-    - _GradientScale: 0.29
+    - _FoamScale: -1.39
+    - _FoamSpeed: 3.66
+    - _FogPower: 0.71
+    - _FogScale_2: 0.24
+    - _GradientScale: 0.63
     - _HighFrequencyR: 6.46
-    - _HihgFrequency: 1000
-    - _NormalStrength: 5.54
+    - _HihgFrequency: 1000.01
+    - _NormalStrength: -0.45
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RefractionScale: 0.81
-    - _RefractionSpeed: 1.3
+    - _RefractionScale: 0.5
+    - _RefractionSpeed: 4.73
     - _ReractionStrength: 5000
     - _Smoothness: 0.827
     - _SrcBlend: 1
     - _Surface: 1
-    - _WaterDepth: 21.3
-    - _WaveAmplitude: 0.25
-    - _WaveSpeed: 3.38
-    - _WaveSpeedR: 6.24
+    - _WaterDepth: 104.5
+    - _WaveAmplitude: 0.29
+    - _WaveSpeed: 2
+    - _WaveSpeedR: 5.9
     - _WorkflowMode: 0
     - _ZTest: 4
     - _ZWrite: 1

@@ -8,13 +8,13 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FogShader 1
-  m_Shader: {fileID: -6465566751694194690, guid: 9ab2e202e69d7994c8a4aa598c53ae61,
+  m_Shader: {fileID: -6465566751694194690, guid: 8b700139a7f62bf47acc84e3c3734edb,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _ALPHAPREMULTIPLY_ON
-  - _SPECULAR_SETUP
+  - _RECEIVE_SHADOWS_OFF
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 2
@@ -29,6 +29,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _FogText:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _WaterSurfaceNormal2:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -51,7 +55,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.25
+    - _Alpha: 1
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -59,37 +63,37 @@ Material:
     - _CastShadows: 0
     - _Cull: 0
     - _DstBlend: 10
-    - _FoamAmount: 32.7
-    - _FoamCutoff: 8.74
-    - _FoamScale: 1
-    - _FoamSpeed: 0.6
-    - _FogPower: 1
-    - _FogScale_2: 1
-    - _GradientScale: 1
-    - _HighFrequencyR: 0
-    - _HihgFrequency: 0
-    - _NormalStrength: 5.54
+    - _FoamAmount: 0
+    - _FoamCutoff: 0
+    - _FoamScale: 0
+    - _FoamSpeed: 0.009
+    - _FogPower: 0.4
+    - _FogScale_2: 28.61
+    - _GradientScale: 256.6
+    - _HighFrequencyR: 0.4
+    - _HihgFrequency: 1
+    - _NormalStrength: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ReceiveShadows: 1
-    - _RefractionScale: 0.1
-    - _RefractionSpeed: 0
-    - _ReractionStrength: 5000
-    - _Smoothness: 0.827
+    - _ReceiveShadows: 0
+    - _RefractionScale: 24.39
+    - _RefractionSpeed: 0.03
+    - _ReractionStrength: 0.2
+    - _Smoothness: 0
     - _SrcBlend: 1
     - _Surface: 1
-    - _WaterDepth: 21.3
-    - _WaveAmplitude: 0
-    - _WaveSpeed: 0
-    - _WaveSpeedR: 0
-    - _WorkflowMode: 0
+    - _WaterDepth: 69.9
+    - _WaveAmplitude: 0.1
+    - _WaveSpeed: 0.3
+    - _WaveSpeedR: 0.15
+    - _WorkflowMode: 1
     - _ZTest: 4
     - _ZWrite: 1
     - _ZWriteControl: 1
     m_Colors:
-    - _DeepWater: {r: 0.57169807, g: 0.8820414, b: 1, a: 1}
-    - _FoamColor: {r: 0.98490566, g: 0.98490566, b: 0.98490566, a: 1}
-    - _FogColour: {r: 4.251963, g: 3.9870694, b: 8.418913, a: 1}
+    - _DeepWater: {r: 0.35283017, g: 0.8218798, b: 1, a: 1}
+    - _FoamColor: {r: 0.86709636, g: 0.9169811, b: 0.25433248, a: 1}
+    - _FogColour: {r: 1.002776, g: 1.7305399, b: 2.1047277, a: 1}
     - _ShallowWater: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1571019151602854755
