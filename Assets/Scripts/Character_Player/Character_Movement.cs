@@ -21,7 +21,6 @@ public class Character_Movement : CharacterActions
     [SerializeField] float sphereOverlapRadius;
     [SerializeField] LayerMask layerMask;
     [SerializeField] float rayDistanceDown;
-    [SerializeField] Vector3 rayHit;
 
     [Header("Gizmos")]
     [SerializeField] bool playerDirectionGizmo;
@@ -46,9 +45,9 @@ public class Character_Movement : CharacterActions
     {
         if (characterBehaviour_Player.isDead) return;
         IsGrounded();
-        if (isGrounded && !characterBehaviour_Player.isPerformingAction)
+        if (!characterBehaviour_Player.isPerformingAction)
         {
-            RootMovement();
+            Movement();
             Rotation();
         }
         StickToTheGround();
@@ -80,8 +79,17 @@ public class Character_Movement : CharacterActions
             currentSpeed = Mathf.MoveTowards(currentSpeed, 0, Time.deltaTime * blendSpeed);
             characterBehaviour_Player.animator.SetFloat("Move", currentSpeed);
         }
-
-        Vector3 moveVelocity = OnSlope() * targetSpeed;
+        Vector3 moveVelocity;
+        if (isGrounded)
+        {
+            moveVelocity = OnSlope() * targetSpeed;
+        }
+        else
+        {
+            Vector3 dir = moveDirectionCameraRelative;
+            dir.y = characterBehaviour_Player.rb.velocity.y;
+            moveVelocity = dir;
+        }
 
         if (canMove)
         {
@@ -153,7 +161,6 @@ public class Character_Movement : CharacterActions
             if (Physics.Raycast(transform.position, Vector3.down, out hit, rayDistanceDown, ~layerMask) && !triggerOffTheGround)
             {
                 characterBehaviour_Player.animator.SetBool("isGrounded", true);
-                rayHit = hit.point;
                 characterBehaviour_Player.rb.velocity = new Vector3(characterBehaviour_Player.rb.velocity.x, -hit.point.y * 5, characterBehaviour_Player.rb.velocity.z);
             }
             else

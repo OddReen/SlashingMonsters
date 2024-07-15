@@ -1,5 +1,5 @@
 using UnityEngine;
-using static MusicManager;
+using static BackgroundSoundsManager;
 
 public class Crumble : MonoBehaviour
 {
@@ -8,8 +8,8 @@ public class Crumble : MonoBehaviour
     {
         if (objectToCrumble != null)
         {
-            MusicManager.instance.TriggerMusic(MusicState.roofColapse);
-            MusicManager.instance.TriggerCrumble();
+            BackgroundSoundsManager.instance.TriggerMusic(MusicState.roofColapse);
+            BackgroundSoundsManager.instance.TriggerCrumble();
             Destroy(objectToCrumble);
         }
     }

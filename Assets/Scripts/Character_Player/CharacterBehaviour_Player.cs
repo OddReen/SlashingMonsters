@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using static MusicManager;
+using static BackgroundSoundsManager;
 
 public class CharacterBehaviour_Player : CharacterBehaviour
 {

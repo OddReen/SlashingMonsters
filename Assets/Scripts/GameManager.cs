@@ -1,10 +1,14 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static MusicManager;
+using static BackgroundSoundsManager;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Sounds")]
+    public EventReference respawnSound;
+
     [SerializeField] GameObject mainMenu;
 
     public static GameManager Instance;
@@ -41,7 +45,7 @@ public class GameManager : MonoBehaviour
         mainMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         player.GetComponent<CharacterBehaviour_Player>().animator.SetBool("GetUp", true);
-        MusicManager.instance.TriggerMusic(MusicState.none);
+        BackgroundSoundsManager.instance.TriggerMusic(MusicState.none);
 
         Invoke("OnPlayerGetUp", 3);
     }
@@ -58,7 +62,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        MusicManager.instance.TriggerMusic(MusicState.mainMenu);
+        BackgroundSoundsManager.instance.TriggerMusic(MusicState.mainMenu);
 
         isStarting = true;
 
@@ -112,6 +116,7 @@ public class GameManager : MonoBehaviour
         Fade.Instance.FadeOut();
         yield return new WaitForSeconds(respawnTime);
         Fade.Instance.FadeIn();
+        RuntimeManager.PlayOneShot(respawnSound);
         // Delete
         Destroy(player);
         DeleteInteractables();

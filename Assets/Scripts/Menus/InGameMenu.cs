@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static MusicManager;
+using static BackgroundSoundsManager;
 
 public class InGameMenu : MonoBehaviour
 {
@@ -18,7 +18,7 @@ public class InGameMenu : MonoBehaviour
     }
     private void Resume()
     {
-        MusicManager.instance.TriggerMusic(MusicState.none);
+        BackgroundSoundsManager.instance.TriggerMusic(MusicState.none);
         Time.timeScale = 1f;
         gameObject.SetActive(false);
         Player_Input.Instance.enabled = true;

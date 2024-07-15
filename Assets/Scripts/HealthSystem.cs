@@ -31,10 +31,6 @@ public class HealthSystem : MonoBehaviour
     [Header("Stun Bar")]
     [SerializeField] protected GameObject stunBarBackground;
     [SerializeField] protected GameObject stunBar;
-    [SerializeField] protected GameObject stunBarLoss;
-    [SerializeField] public float stunBarLossSpeed = 1;
-    [SerializeField] public float stunBarLossAmount = 1;
-    [SerializeField] public float stunBarLossTime = 1;
     Coroutine c_stunTime;
     Coroutine c_stunBarUpdate;
     Coroutine c_healthBarUpdate;
@@ -161,15 +157,7 @@ public class HealthSystem : MonoBehaviour
     {
         float stun = (float)currentStun / (float)maxStun;
         stunBar.GetComponent<Image>().fillAmount = stun;
-
-        yield return new WaitForSeconds(stunBarLossTime);
-
-        while (stunBarLossAmount != stun)
-        {
-            stunBarLossAmount = Mathf.MoveTowards(stunBarLossAmount, stun, Time.deltaTime * stunBarLossSpeed);
-            stunBarLoss.GetComponent<Image>().fillAmount = stunBarLossAmount;
-            yield return null;
-        }
+        yield return null;
     }
     #endregion
     #region Trigger Animation

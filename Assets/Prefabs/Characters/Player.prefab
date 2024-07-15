@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1796158991987495721
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28,14 +28,14 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 249764850873478488}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 1000}
+  m_AnchoredPosition: {x: 98, y: 15}
+  m_SizeDelta: {x: 500, y: 62.42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &402715886934954404
 CanvasRenderer:
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.33333334, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -67,7 +67,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 4742625c330b8ff4e9626d20fc3067e0, type: 3}
   m_Type: 3
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
   m_FillAmount: 1
@@ -12469,7 +12469,6 @@ GameObject:
   - component: {fileID: 4002635667204180931}
   - component: {fileID: 3808304157965921465}
   - component: {fileID: 8545102316149945161}
-  - component: {fileID: 4309723437327800880}
   - component: {fileID: 2406863719901455524}
   - component: {fileID: 2665412157236812059}
   - component: {fileID: 2906658348630554893}
@@ -12603,10 +12602,6 @@ MonoBehaviour:
   stunTime: 3
   stunBarBackground: {fileID: 5138921678468064285}
   stunBar: {fileID: 7578944453484325534}
-  stunBarLoss: {fileID: 7604405113298854206}
-  stunBarLossSpeed: 1
-  stunBarLossAmount: 1
-  stunBarLossTime: 1
 --- !u!114 &5745557194589111392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12619,6 +12614,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8435b2d915b3d4095ea4b134439664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grabSound:
+    Guid:
+      Data1: 287365994
+      Data2: 1324952540
+      Data3: -118553430
+      Data4: 736020515
+    Path: event:/Scyrent - Grabbed
   throwableSlot: {fileID: 7543173884096555780}
   weaponSlot: {fileID: 6292084156720999686}
   durabilityBarBackground: {fileID: 3857674837723004868}
@@ -12697,7 +12699,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   rayDistanceDown: 0.5
-  rayHit: {x: 0, y: 0, z: 0}
   playerDirectionGizmo: 0
   isGroundedGizmo: 0
   canRotate: 1
@@ -12803,19 +12804,6 @@ MonoBehaviour:
   target: {fileID: 0}
   aimRadius: 10
   rotationSpeed: 1000
---- !u!114 &4309723437327800880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8636731778826161994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d62946ff355e11540a66ca34f4c62795, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionTag: isLanding
 --- !u!114 &2406863719901455524
 MonoBehaviour:
   m_ObjectHideFlags: 0

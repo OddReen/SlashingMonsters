@@ -1,334 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8730553456604658225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/AMBIENT/BRIDGE
-  m_EditorClassIdentifier: 
-  Path: event:/AMBIENT/BRIDGE
-  Guid:
-    Data1: 329459058
-    Data2: 1341365952
-    Data3: -169175162
-    Data4: 684236679
-  Banks:
-  - {fileID: -556038365322614560}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 10040
---- !u!114 &-7847481378200639247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MC/Shield Man/Notice
-  m_EditorClassIdentifier: 
-  Path: event:/MC/Shield Man/Notice
-  Guid:
-    Data1: 27142033
-    Data2: 1262544412
-    Data3: -81454959
-    Data4: 414459749
-  Banks:
-  - {fileID: -556038365322614560}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2222
---- !u!114 &-7503539071240048685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MC/Scythe Man/Noticed
-  m_EditorClassIdentifier: 
-  Path: event:/MC/Scythe Man/Noticed
-  Guid:
-    Data1: -778724708
-    Data2: 1177811026
-    Data3: 2020931005
-    Data4: 141155928
-  Banks:
-  - {fileID: -556038365322614560}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2222
---- !u!114 &-4578788831223514940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MC/ATTACKS/MC_ATTACK3
-  m_EditorClassIdentifier: 
-  Path: event:/MC/ATTACKS/MC_ATTACK3
-  Guid:
-    Data1: 1177151745
-    Data2: 1101214561
-    Data3: 1994860978
-    Data4: 788587278
-  Banks:
-  - {fileID: -556038365322614560}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 520
---- !u!114 &-3510308435510691521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: ../../../Dropbox/CrestforgeCurseFmod/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638557240268193327
-  FileSizes:
-  - Name: Desktop
-    Value: 1802
-  Exists: 1
---- !u!114 &-3000061764598472254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: snapshot:/SALA INTERIOR GRANDE
-  m_EditorClassIdentifier: 
-  Path: snapshot:/SALA INTERIOR GRANDE
-  Guid:
-    Data1: 1321573722
-    Data2: 1277867678
-    Data3: 1252835502
-    Data4: 1930492679
-  Banks:
-  - {fileID: -556038365322614560}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 0
---- !u!114 &-1792154312412607203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MC/ATTACKS/Swing
-  m_EditorClassIdentifier: 
-  Path: event:/MC/ATTACKS/Swing
-  Guid:
-    Data1: 1378281751
-    Data2: 1167640165
-    Data3: 1313756336
-    Data4: -1430284658
-  Banks:
-  - {fileID: -556038365322614560}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1130
---- !u!114 &-1520513645687382468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MC/ATTACKS/MC_ATTACK2
-  m_EditorClassIdentifier: 
-  Path: event:/MC/ATTACKS/MC_ATTACK2
-  Guid:
-    Data1: 512593080
-    Data2: 1216189777
-    Data3: -1900894839
-    Data4: -255224923
-  Banks:
-  - {fileID: -556038365322614560}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 600
---- !u!114 &-1289060458999896319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/BattleTheme
-  m_EditorClassIdentifier: 
-  Path: event:/BattleTheme
-  Guid:
-    Data1: 493474888
-    Data2: 1225980072
-    Data3: -1369844861
-    Data4: -731219199
-  Banks:
-  - {fileID: -556038365322614560}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 212014
---- !u!114 &-556038365322614560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: ../../../Dropbox/CrestforgeCurseFmod/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638557240268158062
-  FileSizes:
-  - Name: Desktop
-    Value: 19468224
-  Exists: 1
---- !u!114 &-503906228706423722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MC/ATTACKS/MC_ATTACK1
-  m_EditorClassIdentifier: 
-  Path: event:/MC/ATTACKS/MC_ATTACK1
-  Guid:
-    Data1: 368288255
-    Data2: 1212464833
-    Data3: 1598330026
-    Data4: -767414021
-  Banks:
-  - {fileID: -556038365322614560}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 500
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
-  m_Name: FMODStudioCache
-  m_EditorClassIdentifier: 
-  EditorBanks:
-  - {fileID: -3510308435510691521}
-  - {fileID: -556038365322614560}
-  EditorEvents:
-  - {fileID: -4578788831223514940}
-  - {fileID: 2927912596428564810}
-  - {fileID: -1792154312412607203}
-  - {fileID: 615634124007185994}
-  - {fileID: 8412125514739267023}
-  - {fileID: 2958850527838793651}
-  - {fileID: -1289060458999896319}
-  - {fileID: 9058855888660775696}
-  - {fileID: 8083216605810246913}
-  - {fileID: 4208781677105547420}
-  - {fileID: -3000061764598472254}
-  - {fileID: 2935190805694775773}
-  - {fileID: -8730553456604658225}
-  - {fileID: 8475120067881200918}
-  - {fileID: -7847481378200639247}
-  - {fileID: -7503539071240048685}
-  - {fileID: -1520513645687382468}
-  - {fileID: 4766348980223286682}
-  - {fileID: 5724251529363722450}
-  - {fileID: 559360195900061625}
-  - {fileID: -503906228706423722}
-  - {fileID: 1803637701541390621}
-  EditorParameters: []
-  MasterBanks:
-  - {fileID: -556038365322614560}
-  StringsBanks:
-  - {fileID: -3510308435510691521}
-  cacheTime: 638557240268193327
-  cacheVersion: 131616
---- !u!114 &559360195900061625
+--- !u!114 &-9209177634988279079
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -355,278 +27,7 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
---- !u!114 &615634124007185994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/RoofColapse
-  m_EditorClassIdentifier: 
-  Path: event:/RoofColapse
-  Guid:
-    Data1: 1018155811
-    Data2: 1303244866
-    Data3: 2085361802
-    Data4: -1148923072
-  Banks:
-  - {fileID: -556038365322614560}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 132781
---- !u!114 &1803637701541390621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Crumble
-  m_EditorClassIdentifier: 
-  Path: event:/Crumble
-  Guid:
-    Data1: -2038089626
-    Data2: 1215891821
-    Data3: 49610935
-    Data4: -1010148998
-  Banks:
-  - {fileID: -556038365322614560}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &2927912596428564810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MC/DODGEKICKSTEPS/DODGE
-  m_EditorClassIdentifier: 
-  Path: event:/MC/DODGEKICKSTEPS/DODGE
-  Guid:
-    Data1: 1230231819
-    Data2: 1112953951
-    Data3: -219125595
-    Data4: 561175898
-  Banks:
-  - {fileID: -556038365322614560}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 870
---- !u!114 &2935190805694775773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MC/Scythe Man/Hurt
-  m_EditorClassIdentifier: 
-  Path: event:/MC/Scythe Man/Hurt
-  Guid:
-    Data1: 1016207200
-    Data2: 1170307473
-    Data3: 632144540
-    Data4: 1451277642
-  Banks:
-  - {fileID: -556038365322614560}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2222
---- !u!114 &2958850527838793651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MC/DODGEKICKSTEPS/STEPS
-  m_EditorClassIdentifier: 
-  Path: event:/MC/DODGEKICKSTEPS/STEPS
-  Guid:
-    Data1: 711396167
-    Data2: 1180975032
-    Data3: -1114711680
-    Data4: -612773600
-  Banks:
-  - {fileID: -556038365322614560}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters:
-  - {fileID: 5160409877402430228}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &4208781677105547420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/PauseMenu
-  m_EditorClassIdentifier: 
-  Path: event:/PauseMenu
-  Guid:
-    Data1: -1284803239
-    Data2: 1274580493
-    Data3: 592299172
-    Data4: -1242870005
-  Banks:
-  - {fileID: -556038365322614560}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 120120
---- !u!114 &4766348980223286682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MC/Shield Man/Hurt
-  m_EditorClassIdentifier: 
-  Path: event:/MC/Shield Man/Hurt
-  Guid:
-    Data1: 130289086
-    Data2: 1284169483
-    Data3: -1789748309
-    Data4: -1441093472
-  Banks:
-  - {fileID: -556038365322614560}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2222
---- !u!114 &5160409877402430228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/STEPS/Rock
-  m_EditorClassIdentifier: 
-  Name: Rock
-  StudioPath: 
-  Min: 0
-  Max: 2
-  Default: 0
-  ID:
-    data1: 1068557488
-    data2: 3268019342
-  Type: 2
-  IsGlobal: 0
-  Labels:
-  - Rock
-  - Roof
-  - Cathedral
-  Exists: 1
---- !u!114 &5724251529363722450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MC/DODGEKICKSTEPS/KICK
-  m_EditorClassIdentifier: 
-  Path: event:/MC/DODGEKICKSTEPS/KICK
-  Guid:
-    Data1: 228066242
-    Data2: 1151098033
-    Data3: 1177543811
-    Data4: -1319143294
-  Banks:
-  - {fileID: -556038365322614560}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1250
---- !u!114 &8083216605810246913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: snapshot:/EXTERIOR
-  m_EditorClassIdentifier: 
-  Path: snapshot:/EXTERIOR
-  Guid:
-    Data1: -1067303342
-    Data2: 1271487252
-    Data3: 1306762172
-    Data4: 786986939
-  Banks:
-  - {fileID: -556038365322614560}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 0
---- !u!114 &8412125514739267023
+--- !u!114 &-8013916498921942914
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -653,7 +54,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 112848
---- !u!114 &8475120067881200918
+--- !u!114 &-7978221580685946561
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -663,14 +64,231 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MainMenu
+  m_Name: event:/MC/DODGEKICKSTEPS/KICK
   m_EditorClassIdentifier: 
-  Path: event:/MainMenu
+  Path: event:/MC/DODGEKICKSTEPS/KICK
   Guid:
-    Data1: -2027387504
-    Data2: 1086089826
-    Data3: -178715991
-    Data4: 838918806
+    Data1: 228066242
+    Data2: 1151098033
+    Data3: 1177543811
+    Data4: -1319143294
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1250
+--- !u!114 &-7414822636051300973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: snapshot:/EXTERIOR
+  m_EditorClassIdentifier: 
+  Path: snapshot:/EXTERIOR
+  Guid:
+    Data1: -1067303342
+    Data2: 1271487252
+    Data3: 1306762172
+    Data4: 786986939
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &-6960039903081597097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Crumble
+  m_EditorClassIdentifier: 
+  Path: event:/Crumble
+  Guid:
+    Data1: -2038089626
+    Data2: 1215891821
+    Data3: 49610935
+    Data4: -1010148998
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6609884628517740215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player_Respawn Sound
+  m_EditorClassIdentifier: 
+  Path: event:/Player_Respawn Sound
+  Guid:
+    Data1: -1994637463
+    Data2: 1110218514
+    Data3: 1883540378
+    Data4: -1446193940
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3504
+--- !u!114 &-6585524325248412084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MC/DODGEKICKSTEPS/STEPS
+  m_EditorClassIdentifier: 
+  Path: event:/MC/DODGEKICKSTEPS/STEPS
+  Guid:
+    Data1: 711396167
+    Data2: 1180975032
+    Data3: -1114711680
+    Data4: -612773600
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 1435359668456554914}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6427563795887088320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MC/Shield Man/Hurt
+  m_EditorClassIdentifier: 
+  Path: event:/MC/Shield Man/Hurt
+  Guid:
+    Data1: 130289086
+    Data2: 1284169483
+    Data3: -1789748309
+    Data4: -1441093472
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2222
+--- !u!114 &-6054322504267895452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player_FallDead
+  m_EditorClassIdentifier: 
+  Path: event:/Player_FallDead
+  Guid:
+    Data1: 1764503307
+    Data2: 1326926743
+    Data3: -445236608
+    Data4: 955463681
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1848
+--- !u!114 &-4452744977753347559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MC/ATTACKS/MC_ATTACK3
+  m_EditorClassIdentifier: 
+  Path: event:/MC/ATTACKS/MC_ATTACK3
+  Guid:
+    Data1: 1177151745
+    Data2: 1101214561
+    Data3: 1994860978
+    Data4: 788587278
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 520
+--- !u!114 &-4154977178220592947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/RoofColapse
+  m_EditorClassIdentifier: 
+  Path: event:/RoofColapse
+  Guid:
+    Data1: 1018155811
+    Data2: 1303244866
+    Data3: 2085361802
+    Data4: -1148923072
   Banks:
   - {fileID: -556038365322614560}
   IsStream: 1
@@ -679,8 +297,509 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 153000
---- !u!114 &9058855888660775696
+  Length: 132781
+--- !u!114 &-3753644380801706978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player - ScytheAttacks
+  m_EditorClassIdentifier: 
+  Path: event:/Player - ScytheAttacks
+  Guid:
+    Data1: 1963120253
+    Data2: 1220618591
+    Data3: 1898294433
+    Data4: 688421589
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &-3541078451583123381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MC/ATTACKS/Swing
+  m_EditorClassIdentifier: 
+  Path: event:/MC/ATTACKS/Swing
+  Guid:
+    Data1: 1378281751
+    Data2: 1167640165
+    Data3: 1313756336
+    Data4: -1430284658
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1130
+--- !u!114 &-3510308435510691521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../Dropbox/CrestforgeCurseFmod/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638564132140568514
+  FileSizes:
+  - Name: Desktop
+    Value: 2378
+  Exists: 1
+--- !u!114 &-3175774421932220836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: snapshot:/SALA INTERIOR GRANDE
+  m_EditorClassIdentifier: 
+  Path: snapshot:/SALA INTERIOR GRANDE
+  Guid:
+    Data1: 1321573722
+    Data2: 1277867678
+    Data3: 1252835502
+    Data4: 1930492679
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &-2995508145790069262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Shieldud - Death
+  m_EditorClassIdentifier: 
+  Path: event:/Shieldud - Death
+  Guid:
+    Data1: -821658736
+    Data2: 1189268902
+    Data3: -691451258
+    Data4: -1385687376
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4992
+--- !u!114 &-1383443476831912018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MC/Scythe Man/Hurt
+  m_EditorClassIdentifier: 
+  Path: event:/MC/Scythe Man/Hurt
+  Guid:
+    Data1: 1016207200
+    Data2: 1170307473
+    Data3: 632144540
+    Data4: 1451277642
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2222
+--- !u!114 &-1100336958711630670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MC/ATTACKS/MC_ATTACK1
+  m_EditorClassIdentifier: 
+  Path: event:/MC/ATTACKS/MC_ATTACK1
+  Guid:
+    Data1: 368288255
+    Data2: 1212464833
+    Data3: 1598330026
+    Data4: -767414021
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 500
+--- !u!114 &-556038365322614560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../Dropbox/CrestforgeCurseFmod/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638564132140523248
+  FileSizes:
+  - Name: Desktop
+    Value: 19791552
+  Exists: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: -3510308435510691521}
+  - {fileID: -556038365322614560}
+  EditorEvents:
+  - {fileID: -4452744977753347559}
+  - {fileID: -6054322504267895452}
+  - {fileID: 7070612046950120781}
+  - {fileID: -3541078451583123381}
+  - {fileID: -4154977178220592947}
+  - {fileID: 4214459510715443061}
+  - {fileID: -8013916498921942914}
+  - {fileID: -6585524325248412084}
+  - {fileID: 2209743162735013849}
+  - {fileID: 5002015614195694514}
+  - {fileID: -7414822636051300973}
+  - {fileID: 3148558836779149105}
+  - {fileID: 6756610798247741912}
+  - {fileID: -3175774421932220836}
+  - {fileID: -1383443476831912018}
+  - {fileID: -6960039903081597097}
+  - {fileID: -6609884628517740215}
+  - {fileID: 7621868993607657397}
+  - {fileID: 8549781277235151709}
+  - {fileID: 1032680481742013942}
+  - {fileID: -3753644380801706978}
+  - {fileID: -2995508145790069262}
+  - {fileID: 6091330699121548045}
+  - {fileID: 397998595410321486}
+  - {fileID: 2336094992628517622}
+  - {fileID: 6468725460245393160}
+  - {fileID: 2676830455275384276}
+  - {fileID: 6688160783835403554}
+  - {fileID: -6427563795887088320}
+  - {fileID: -7978221580685946561}
+  - {fileID: 3050877638598243373}
+  - {fileID: -9209177634988279079}
+  - {fileID: -1100336958711630670}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: -556038365322614560}
+  StringsBanks:
+  - {fileID: -3510308435510691521}
+  cacheTime: 638564132140568514
+  cacheVersion: 131616
+--- !u!114 &397998595410321486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MC/Shield Man/Notice
+  m_EditorClassIdentifier: 
+  Path: event:/MC/Shield Man/Notice
+  Guid:
+    Data1: 27142033
+    Data2: 1262544412
+    Data3: -81454959
+    Data4: 414459749
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2222
+--- !u!114 &1032680481742013942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/AMBIENT/BRIDGE
+  m_EditorClassIdentifier: 
+  Path: event:/AMBIENT/BRIDGE
+  Guid:
+    Data1: 329459058
+    Data2: 1341365952
+    Data3: -169175162
+    Data4: 684236679
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10040
+--- !u!114 &1435359668456554914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/STEPS/Rock
+  m_EditorClassIdentifier: 
+  Name: Rock
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 1068557488
+    data2: 3268019342
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Rock
+  - Roof
+  - Cathedral
+  Exists: 1
+--- !u!114 &2209743162735013849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BattleTheme
+  m_EditorClassIdentifier: 
+  Path: event:/BattleTheme
+  Guid:
+    Data1: 493474888
+    Data2: 1225980072
+    Data3: -1369844861
+    Data4: -731219199
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 212014
+--- !u!114 &2336094992628517622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MC/Scythe Man/Noticed
+  m_EditorClassIdentifier: 
+  Path: event:/MC/Scythe Man/Noticed
+  Guid:
+    Data1: -778724708
+    Data2: 1177811026
+    Data3: 2020931005
+    Data4: 141155928
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2222
+--- !u!114 &2676830455275384276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MC/ATTACKS/MC_ATTACK2
+  m_EditorClassIdentifier: 
+  Path: event:/MC/ATTACKS/MC_ATTACK2
+  Guid:
+    Data1: 512593080
+    Data2: 1216189777
+    Data3: -1900894839
+    Data4: -255224923
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 600
+--- !u!114 &3050877638598243373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Roof_Fall
+  m_EditorClassIdentifier: 
+  Path: event:/Roof_Fall
+  Guid:
+    Data1: -11531302
+    Data2: 1326457904
+    Data3: -22745419
+    Data4: 493950430
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1906
+--- !u!114 &3148558836779149105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Easter Egg Hit
+  m_EditorClassIdentifier: 
+  Path: event:/Easter Egg Hit
+  Guid:
+    Data1: -645725095
+    Data2: 1105085844
+    Data3: -721149040
+    Data4: 2033318021
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 500
+--- !u!114 &4214459510715443061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Easter Egg Thrown
+  m_EditorClassIdentifier: 
+  Path: event:/Easter Egg Thrown
+  Guid:
+    Data1: 2038423854
+    Data2: 1254098344
+    Data3: -1492613975
+    Data4: -1318577823
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 648
+--- !u!114 &5002015614195694514
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -707,3 +826,192 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 147007
+--- !u!114 &6091330699121548045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenu
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenu
+  Guid:
+    Data1: -2027387504
+    Data2: 1086089826
+    Data3: -178715991
+    Data4: 838918806
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 153000
+--- !u!114 &6468725460245393160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player_AttackC
+  m_EditorClassIdentifier: 
+  Path: event:/Player_AttackC
+  Guid:
+    Data1: -265673304
+    Data2: 1173424500
+    Data3: 2136410761
+    Data4: 692906450
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
+--- !u!114 &6688160783835403554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player_BeforeDeath(REGULAR)
+  m_EditorClassIdentifier: 
+  Path: event:/Player_BeforeDeath(REGULAR)
+  Guid:
+    Data1: 602077370
+    Data2: 1139899337
+    Data3: 665026975
+    Data4: -1429036798
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1880
+--- !u!114 &6756610798247741912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PauseMenu
+  m_EditorClassIdentifier: 
+  Path: event:/PauseMenu
+  Guid:
+    Data1: -1284803239
+    Data2: 1274580493
+    Data3: 592299172
+    Data4: -1242870005
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 120120
+--- !u!114 &7070612046950120781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MC/DODGEKICKSTEPS/DODGE
+  m_EditorClassIdentifier: 
+  Path: event:/MC/DODGEKICKSTEPS/DODGE
+  Guid:
+    Data1: 1230231819
+    Data2: 1112953951
+    Data3: -219125595
+    Data4: 561175898
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 870
+--- !u!114 &7621868993607657397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player - ShieldudAttacks
+  m_EditorClassIdentifier: 
+  Path: event:/Player - ShieldudAttacks
+  Guid:
+    Data1: -1572075158
+    Data2: 1101742791
+    Data3: 1635970736
+    Data4: -324517141
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &8549781277235151709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Scyrent - Grabbed
+  m_EditorClassIdentifier: 
+  Path: event:/Scyrent - Grabbed
+  Guid:
+    Data1: 287365994
+    Data2: 1324952540
+    Data3: -118553430
+    Data4: 736020515
+  Banks:
+  - {fileID: -556038365322614560}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 966

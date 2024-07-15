@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MusicManager : MonoBehaviour
+public class BackgroundSoundsManager : MonoBehaviour
 {
-    public static MusicManager instance;
+    public static BackgroundSoundsManager instance;
+
+    [SerializeField] GameObject currentBackgroundSound;
 
     [SerializeField] GameObject battleTheme;
     [SerializeField] GameObject finalCutscene;
@@ -12,6 +14,7 @@ public class MusicManager : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject crumble;
+    [SerializeField] GameObject defaultBackground;
 
     private void Awake()
     {
@@ -36,46 +39,46 @@ public class MusicManager : MonoBehaviour
         switch (state)
         {
             case MusicState.none:
-                battleTheme.SetActive(false);
-                finalCutscene.SetActive(false);
-                roofColapse.SetActive(false);
-                pauseMenu.SetActive(false);
-                mainMenu.SetActive(false);
+
+                currentBackgroundSound.SetActive(false);
+                defaultBackground.SetActive(true);
+                currentBackgroundSound = defaultBackground;
+
                 break;
             case MusicState.battleTheme:
+
+                currentBackgroundSound.SetActive(false);
                 battleTheme.SetActive(true);
-                finalCutscene.SetActive(false);
-                roofColapse.SetActive(false);
-                pauseMenu.SetActive(false);
-                mainMenu.SetActive(false);
+                currentBackgroundSound = battleTheme;
+
                 break;
             case MusicState.finalCutscene:
-                battleTheme.SetActive(false);
+
+                currentBackgroundSound.SetActive(false);
                 finalCutscene.SetActive(true);
-                roofColapse.SetActive(false);
-                pauseMenu.SetActive(false);
-                mainMenu.SetActive(false);
+                currentBackgroundSound = finalCutscene;
+
                 break;
             case MusicState.roofColapse:
-                battleTheme.SetActive(false);
-                finalCutscene.SetActive(false);
+
+                currentBackgroundSound.SetActive(false);
                 roofColapse.SetActive(true);
-                pauseMenu.SetActive(false);
-                mainMenu.SetActive(false);
+                currentBackgroundSound = roofColapse;
+
                 break;
             case MusicState.pauseMenu:
-                battleTheme.SetActive(false);
-                finalCutscene.SetActive(false);
-                roofColapse.SetActive(false);
+
+                currentBackgroundSound.SetActive(false);
                 pauseMenu.SetActive(true);
-                mainMenu.SetActive(false);
+                currentBackgroundSound = pauseMenu;
+
                 break;
             case MusicState.mainMenu:
-                battleTheme.SetActive(false);
-                finalCutscene.SetActive(false);
-                roofColapse.SetActive(false);
-                pauseMenu.SetActive(false);
+
+                currentBackgroundSound.SetActive(false);
                 mainMenu.SetActive(true);
+                currentBackgroundSound = mainMenu;
+
                 break;
         }
     }

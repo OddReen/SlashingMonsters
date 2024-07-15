@@ -1,7 +1,11 @@
+using FMODUnity;
 using UnityEngine;
 
 public class Equipment : MonoBehaviour
 {
+    [Header("Sounds")]
+    public EventReference grabSound;
+
     CharacterBehaviour_Player characterBehaviour_Player;
     [SerializeField] Transform throwableSlot;
     [SerializeField] Transform weaponSlot;
@@ -30,6 +34,7 @@ public class Equipment : MonoBehaviour
     }
     public void EquipWeapon(GameObject weaponGameObject)
     {
+        RuntimeManager.PlayOneShot(grabSound);
 
         durabilityBarBackground.SetActive(true);
 
