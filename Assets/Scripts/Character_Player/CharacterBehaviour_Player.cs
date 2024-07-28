@@ -33,13 +33,21 @@ public class CharacterBehaviour_Player : CharacterBehaviour
         while (true)
         {
             yield return new WaitForSeconds(0.25f);
-            inCombat = false;
             for (int i = 0; i < GameManager.Instance.enemyList.Count; i++)
             {
                 if (GameManager.Instance.enemyList[i].GetComponent<CharacterBehaviour_Enemy>() != null && GameManager.Instance.enemyList[i].GetComponent<CharacterBehaviour_Enemy>().isSighted)
                 {
-                    inCombat = true;
+                    if (!inCombat)
+                    {
+                        inCombat = true;
+                        BackgroundSoundsManager.instance.TriggerMusic(MusicState.battleTheme);
+                    }
                     break;
+                }
+                else if (inCombat)
+                {
+                    BackgroundSoundsManager.instance.TriggerMusic(MusicState.none);
+                    inCombat = false;
                 }
             }
             animator.SetBool("inCombat", inCombat);
